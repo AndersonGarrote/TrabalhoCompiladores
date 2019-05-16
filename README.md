@@ -6,6 +6,8 @@ Observações:
     O uso de (x) significa que ocorre antes de fazer o resto da expressão, ex: (x|y)z significa que aceita:
         xz ou yz
 
+Grámática:
+
 Program ::= Func {Func}
 Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList
 ParamList ::= ParamDec { ”, ” ParamDec }

@@ -73,6 +73,70 @@ public class Compiler {
 	}
 
 	public void Stat() {
+
+	}
+
+	public void AssingExprStat() {
+
+	}
+
+	public void ReturnStat() {
+
+	}
+
+	public void VarDecStat() {
+
+	}
+
+	public void IfStat() {
+
+	}
+
+	public void WhileStat() {
+
+	}
+
+	public void Expr() {
+
+	}
+
+	public void ExprAnd() {
+
+	}
+
+	public void ExprRel() {
+
+	}
+
+	public void RelOp() {
+
+	}
+
+	public void ExprAdd() {
+
+	}
+
+	public void ExprMult() {
+
+	}
+
+	public void ExprUnary() {
+
+	}
+
+	public void ExprPrimary() {
+
+	}
+
+	public void ExprLiteral() {
+
+	}
+
+	public void LiteralBoolean() {
+
+	}
+
+	public void FuncCall() {
 		
 	}
 }

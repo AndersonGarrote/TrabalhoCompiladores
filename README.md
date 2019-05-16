@@ -8,26 +8,37 @@ Observações:
 
 Grámática:
 
-Program ::= Func {Func}
-Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList
-ParamList ::= ParamDec { ”, ” ParamDec }
-ParamDec ::= Id ":" Type
-Type ::= "Int" | "Boolean" | "String"
-StatList ::= "{” {Stat} ”}"
-Stat ::= AssignExprStat | ReturnStat | VarDecStat | IfStat | WhileStat
-AssignExprStat ::= Expr [ "=" Expr ] ";"
-ReturnStat ::= "return" Expr ";"
-VarDecStat ::= "var" Id ":" Type ";"
-IfStat ::= "if" Expr StatList [ "else" StatList ]
-WhileStat ::= "while" Expr StatList
-Expr ::= ExprAnd { ”or” ExprAnd}
-ExprAnd ::= ExprRel { ”and” ExprRel}
-ExprRel ::= ExprAdd [ RelOp ExprAdd ]
-RelOp ::= "<" | "<=" | ">" | ">=" | "==" | "!="
-ExprAdd ::= ExprMult { ( ”+” | ”−” ) ExprMult }
-ExprMult ::= ExprUnary { ( ”∗” | ”/” ) ExprUnary }
-ExprUnary ::= [ ( "+" | "-" ) ] ExprPrimary
-ExprPrimary ::= Id | FuncCall | ExprLiteral
-ExprLiteral ::= LiteralInt | LiteralBoolean | LiteralString
-LiteralBoolean ::= "true" | "false"
-FuncCall ::= Id "(" [ Expr {”, ” Expr } ] ")"
+Program ::= Func {Func} 
+Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList  
+Usaremos "function" = "F"  
+ParamList ::= ParamDec { ”, ” ParamDec }  
+ParamDec ::= Id ":" Type  
+Type ::= "Int" | "Boolean" | "String"  
+Usaremos "Int" = "I", "Boolean" = "B" e "String" = "S"  
+StatList ::= "{” {Stat} ”}"  
+Stat ::= AssignExprStat | ReturnStat | VarDecStat | IfStat | WhileStat  
+AssignExprStat ::= Expr [ "=" Expr ] ";"  
+
+ReturnStat ::= "return" Expr ";"  
+Usaremos "return" = "R"  
+VarDecStat ::= "var" Id ":" Type ";"  
+Usaremos "var" = "V"  
+IfStat ::= "if" Expr StatList [ "else" StatList ]  
+Usaremos "if" = "F" e "else" = "E"  
+WhileStat ::= "while" Expr StatList  
+Usaremos "while" = "W"
+Expr ::= ExprAnd { ”or” ExprAnd}  
+Usaremos "or" = "O"  
+ExprAnd ::= ExprRel { ”and” ExprRel}  
+Usaremos "and" = "A"  
+ExprRel ::= ExprAdd [ RelOp ExprAdd ]  
+
+RelOp ::= "<" | "<=" | ">" | ">=" | "==" | "!="  
+Usaremos apenas "<" e ">"
+ExprAdd ::= ExprMult { ( ”+” | ”−” ) ExprMult }  
+ExprMult ::= ExprUnary { ( ”∗” | ”/” ) ExprUnary }  
+ExprUnary ::= [ ( "+" | "-" ) ] ExprPrimary  
+ExprPrimary ::= Id | FuncCall | ExprLiteral  
+ExprLiteral ::= LiteralInt | LiteralBoolean | LiteralString  
+LiteralBoolean ::= "true" | "false"  
+FuncCall ::= Id "(" [ Expr {”, ” Expr } ] ")"  

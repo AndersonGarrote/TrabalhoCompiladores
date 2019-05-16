@@ -13,14 +13,14 @@ public class Compiler {
 
 	public void Program() {
 		Func();
-		while(token != EOF)
+		while(token != 'E'/*OF*/)
 			Func();
 	}
 
 	public void Func() {
 		if(token == 'F') {
 			Id();
-			if(token = '(') {
+			if(token == '(') {
 				nextToken();
 				ParamList();
 				
@@ -39,7 +39,7 @@ public class Compiler {
 				else error();
 			}
 
-			StateList();
+			StatList();
 		} else error();
 	}
 
@@ -137,6 +137,19 @@ public class Compiler {
 	}
 
 	public void FuncCall() {
+
+	}
+
+	public void nextToken() {
+
+	}
+
+	public void Id() {
+
+	}
+
+	public void error() {
 		
 	}
+
 }

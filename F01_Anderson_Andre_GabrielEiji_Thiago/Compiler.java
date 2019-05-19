@@ -13,30 +13,33 @@ public class Compiler {
 
 	public void Program() {
 		Func();
-		while(token != 'E'/*OF*/)
+		while(token != 'EOF')
 			Func();
 	}
 
 	public void Func() {
 		if(token == 'F') {
 			Id();
-			if(token == '(') {
-				nextToken();
-				ParamList();
-				
-				if(token == ')') {
+			switch(token) {
+				case '(':
 					nextToken();
-				}
-				else error();
-			}
-			if(token == '-') {
-				nextToken();
-				if(token == '>')
-				{
+					ParamList();
+					
+					if(token == ')') {
+						nextToken();
+					}
+					else error();
+				break;
+
+				case '-':
 					nextToken();
-					Type();
-				}
-				else error();
+					if(token == '>')
+					{
+						nextToken();
+						Type();
+					}
+					else error();
+				break;
 			}
 
 			StatList();
@@ -77,7 +80,21 @@ public class Compiler {
 	}
 
 	public void AssingExprStat() {
+		Expr();
+		switch(token) {
+			case '=':
+				nextToken();
+				Expr();
+			break;
 
+			case ';':
+				nextToken();
+			break;
+
+			default:
+				error();
+			break;
+		}
 	}
 
 	public void ReturnStat() {

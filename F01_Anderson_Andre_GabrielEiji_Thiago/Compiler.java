@@ -4,8 +4,6 @@ import AST.Program;
 
 public class Compiler {
 
-	char token;
-
 	public Program compile(char[] input, PrintWriter printWriter) {
 		// TODO Auto-generated method stub
 		return null;
@@ -24,7 +22,7 @@ public class Compiler {
 				case '(':
 					nextToken();
 					ParamList();
-					
+
 					if(token == ')') {
 						nextToken();
 					}
@@ -67,7 +65,7 @@ public class Compiler {
 		if(token != 'I' && token != 'B' && token != 'S')
 			error();
 	}
-	 
+
 	public void StatList() {
 		if(token == '{') {
 			while(token != '}')
@@ -126,39 +124,102 @@ public class Compiler {
 	}
 
 	public void RelOp() {
+		switch (token) {
+			case '<':
+				nextToken();
+			break;
 
+			case '>':
+				nextToken();
+			break;
+
+			default:
+				error();
+			break;
+		}
 	}
 
 	public void ExprAdd() {
-
+		ExprMult();
+		while ( token == '+' || token == '-' ) {
+			nextToken();
+			ExprMult();
+		}
 	}
 
 	public void ExprMult() {
-
+		ExprUnary();
+		while ( token == '*' || token == '/' ) {
+			nextToken();
+			ExprUnary();
+		}
 	}
 
 	public void ExprUnary() {
-
+		if( token == '+' || token == '-' ){
+			nextToken();
+		}
+		ExprPrimary();
 	}
 
 	public void ExprPrimary() {
-
+		//Id() FuncCall() ExprLiteral()
 	}
 
 	public void ExprLiteral() {
-
+		//LiteralInt() LiteralBoolean() LiteralString()
 	}
 
 	public void LiteralBoolean() {
+		switch (token) {
+			case 't':
+				nextToken();
+			break;
 
+			case 'f':
+				nextToken();
+			break;
+		}
 	}
 
 	public void FuncCall() {
+		Id();
+		if ( token == '(') {
 
+			nextToken();
+
+			if( token == ')'){
+				nextToken();
+
+			}else{
+				Expr();
+
+				while( token == ','){
+					nextToken();
+					Expr();
+				}
+
+				if( token == ')'){
+					nextToken();
+				}else{
+					error();
+				}
+			}
+		}
 	}
 
-	public void nextToken() {
+	public void  nextToken() {
 
+		while(tokenPos < input.length && input[tokenPos] == ' '){
+			tokenPos++;
+		}
+
+		if(tokenPos >= input.length)
+			token = '\0';
+		else {
+			token = input[tokenPos];
+			tokenPos++;
+		}
 	}
 
 	public void Id() {
@@ -166,7 +227,20 @@ public class Compiler {
 	}
 
 	public void error() {
-		
+		if ( tokenPos == 0 )
+		  tokenPos = 1;
+		else
+		  if ( tokenPos >= input.length )
+			tokenPos = input.length;
+
+		String strInput = new String( input, tokenPos - 1, input.length - tokenPos + 1 );
+		String strError = "Error at \"" + strInput + "\"";
+		System.out.println( strError );
+		throw new RuntimeException(strError);
 	}
+
+	private char token;
+	private int  tokenPos;
+	private char []input;
 
 }

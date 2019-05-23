@@ -1,74 +1,83 @@
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import AST.Program;
 
 public class Compiler {
 
+	private static final String[] TYPES = {"Int", "Boolean", "String"};
+
 	public Program compile(char[] input, PrintWriter printWriter) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void Program() {
 		Func();
-		while(token != 'EOF')
+		while (token != '0') // MUDAR PARA EOF
 			Func();
 	}
 
 	public void Func() {
-		if(token == 'F') {
+		if (token == 'F') {
 			Id();
-			switch(token) {
-				case '(':
-					nextToken();
-					ParamList();
+			switch (token) {
+			case '(':
+				nextToken();
+				ParamList();
 
-					if(token == ')') {
-						nextToken();
-					}
-					else error();
+				if (token == ')') {
+					nextToken();
+				} else
+					error();
 				break;
 
-				case '-':
+			case '-':
+				nextToken();
+				if (token == '>') {
 					nextToken();
-					if(token == '>')
-					{
-						nextToken();
-						Type();
-					}
-					else error();
+					Type();
+				} else
+					error();
 				break;
 			}
 
 			StatList();
-		} else error();
+		} else {
+			error();
+		}
 	}
 
 	public void ParamList() {
 		ParamDec();
 
-		while(token != ',')
+		while (token != ',')
 			ParamDec();
 	}
 
 	public void ParamDec() {
 		Id();
-		if(token == ':')
-		{
+		if (token == ':') {
 			nextToken();
 			Type();
+		} else {
+			error();
 		}
-		else error();
 	}
 
 	public void Type() {
-		if(token != 'I' && token != 'B' && token != 'S')
+
+		// if(!Arrays.stream(TYPES).anyMatch(x -> x.equals(token))) {
+		// 	error();
+		// }
+
+		if (token != 'I' && token != 'B' && token != 'S') {
 			error();
+		}
 	}
 
 	public void StatList() {
-		if(token == '{') {
-			while(token != '}')
+		if (token == '{') {
+			while (token != '}')
 				Stat();
 		}
 	}
@@ -79,18 +88,18 @@ public class Compiler {
 
 	public void AssingExprStat() {
 		Expr();
-		switch(token) {
-			case '=':
-				nextToken();
-				Expr();
+		switch (token) {
+		case '=':
+			nextToken();
+			Expr();
 			break;
 
-			case ';':
-				nextToken();
+		case ';':
+			nextToken();
 			break;
 
-			default:
-				error();
+		default:
+			error();
 			break;
 		}
 	}
@@ -125,23 +134,23 @@ public class Compiler {
 
 	public void RelOp() {
 		switch (token) {
-			case '<':
-				nextToken();
+		case '<':
+			nextToken();
 			break;
 
-			case '>':
-				nextToken();
+		case '>':
+			nextToken();
 			break;
 
-			default:
-				error();
+		default:
+			error();
 			break;
 		}
 	}
 
 	public void ExprAdd() {
 		ExprMult();
-		while ( token == '+' || token == '-' ) {
+		while (token == '+' || token == '-') {
 			nextToken();
 			ExprMult();
 		}
@@ -149,72 +158,72 @@ public class Compiler {
 
 	public void ExprMult() {
 		ExprUnary();
-		while ( token == '*' || token == '/' ) {
+		while (token == '*' || token == '/') {
 			nextToken();
 			ExprUnary();
 		}
 	}
 
 	public void ExprUnary() {
-		if( token == '+' || token == '-' ){
+		if (token == '+' || token == '-') {
 			nextToken();
 		}
 		ExprPrimary();
 	}
 
 	public void ExprPrimary() {
-		//Id() FuncCall() ExprLiteral()
+		// Id() FuncCall() ExprLiteral()
 	}
 
 	public void ExprLiteral() {
-		//LiteralInt() LiteralBoolean() LiteralString()
+		// LiteralInt() LiteralBoolean() LiteralString()
 	}
 
 	public void LiteralBoolean() {
 		switch (token) {
-			case 't':
-				nextToken();
+		case 't':
+			nextToken();
 			break;
 
-			case 'f':
-				nextToken();
+		case 'f':
+			nextToken();
 			break;
 		}
 	}
 
 	public void FuncCall() {
 		Id();
-		if ( token == '(') {
+		if (token == '(') {
 
 			nextToken();
 
-			if( token == ')'){
+			if (token == ')') {
 				nextToken();
 
-			}else{
+			} else {
 				Expr();
 
-				while( token == ','){
+				while (token == ',') {
 					nextToken();
 					Expr();
 				}
 
-				if( token == ')'){
+				if (token == ')') {
 					nextToken();
-				}else{
+				} else {
 					error();
 				}
 			}
 		}
 	}
 
-	public void  nextToken() {
+	public void nextToken() {
 
-		while(tokenPos < input.length && input[tokenPos] == ' '){
+		while (tokenPos < input.length && input[tokenPos] == ' ') {
 			tokenPos++;
 		}
 
-		if(tokenPos >= input.length)
+		if (tokenPos >= input.length)
 			token = '\0';
 		else {
 			token = input[tokenPos];
@@ -227,20 +236,19 @@ public class Compiler {
 	}
 
 	public void error() {
-		if ( tokenPos == 0 )
-		  tokenPos = 1;
-		else
-		  if ( tokenPos >= input.length )
+		if (tokenPos == 0)
+			tokenPos = 1;
+		else if (tokenPos >= input.length)
 			tokenPos = input.length;
 
-		String strInput = new String( input, tokenPos - 1, input.length - tokenPos + 1 );
+		String strInput = new String(input, tokenPos - 1, input.length - tokenPos + 1);
 		String strError = "Error at \"" + strInput + "\"";
-		System.out.println( strError );
+		System.out.println(strError);
 		throw new RuntimeException(strError);
 	}
 
 	private char token;
-	private int  tokenPos;
-	private char []input;
+	private int tokenPos;
+	private char[] input;
 
 }

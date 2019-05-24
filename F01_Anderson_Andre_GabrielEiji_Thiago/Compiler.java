@@ -1,8 +1,14 @@
 import java.io.PrintWriter;
-
-import AST.Program;
+import Lexer;
+import AST;
 
 public class Compiler {
+	
+	private SymbolTable symbolTable;
+	private Lexer lexer;
+	//private CompileError error;
+	private char []input;
+
 
 	public Program compile(char[] input, PrintWriter printWriter) {
 		// TODO Auto-generated method stub
@@ -251,8 +257,5 @@ public class Compiler {
 		throw new RuntimeException(strError);
 	}
 
-	private char token;
-	private int  tokenPos;
-	private char []input;
-
+	
 }

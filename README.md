@@ -8,7 +8,7 @@ Observações:
 
 Grámática:
 
-Program ::= Func {Func} 
+Program ::= Func {Func}
 Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList  
 Usaremos "function" = "F"  
 ParamList ::= ParamDec { ”, ” ParamDec }  
@@ -41,4 +41,5 @@ ExprUnary ::= [ ( "+" | "-" ) ] ExprPrimary
 ExprPrimary ::= Id | FuncCall | ExprLiteral  
 ExprLiteral ::= LiteralInt | LiteralBoolean | LiteralString  
 LiteralBoolean ::= "true" | "false"  
+Usaremos "true" = "t" | "false" = "f"  
 FuncCall ::= Id "(" [ Expr {”, ” Expr } ] ")"  

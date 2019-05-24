@@ -7,7 +7,7 @@ Observações:
         xz ou yz
 
 Grámática:
-
+```
 Program ::= Func {Func}
 Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList  
 Usaremos "function" = "F"  
@@ -41,5 +41,5 @@ ExprUnary ::= [ ( "+" | "-" ) ] ExprPrimary
 ExprPrimary ::= Id | FuncCall | ExprLiteral  
 ExprLiteral ::= LiteralInt | LiteralBoolean | LiteralString  
 LiteralBoolean ::= "true" | "false"  
-Usaremos "true" = "t" | "false" = "f"  
-FuncCall ::= Id "(" [ Expr {”, ” Expr } ] ")"  
+FuncCall ::= Id "(" [ Expr {”, ” Expr } ] ")"
+```

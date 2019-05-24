@@ -34,7 +34,10 @@ public enum Symbol {
     TIMES("*"),
     DIVISION("/"),
     TRUE("true"),
-    FALSE("false");
+    FALSE("false"),
+    NUMBER("Number"),
+    WORD("Word"),
+	EOF("eof");
 
     Symbol(String name) {
         this.name = name;

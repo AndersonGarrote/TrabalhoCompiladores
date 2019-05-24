@@ -164,10 +164,22 @@ public class Compiler {
 
 	public void ExprPrimary() {
 		//Id() FuncCall() ExprLiteral()
+
+		//Verifica se é LiteralInt
+
+		//Senão, verifica se tem um Id
+			//nextToken()
+			//Verifica se tem () e é uma função
 	}
 
 	public void ExprLiteral() {
 		//LiteralInt() LiteralBoolean() LiteralString()
+
+		//Verifica se começa com "
+			//LiteralString()
+
+		//Verifica se começa com t ou f
+			//LiteralBoolean
 	}
 
 	public void LiteralBoolean() {

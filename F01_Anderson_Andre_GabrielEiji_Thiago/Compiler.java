@@ -22,6 +22,7 @@ public class Compiler {
 //		error.setLexer(lexer);
 		
 		lexer.nextToken();
+		Program();
 		//return Program();
 	}
 

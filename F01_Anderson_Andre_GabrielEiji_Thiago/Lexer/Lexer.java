@@ -1,17 +1,50 @@
 package Lexer;
 
+import java.util.*;
+import AuxComp.CompilerError;
+
 public class Lexer {
 
     public Symbol token;
+    char [] input;
+    int lineNumber;
+    int tokenPos, lastTokenPos;
     
+    private static final String MaxValueInteger = "2147483647"; 
+
+    int numberValue;
+    String StringValue;
+    
+    CompilerError error;
+    
+    // contains the keywords
+    static private Hashtable<String, Symbol> keywordsTable;
+    // this code will be executed only once for each program execution
+    static {
+	    keywordsTable = new Hashtable<String, Symbol>();
+	    keywordsTable.put( "function", Symbol.FUNCTION );
+	    keywordsTable.put( "var", Symbol.VAR );
+	    keywordsTable.put( "Boolean", Symbol.BOOLEAN );
+	    keywordsTable.put("String", Symbol.STRING );
+	    keywordsTable.put("Int", Symbol.INTEGER );
+	    keywordsTable.put("if", Symbol.IF );
+	    keywordsTable.put("else", Symbol.ELSE );
+	    keywordsTable.put("while", Symbol.WHILE );
+	    keywordsTable.put("write", Symbol.WRITE );
+	    keywordsTable.put("writeln", Symbol.WRITELN );
+	    keywordsTable.put("true", Symbol.TRUE );
+	    keywordsTable.put("false", Symbol.FALSE );
+	    keywordsTable.put("and", Symbol.AND );
+	    keywordsTable.put("or", Symbol.OR );
+	 }
     
     public void nextToken() {
     	char ch;
     	
     	while( (ch = input[tokenPos]) == ' ' || ch == '\r' || 
     			ch == '\t' || ch == '\n') {
-    		// conta o número de linhas
     		
+    		// conta o número de linhas    		
     		if(ch == '\n') {
     			lineNumber++;
     		}
@@ -30,7 +63,7 @@ public class Lexer {
     		else {
     			if(Character.isLetter(ch)) {
     				StringBuffer ident = new StringBuffer();
-    				while(character.isLetter(input[tokenPos])) {
+    				while(Character.isLetter(input[tokenPos])) {
     					ident.append(input[tokenPos]);
     					tokenPos++;
     				}
@@ -55,9 +88,6 @@ public class Lexer {
     				} catch (NumberFormatException e) {
     					error.signal("Number out of limits");
     				}
-    				if(number >= MaxValueInteger) {
-    					error.signal("Number out of limits");
-    				}
     			} else {
     				tokenPos++;
     				switch(ch) {
@@ -66,7 +96,12 @@ public class Lexer {
     						break;
     					
     					case '-':
-    						token = Symbol.MINUS;
+    						if(input[tokenPos] == '>') {
+    							tokenPos++;
+    							token = Symbol.ARROW;
+    						} else {
+    							token = Symbol.MINUS;
+    						}
     						break;
     					
     					case '*':
@@ -133,11 +168,15 @@ public class Lexer {
     						break;
     						
     					case '\"':
+    						StringBuffer word = new StringBuffer();
+    	    				while(Character.isLetter(input[tokenPos])) {
+    	    					word.append(input[tokenPos]);
+    	    					tokenPos++;
+    	    				}
+    	    				StringValue = word.toString();
     						token = Symbol.WORD;
-    						charValue = input[tokenPos];
-    						tokenPos++;
     						if(input[tokenPos] != '\"') {
-    							error.signal("Illegal literal character" + input[tokenPos-1]);
+    							error.signal(" Expected \"");
     						}
     						tokenPos++;
     						break;

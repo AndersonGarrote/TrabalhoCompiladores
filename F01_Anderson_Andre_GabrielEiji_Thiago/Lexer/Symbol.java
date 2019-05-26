@@ -4,7 +4,7 @@ public enum Symbol {
 
     FUNCTION("function"),
     WRITE("write"),
-    WRITELNS("writeln"),
+    WRITELN("writeln"),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
     ARROW("->"),

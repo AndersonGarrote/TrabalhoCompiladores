@@ -34,6 +34,7 @@ public class Lexer {
 	    keywordsTable.put("false", Symbol.FALSE );
 	    keywordsTable.put("and", Symbol.AND );
 	    keywordsTable.put("or", Symbol.OR );
+	    keywordsTable.put("return", Symbol.RETURN );
 	 }
     
     public Lexer( char []input, CompilerError error ) {
@@ -87,6 +88,7 @@ public class Lexer {
 				}
 				try {
 					numberValue = Integer.valueOf(number.toString()).intValue();
+					token = Symbol.NUMBER;
 				} catch (NumberFormatException e) {
 					error.signal("Number out of limits");
 				}
@@ -171,7 +173,7 @@ public class Lexer {
 						
 					case '\"':
 						StringBuffer word = new StringBuffer();
-	    				while(Character.isLetter(input[tokenPos])) {
+	    				while(input[tokenPos] != '\"') {
 	    					word.append(input[tokenPos]);
 	    					tokenPos++;
 	    				}

@@ -291,13 +291,13 @@ public class Compiler {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
-				FuncCall();
+				WriteCall();
 			}
 		}else if(lexer.token == Symbol.WRITELN) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
-				FuncCall();
+				WritelnCall();
 			}
 		}else if(lexer.token == Symbol.IDENTIFIER) {
 			Id();
@@ -308,6 +308,60 @@ public class Compiler {
 		}
 		else {
 			ExprLiteral();
+		}
+	}
+
+	private void WritelnCall() {
+		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
+
+			System.out.println(lexer.token); lexer.nextToken();
+
+			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
+				System.out.println(lexer.token); lexer.nextToken();
+				
+			} else {
+				Expr();
+
+				while (lexer.token == Symbol.COMMA) {
+					System.out.println(lexer.token); lexer.nextToken();
+					Expr();
+				}
+
+				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
+					System.out.println(lexer.token); lexer.nextToken();
+				} else {
+					error.signal("Esperado o token ).");
+				}
+			}
+		} else {
+			error.signal("Esperado o token (.");
+		}
+	}
+
+	private void WriteCall() {
+		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
+
+			System.out.println(lexer.token); lexer.nextToken();
+
+			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
+				System.out.println(lexer.token); lexer.nextToken();
+				
+			} else {
+				Expr();
+
+				while (lexer.token == Symbol.COMMA) {
+					System.out.println(lexer.token); lexer.nextToken();
+					Expr();
+				}
+
+				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
+					System.out.println(lexer.token); lexer.nextToken();
+				} else {
+					error.signal("Esperado o token ).");
+				}
+			}
+		} else {
+			error.signal("Esperado o token (.");
 		}
 	}
 

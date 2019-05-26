@@ -173,7 +173,7 @@ public class Lexer {
 						
 					case '\"':
 						StringBuffer word = new StringBuffer();
-	    				while(input[tokenPos] != '\"') {
+	    				while(input[tokenPos] != '\"' && input[tokenPos] !='\0') {
 	    					word.append(input[tokenPos]);
 	    					tokenPos++;
 	    				}

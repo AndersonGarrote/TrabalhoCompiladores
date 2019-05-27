@@ -1,6 +1,4 @@
 import java.io.PrintWriter;
-import java.util.*;
-
 import Lexer.*;
 import AST.*;
 import AuxComp.*;
@@ -21,6 +19,7 @@ public class Compiler {
 	public Program compile(char[] p_input, PrintWriter printWriter) {
 //		symbolTable = new Hashtable<String, Variable>();
 		input = p_input;
+		outError = printWriter;
 		error = new CompilerError( lexer, outError );
 		lexer = new Lexer(input, error);
 		error.setLexer(lexer);
@@ -50,10 +49,9 @@ public class Compiler {
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
 				} else {
-					error.signal("Esperado token ).");
+					error.signal("Esperado token \")\".");
 				}
 			}
-
 			if(lexer.token == Symbol.ARROW) {
 				System.out.println(lexer.token); lexer.nextToken();
 				Type();
@@ -61,7 +59,7 @@ public class Compiler {
 			
 			StatList();
 		} else {
-			error.signal("Esperado o token function.");
+			error.signal("Esperado o token \"function\".");
 		}
 	}
 
@@ -80,14 +78,14 @@ public class Compiler {
 			System.out.println(lexer.token); lexer.nextToken();
 			Type();
 		} else {
-			error.signal("Esperado o token :.");
+			error.signal("Esperado o token \":\".");
 		}
 	}
 
 	public void Type() {
 
 		if (lexer.token != Symbol.INTEGER && lexer.token != Symbol.BOOLEAN && lexer.token != Symbol.STRING) {
-			error.signal("Esperado token de tipo (Int, Boolean ou String).");
+			error.signal("Esperado token de tipo (\"Int\", \"Boolean\" ou \"String\").");
 		}
 		else {
 			System.out.println(lexer.token); lexer.nextToken();
@@ -101,6 +99,9 @@ public class Compiler {
 				Stat();
 			}
 			System.out.println(lexer.token); lexer.nextToken();
+		}
+		else {
+			error.signal("Esperado o token \"{\"");
 		}
 	}
 
@@ -128,7 +129,7 @@ public class Compiler {
 		if(lexer.token == Symbol.SEMICOLON) {
 			System.out.println(lexer.token); lexer.nextToken();
 		} else {
-			error.signal("Esperado o token ;.");
+			error.signal("Esperado o token \";\".");
 		}
 	}
 
@@ -140,10 +141,10 @@ public class Compiler {
 			if(lexer.token == Symbol.SEMICOLON) {
 				System.out.println(lexer.token); lexer.nextToken();
 			} else {
-				error.signal("Esperado o token ;.");
+				error.signal("Esperado o token \";\".");
 			}
 		} else {
-			error.signal("Esperado o token =.");
+			error.signal("Esperado o token \"=\".");
 		}
 	}
 
@@ -161,13 +162,13 @@ public class Compiler {
 				if(lexer.token == Symbol.SEMICOLON) {
 					System.out.println(lexer.token); lexer.nextToken();
 				} else {
-					error.signal("Esperado o token ;.");
+					error.signal("Esperado o token \";\".");
 				}
 			} else {
-				error.signal("Esperado o token :.");
+				error.signal("Esperado o token \":\".");
 			}
 		} else {
-			error.signal("Esperado o token var.");
+			error.signal("Esperado o token \"var\".");
 		}
 	}
 
@@ -184,7 +185,7 @@ public class Compiler {
 				StatList();
 			}
 		} else {
-			error.signal("Esperado o token if.");
+			error.signal("Esperado o token \"if\".");
 		}
 	}
 
@@ -196,7 +197,7 @@ public class Compiler {
 			StatList();
 			
 		} else {
-			error.signal("Esperado o token while.");
+			error.signal("Esperado o token \"while\".");
 		}
 	}
 
@@ -258,7 +259,7 @@ public class Compiler {
 			break;
 		
 		default:
-			error.signal("Esperado o token relacional (<, <=, >, >=, ==, !=)");
+			error.signal("Esperado o token relacional (\"<\", \"<=\", \">\", \">=\", \"==\", \"!=\")");
 			break;
 		}
 	}
@@ -330,11 +331,11 @@ public class Compiler {
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
 				} else {
-					error.signal("Esperado o token ).");
+					error.signal("Esperado o token \")\".");
 				}
 			}
 		} else {
-			error.signal("Esperado o token (.");
+			error.signal("Esperado o token \"(\".");
 		}
 	}
 
@@ -357,11 +358,11 @@ public class Compiler {
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
 				} else {
-					error.signal("Esperado o token ).");
+					error.signal("Esperado o token \")\".");
 				}
 			}
 		} else {
-			error.signal("Esperado o token (.");
+			error.signal("Esperado o token \"(\".");
 		}
 	}
 
@@ -397,7 +398,7 @@ public class Compiler {
 				System.out.println(lexer.token); lexer.nextToken();
 				break;
 			default:
-				error.signal("Esperado um valor booleano.");
+				error.signal("Esperado um valor booleano(\"true\" ou \"false\").");
 				break;
 			}
 	}
@@ -439,11 +440,11 @@ public class Compiler {
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
 				} else {
-					error.signal("Esperado o token ).");
+					error.signal("Esperado o token \")\".");
 				}
 			}
 		} else {
-			error.signal("Esperado o token (.");
+			error.signal("Esperado o token \"(\".");
 		}
 	}
 

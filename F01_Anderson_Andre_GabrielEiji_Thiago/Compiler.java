@@ -144,7 +144,7 @@ public class Compiler {
 				error.signal("Esperado o token \";\".");
 			}
 		} else {
-			error.signal("Esperado o token \"=\".");
+			error.signal("Esperado o token \"return\".");
 		}
 	}
 

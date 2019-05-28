@@ -1,6 +1,10 @@
 package AST;
 
 abstract public class Type {
+
+	abstract public String getCname();
+	private String name;
+
 	public Type( String name ) {
 		this.name = name;
 	}
@@ -11,6 +15,8 @@ abstract public class Type {
 	public String getName() {
 		return name;
 	}
-	abstract public String getCname();
-	private String name;
+
+	// public String getCName() {
+	// 	return name;
+	// }
 }

@@ -1,0 +1,5 @@
+function main() {
+	var int : Int;
+	var String : String;
+	var bool : Boolean;
+}

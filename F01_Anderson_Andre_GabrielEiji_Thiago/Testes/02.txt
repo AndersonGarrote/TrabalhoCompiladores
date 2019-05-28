@@ -1,0 +1,14 @@
+function calcula_fibo(in: Int) {
+    if in == 0 {
+        return 0;
+    } 
+    if in == 1{
+        return 1;
+    }
+
+    return calcula_fibo(in - 1) + calcula_fibo(in - 2);
+}
+
+function main {
+    writeLn("f(5) = ", calcula_fibo(5));
+}

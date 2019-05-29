@@ -5,10 +5,10 @@ import java.util.List;
 public class IfStatement extends Statement {
 
     private Expression expression;
-    private List<Statement> statementsTrue;
-    private List<Statement> statementFalse;
+    private StatementList statementsTrue;
+    private StatementList statementFalse;
 
-    public IfStatement(Expression expression, List<Statement> statementsTrue, List<Statement> statementsFalse) {
+    public IfStatement(Expression expression, StatementList statementsTrue, StatementList statementsFalse) {
         this.expression = expression;
         this.statementsTrue = statementsTrue;
         this.statementFalse = statementsFalse;

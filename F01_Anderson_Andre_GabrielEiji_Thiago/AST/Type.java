@@ -18,10 +18,4 @@ abstract public class Type implements Printable {
 		return name;
 	}
 
-<<<<<<< HEAD
-	public String getCName() {
-		return name;
-	}
-=======
->>>>>>> c49a77c715dacfc4e81bf072dbf912dc8ac949b5
 }

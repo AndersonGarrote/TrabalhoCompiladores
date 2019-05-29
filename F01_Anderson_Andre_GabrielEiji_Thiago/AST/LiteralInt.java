@@ -1,6 +1,6 @@
 package AST;
 
-public class LiteralInt extends Literal {
+public class LiteralInt extends Literal implements Printable{
 
     private static final int MAX_VALUE = 2147483647;
     private static final int MIN_VALUE = 0;

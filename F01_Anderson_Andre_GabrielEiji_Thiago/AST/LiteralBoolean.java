@@ -1,6 +1,6 @@
 package AST;
 
-public class LiteralBoolean extends Literal {
+public class LiteralBoolean extends Literal implements Printable{
 
     private boolean value;
 

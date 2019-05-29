@@ -16,7 +16,7 @@ abstract public class Type {
 		return name;
 	}
 
-	// public String getCName() {
-	// 	return name;
-	// }
+	public String getCName() {
+		return name;
+	}
 }

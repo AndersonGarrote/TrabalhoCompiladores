@@ -1,6 +1,6 @@
 package AST;
 
-public class LiteralString extends Literal {
+public class LiteralString extends Literal implements Printable{
 
     private String value;
 

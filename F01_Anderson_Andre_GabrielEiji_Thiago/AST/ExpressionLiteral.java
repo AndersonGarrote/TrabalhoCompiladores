@@ -2,7 +2,7 @@ package AST;
 
 public class ExpressionLiteral extends Expression implements Printable{
 
-    private Literal literal;
+private Literal literal;
 
     ExpressionLiteral(Literal literal) {
         this.literal = literal;

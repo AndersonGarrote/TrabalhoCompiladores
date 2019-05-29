@@ -1,11 +1,11 @@
 package AST;
 
-public class Param implements Printable {
+public class Parameter implements Printable {
 
     private Identifier identifier;
     private Type type;
 
-    public Param(Identifier identifier, Type type) {
+    public Parameter(Identifier identifier, Type type) {
         this.identifier = identifier;
         this.type = type;
     }

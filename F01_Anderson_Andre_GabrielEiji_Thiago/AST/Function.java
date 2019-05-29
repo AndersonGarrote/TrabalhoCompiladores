@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Function implements Printable {
 
-    private List<Param> params;
+    private ParameterList parameters;
     private Type type;
-    private List<Statement> statements;
+    private StatementList statements;
 
-    public Function(List<Param> params, Type type, List<Statement> statements) {
-        this.params = params;
+    public Function(ParameterList parameters, Type type, StatementList statements) {
+        this.parameters = parameters;
         this.type = type;
         this.statements = statements;
     }

@@ -48,18 +48,20 @@ public class Compiler {
 
 	public Function func() {
 		
-		ParameterList paramList = null;
+		Identifier id = null;
+		ParameterList parList = null;
 		Type ret = null;
+		StatementList stList = null;
 		
 		if (lexer.token == Symbol.FUNCTION) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			Identifier id = Id();
+			 id = id();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
 				System.out.println(lexer.token); lexer.nextToken();
 				
-				paramList();
+				parList = paramList();
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
@@ -69,15 +71,15 @@ public class Compiler {
 			}
 			if(lexer.token == Symbol.ARROW) {
 				System.out.println(lexer.token); lexer.nextToken();
-				type();
+				ret = type();
 			}
 			
-			StatList statList = statList();
+			stList = statList();
 		} else {
 			error.signal("Esperado o token \"function\".");
 		}
 		
-		return new Function();
+		return new Function(id, parList, ret, stList);
 	}
 
 	public void paramList() {
@@ -91,7 +93,7 @@ public class Compiler {
 	}
 
 	public void paramDec() {
-		Id();
+		id();
 		if (lexer.token == Symbol.COLON) {
 			System.out.println(lexer.token); lexer.nextToken();
 			type();
@@ -114,7 +116,7 @@ public class Compiler {
 		if (lexer.token == Symbol.LEFT_CURLY_BRACKET) {
 			System.out.println(lexer.token); lexer.nextToken();
 			while (lexer.token != Symbol.RIGHT_CURLY_BRACKET) {
-				Stat();
+				stat();
 			}
 			System.out.println(lexer.token); lexer.nextToken();
 		}
@@ -123,26 +125,26 @@ public class Compiler {
 		}
 	}
 
-	public void Stat() {
+	public void stat() {
 		if(lexer.token == Symbol.VAR) {
-			VarDecStat();
+			varDecStat();
 		} else if(lexer.token == Symbol.RETURN) {
-			ReturnStat();
+			returnStat();
 		} else if(lexer.token == Symbol.IF) {
-			IfStat();
+			ifStat();
 		} else if(lexer.token == Symbol.WHILE) {
-			WhileStat();
+			whileStat();
 		} else {
-			AssignExprStat();
+			assignExprStat();
 		}
 			
 	}
 
-	public void AssignExprStat() {
-		Expr();
+	public void assignExprStat() {
+		expr();
 		if(lexer.token == Symbol.ASSIGN) {
 			System.out.println(lexer.token); lexer.nextToken();
-			Expr();
+			expr();
 		}
 		if(lexer.token == Symbol.SEMICOLON) {
 			System.out.println(lexer.token); lexer.nextToken();
@@ -151,10 +153,10 @@ public class Compiler {
 		}
 	}
 
-	public void ReturnStat() {
+	public void returnStat() {
 		if(lexer.token == Symbol.RETURN) {
 			System.out.println(lexer.token); lexer.nextToken();
-			Expr();
+			expr();
 			
 			if(lexer.token == Symbol.SEMICOLON) {
 				System.out.println(lexer.token); lexer.nextToken();
@@ -166,11 +168,11 @@ public class Compiler {
 		}
 	}
 
-	public void VarDecStat() {
+	public void varDecStat() {
 		if(lexer.token == Symbol.VAR) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			Id();
+			id();
 			
 			if(lexer.token == Symbol.COLON) {
 				System.out.println(lexer.token); lexer.nextToken();
@@ -190,11 +192,11 @@ public class Compiler {
 		}
 	}
 
-	public void IfStat() {
+	public void ifStat() {
 		if(lexer.token == Symbol.IF) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			Expr();
+			expr();
 			statList();
 			
 			if(lexer.token == Symbol.ELSE) {
@@ -207,11 +209,11 @@ public class Compiler {
 		}
 	}
 
-	public void WhileStat() {
+	public void whileStat() {
 		if(lexer.token == Symbol.WHILE) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			Expr();
+			expr();
 			statList();
 			
 		} else {
@@ -219,38 +221,38 @@ public class Compiler {
 		}
 	}
 
-	public void Expr() {
-		ExprAnd();
+	public void expr() {
+		exprAnd();
 		
 		while(lexer.token == Symbol.OR) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			ExprAnd();
+			exprAnd();
 		}
 	}
 
-	public void ExprAnd() {
-		ExprRel();	
+	public void exprAnd() {
+		exprRel();	
 		
 		while(lexer.token == Symbol.AND) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			ExprRel();
+			exprRel();
 		}
 	}
 
-	public void ExprRel() {
-		ExprAdd();
+	public void exprRel() {
+		exprAdd();
 		
 		if(lexer.token == Symbol.GREATER || lexer.token == Symbol.GREATER_OR_EQUAL || 
 		   lexer.token == Symbol.LESS || lexer.token == Symbol.LESS_OR_EQUAL || 
 		   lexer.token == Symbol.EQUAL || lexer.token == Symbol.NOT_EQUAL) {
-			RelOp();
-			ExprAdd();
+			relOp();
+			exprAdd();
 		}
 	}
 
-	public void RelOp() {
+	public void relOp() {
 		switch (lexer.token) {
 		case LESS:
 			System.out.println(lexer.token); lexer.nextToken();
@@ -282,55 +284,55 @@ public class Compiler {
 		}
 	}
 
-	public void ExprAdd() {
-		ExprMult();
+	public void exprAdd() {
+		exprMult();
 		while (lexer.token == Symbol.PLUS || lexer.token == Symbol.MINUS) {
 			System.out.println(lexer.token); lexer.nextToken();
-			ExprMult();
+			exprMult();
 		}
 	}
 
-	public void ExprMult() {
-		ExprUnary();
+	public void exprMult() {
+		exprUnary();
 		while (lexer.token == Symbol.TIMES || lexer.token == Symbol.DIVISION) {
 			System.out.println(lexer.token); lexer.nextToken();
-			ExprUnary();
+			exprUnary();
 		}
 	}
 
-	public void ExprUnary() {
+	public void exprUnary() {
 		if (lexer.token == Symbol.PLUS || lexer.token == Symbol.MINUS) {
 			System.out.println(lexer.token); lexer.nextToken();
 		}
-		ExprPrimary();
+		exprPrimary();
 	}
 
-	public void ExprPrimary() {
+	public void exprPrimary() {
 		if(lexer.token == Symbol.WRITE) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
-				WriteCall();
+				writeCall();
 			}
 		}else if(lexer.token == Symbol.WRITELN) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
-				WritelnCall();
+				writelnCall();
 			}
 		}else if(lexer.token == Symbol.IDENTIFIER) {
-			Id();
+			id();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
-				FuncCall();
+				funcCall();
 			}
 		}
 		else {
-			ExprLiteral();
+			exprLiteral();
 		}
 	}
 
-	private void WritelnCall() {
+	private void writelnCall() {
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
 			System.out.println(lexer.token); lexer.nextToken();
@@ -339,11 +341,11 @@ public class Compiler {
 				System.out.println(lexer.token); lexer.nextToken();
 				
 			} else {
-				Expr();
+				expr();
 
 				while (lexer.token == Symbol.COMMA) {
 					System.out.println(lexer.token); lexer.nextToken();
-					Expr();
+					expr();
 				}
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
@@ -357,7 +359,7 @@ public class Compiler {
 		}
 	}
 
-	private void WriteCall() {
+	private void writeCall() {
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
 			System.out.println(lexer.token); lexer.nextToken();
@@ -366,11 +368,11 @@ public class Compiler {
 				System.out.println(lexer.token); lexer.nextToken();
 				
 			} else {
-				Expr();
+				expr();
 
 				while (lexer.token == Symbol.COMMA) {
 					System.out.println(lexer.token); lexer.nextToken();
-					Expr();
+					expr();
 				}
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
@@ -384,20 +386,20 @@ public class Compiler {
 		}
 	}
 
-	public void ExprLiteral() {
+	public void exprLiteral() {
 		
 		switch(lexer.token) {
 			case WORD:
-				LiteralString();
+				literalString();
 				break;
 			
 			case NUMBER:
-				LiteralInt();
+				literalInt();
 				break;
 			
 			case TRUE:
 			case FALSE:
-				LiteralBoolean();
+				literalBoolean();
 				break;
 				
 			default:
@@ -406,7 +408,7 @@ public class Compiler {
 		}
 	}
 
-	public void LiteralBoolean() {
+	public void literalBoolean() {
 		switch (lexer.token) {
 			case TRUE:
 				System.out.println(lexer.token); lexer.nextToken();
@@ -421,7 +423,7 @@ public class Compiler {
 			}
 	}
 	
-	public void LiteralInt() {
+	public void literalInt() {
 		if(lexer.token == Symbol.NUMBER) {
 			System.out.println(lexer.token); lexer.nextToken();
 		}
@@ -430,7 +432,7 @@ public class Compiler {
 		}
 	}
 	
-	public void LiteralString() {
+	public void literalString() {
 		if(lexer.token == Symbol.WORD) {
 			System.out.println(lexer.token); lexer.nextToken();
 		} else {
@@ -438,7 +440,7 @@ public class Compiler {
 		}
 	}
 
-	public void FuncCall() {
+	public void funcCall() {
 		//Id(); Apenas FuncCall() possui "(" após a chamada de Id().
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
@@ -448,11 +450,11 @@ public class Compiler {
 				System.out.println(lexer.token); lexer.nextToken();
 				
 			} else {
-				Expr();
+				expr();
 
 				while (lexer.token == Symbol.COMMA) {
 					System.out.println(lexer.token); lexer.nextToken();
-					Expr();
+					expr();
 				}
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
@@ -466,7 +468,7 @@ public class Compiler {
 		}
 	}
 
-	public void Id() {
+	public void id() {
 		if(lexer.token == Symbol.IDENTIFIER) {
 			System.out.println(lexer.token); lexer.nextToken();
 		} else {

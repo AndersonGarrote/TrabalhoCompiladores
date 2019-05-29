@@ -1,4 +1,5 @@
 import java.io.PrintWriter;
+import java.util.*;
 import Lexer.*;
 import AST.*;
 import AuxComp.*;
@@ -25,26 +26,40 @@ public class Compiler {
 		error.setLexer(lexer);
 		
 		System.out.println(lexer.token); lexer.nextToken();
-		Program();
+		program();
 		return null;//Program();
 	}
 
-	public void Program() {
+	public Program program() {
 		System.out.println("Program");
-		Func();
-		while (lexer.token != Symbol.EOF)
-			Func();
+		
+		List<Function> funcList = new ArrayList<Function>();  
+		
+		funcList.add(func());
+		
+		while (lexer.token != Symbol.EOF) {
+			
+			funcList.add(func());
+		
+		}
+		
+		return new Program(funcList);
 	}
 
-	public void Func() {
+	public Function func() {
+		
+		ParameterList paramList = null;
+		Type ret = null;
+		
 		if (lexer.token == Symbol.FUNCTION) {
 			System.out.println(lexer.token); lexer.nextToken();
 			
-			Id();
+			Identifier id = Id();
 			
 			if(lexer.token == Symbol.LEFT_PARENTHESIS) {
 				System.out.println(lexer.token); lexer.nextToken();
-				ParamList();
+				
+				paramList();
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 					System.out.println(lexer.token); lexer.nextToken();
@@ -54,35 +69,38 @@ public class Compiler {
 			}
 			if(lexer.token == Symbol.ARROW) {
 				System.out.println(lexer.token); lexer.nextToken();
-				Type();
+				type();
 			}
 			
-			StatList();
+			StatList statList = statList();
 		} else {
 			error.signal("Esperado o token \"function\".");
 		}
+		
+		return new Function();
 	}
 
-	public void ParamList() {
-		ParamDec();
+	public void paramList() {
+		
+		paramDec();
 
 		while (lexer.token == Symbol.COMMA) {
 			System.out.println(lexer.token); lexer.nextToken();
-			ParamDec();
+			paramDec();
 		}
 	}
 
-	public void ParamDec() {
+	public void paramDec() {
 		Id();
 		if (lexer.token == Symbol.COLON) {
 			System.out.println(lexer.token); lexer.nextToken();
-			Type();
+			type();
 		} else {
 			error.signal("Esperado o token \":\".");
 		}
 	}
 
-	public void Type() {
+	public void type() {
 
 		if (lexer.token != Symbol.INTEGER && lexer.token != Symbol.BOOLEAN && lexer.token != Symbol.STRING) {
 			error.signal("Esperado token de tipo (\"Int\", \"Boolean\" ou \"String\").");
@@ -92,7 +110,7 @@ public class Compiler {
 		}
 	}
 
-	public void StatList() {
+	public void statList() {
 		if (lexer.token == Symbol.LEFT_CURLY_BRACKET) {
 			System.out.println(lexer.token); lexer.nextToken();
 			while (lexer.token != Symbol.RIGHT_CURLY_BRACKET) {
@@ -157,7 +175,7 @@ public class Compiler {
 			if(lexer.token == Symbol.COLON) {
 				System.out.println(lexer.token); lexer.nextToken();
 				
-				Type();
+				type();
 				
 				if(lexer.token == Symbol.SEMICOLON) {
 					System.out.println(lexer.token); lexer.nextToken();
@@ -177,12 +195,12 @@ public class Compiler {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			Expr();
-			StatList();
+			statList();
 			
 			if(lexer.token == Symbol.ELSE) {
 				System.out.println(lexer.token); lexer.nextToken();
 				
-				StatList();
+				statList();
 			}
 		} else {
 			error.signal("Esperado o token \"if\".");
@@ -194,7 +212,7 @@ public class Compiler {
 			System.out.println(lexer.token); lexer.nextToken();
 			
 			Expr();
-			StatList();
+			statList();
 			
 		} else {
 			error.signal("Esperado o token \"while\".");

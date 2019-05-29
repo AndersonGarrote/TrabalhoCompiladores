@@ -11,7 +11,9 @@ public class Program implements Printable {
 	}
 
 	public void genC(PW pw) {
-
+		for (Function function : functions) {
+			function.genC(pw);
+		}
 	}
 
 }

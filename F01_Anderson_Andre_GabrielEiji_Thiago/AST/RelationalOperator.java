@@ -10,9 +10,9 @@ abstract public class RelationalOperator {
 	}
 
 	public static RelationalOperator greater = new GreaterOperator();
-	public static RelationalOperator greaterEqual = new GreaterEqualOperator();
+	public static RelationalOperator greaterEqual = new GreaterOrEqualOperator();
 	public static RelationalOperator less = new LessOperator();
-	public static RelationalOperator lessEqual = new LessEqualOperator();
+	public static RelationalOperator lessEqual = new LessOrEqualOperator();
 	public static RelationalOperator equal = new EqualOperator();
 	public static RelationalOperator notEqual = new NotEqualOperator();
 

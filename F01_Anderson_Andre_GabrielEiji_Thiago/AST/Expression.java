@@ -2,14 +2,17 @@ package AST;
 
 import java.util.List;
 
-abstract public class Expression implements Printable {
-    private List<ExpressionAnd> exprAnd;
+public class Expression implements Printable {
 
-    Expression() {
-        
+    private List<ExpressionAnd> expressionEnds;
+
+    Expression(List<ExpressionAnd> expressionEnds) {
+        this.expressionEnds = expressionEnds;
     }
-    
-    Expression(List<ExpressionAnd> exprAnd) {
-        this.exprAnd = exprAnd;
+
+    @Override
+    public void genC(PW pw) {
+
     }
+
 }

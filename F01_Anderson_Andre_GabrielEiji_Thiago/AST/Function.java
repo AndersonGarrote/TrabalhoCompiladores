@@ -1,7 +1,5 @@
 package AST;
 
-import java.util.List;
-
 public class Function implements Printable {
 
     private ParameterList parameters;
@@ -16,7 +14,7 @@ public class Function implements Printable {
 
     @Override
     public void genC(PW pw) {
-
+        pw.print();
     }
 
 }

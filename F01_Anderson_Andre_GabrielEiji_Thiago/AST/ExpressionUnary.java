@@ -2,10 +2,10 @@ package AST;
 
 class ExpressionUnary implements Printable {
 
-    private char sinal;
+    private char sign;
 
-    ExpressionUnary(char sinal) {
-        this.sinal = sinal;
+    ExpressionUnary(char sign) {
+        this.sign = sign;
     }
     
     @Override

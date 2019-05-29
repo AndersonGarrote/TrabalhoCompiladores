@@ -1,6 +1,6 @@
 package AST;
 
-public class ExpressionLiteral extends Expression implements Printable{
+public class ExpressionLiteral implements Printable{
 
 private Literal literal;
 

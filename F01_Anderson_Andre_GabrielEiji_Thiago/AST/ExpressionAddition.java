@@ -5,11 +5,11 @@ import java.util.List;
 class ExpressionAddition implements Printable {
 
     List<String> operator;
-    List<ExpressionMultiplication> exprMult;
+    List<ExpressionMultiplication> expressionMultiplication;
 
-    ExpressionAddition(List<String> operator, List<ExpressionMultiplication> exprMult) {
+    ExpressionAddition(List<String> operator, List<ExpressionMultiplication> expressionMultiplication) {
         this.operator = operator;
-        this.exprMult = exprMult;
+        this.expressionMultiplication = expressionMultiplication;
     }
 
     @Override

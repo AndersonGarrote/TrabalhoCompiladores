@@ -12,7 +12,13 @@ public class AssignmentExpressionStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-
+        leftExpression.genC(pw);
+        if (rightExpression != null) {
+            pw.print(" = ");
+            rightExpression.genC(pw);
+        }
+        pw.print(";");
+        pw.breakLine();
     }
 
 }

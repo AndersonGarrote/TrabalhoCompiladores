@@ -12,7 +12,11 @@ public class VariableDeclarationStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-
+        type.genC(pw);
+        pw.print(" ");
+        identifier.genC(pw);
+        pw.print(";");
+        pw.breakLine();
     }
 
 }

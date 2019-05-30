@@ -10,7 +10,7 @@ public class Identifier implements Printable {
 
     @Override
     public void genC(PW pw) {
-
+        pw.print(name);
     }
 
 }

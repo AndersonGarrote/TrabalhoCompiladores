@@ -1,7 +1,5 @@
 package AST;
 
-import java.util.List;
-
 public class ExpressionRelational implements Printable {
 
     private ExpressionAddition leftExpressionAddition;

@@ -16,8 +16,29 @@ public class Function implements Printable {
 
     @Override
     public void genC(PW pw) {
-        pw.print("function ");
-        this.identifier.genC(pw);
+
+        // type identifier(parameters) statements
+
+        if (type != null) {
+            type.genC(pw);
+        } else {
+            pw.print("void");
+        }
+
+        pw.print(" ");
+
+        identifier.genC(pw);
+
+        pw.print("(");
+        if (parameters != null) {
+            parameters.genC(pw);
+        }
+        pw.print(") ");
+
+        statements.genC(pw);
+
+        pw.breakLine();
+
     }
 
 }

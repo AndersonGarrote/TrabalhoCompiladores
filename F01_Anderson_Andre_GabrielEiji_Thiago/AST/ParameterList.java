@@ -1,5 +1,6 @@
 package AST;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ParameterList implements Printable {
@@ -12,9 +13,13 @@ public class ParameterList implements Printable {
 
     @Override
     public void genC(PW pw) {
-
+        for (Iterator<Parameter> iterator = parameters.iterator(); iterator.hasNext();) {
+            Parameter parameter = iterator.next();
+            parameter.genC(pw);
+            if(iterator.hasNext()) {
+                pw.print(", ");
+            }
+        }
     }
-
-    
 
 }

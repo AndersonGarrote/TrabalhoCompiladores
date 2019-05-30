@@ -1,16 +1,12 @@
 package AST;
 
 public class IntegerType extends Type {
-	public IntegerType() {
+	public IntegerType(String name) {
 		super("integer");
 	}
 
-	public String getCname() {
-		return "int";
-	}
-
 	@Override
-	public void genC(PW pw) {
-
+	public String getCName() {
+		return "int";
 	}
 }

@@ -10,7 +10,10 @@ public class ReturnStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-
+        pw.print("return ");
+        expression.genC(pw);
+        pw.print(";");
+        pw.breakLine();
     }
 
 }

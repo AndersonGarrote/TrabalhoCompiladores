@@ -1,16 +1,13 @@
 package AST;
 
 public class BooleanType extends Type {
-	public BooleanType() {
+	
+	public BooleanType(String name) {
 		super("boolean");
 	}
 
-	public String getCname() {
-		return "char";
-	}
-
 	@Override
-	public void genC(PW pw) {
-
+	public String getCName() {
+		return "char";
 	}
 }

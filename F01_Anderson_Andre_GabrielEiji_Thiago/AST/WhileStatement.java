@@ -1,7 +1,5 @@
 package AST;
 
-import java.util.List;
-
 public class WhileStatement extends Statement {
 
     private Expression expression;

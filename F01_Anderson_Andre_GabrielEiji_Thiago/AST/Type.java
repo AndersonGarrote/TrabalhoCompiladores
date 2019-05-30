@@ -2,7 +2,7 @@ package AST;
 
 abstract public class Type implements Printable {
 
-	abstract public String getCname();
+	abstract public String getCName();
 
 	private String name;
 
@@ -10,12 +10,16 @@ abstract public class Type implements Printable {
 		this.name = name;
 	}
 
-	public static Type booleanType = new BooleanType();
-	public static Type integerType = new IntegerType();
-	public static Type stringType = new StringType();
+	// public static Type booleanType = new BooleanType();
+	// public static Type integerType = new IntegerType();
+	// public static Type stringType = new StringType();
 
 	public String getName() {
 		return name;
+	}
+
+	public void genC(PW pw) {
+		pw.print(getCName());
 	}
 
 }

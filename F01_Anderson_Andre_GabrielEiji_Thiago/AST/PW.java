@@ -31,4 +31,8 @@ public class PW {
 		this.out.print(s);
 	}
 
+	public void breakLine() {
+		this.out.print("\r\n");
+	}
+
 }

@@ -1,16 +1,12 @@
 package AST;
 
 public class StringType extends Type {
-	public StringType() {
+	public StringType(String name) {
 		super("string");
 	}
 
-	public String getCname() {
-		return "char";
-	}
-
 	@Override
-	public void genC(PW pw) {
-
+	public String getCName() {
+		return "char*";
 	}
 }

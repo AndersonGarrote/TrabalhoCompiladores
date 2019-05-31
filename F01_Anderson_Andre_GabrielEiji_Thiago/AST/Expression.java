@@ -1,18 +1,29 @@
+/*
+	Anderson Pinheiro Garrote RA: 743505
+	Andre Matheus Bariani Trava RA: 743506
+	Gabriel Eiji Uema Martin RA: 743536
+	Thiago Yussuki Uehara RA:743599
+*/
 package AST;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Expression implements Printable {
 
-    private List<ExpressionAnd> expressionEnds;
+    private List<ExpressionAnd> expressionAnds;
 
-    public Expression(List<ExpressionAnd> expressionEnds) {
-        this.expressionEnds = expressionEnds;
+    public Expression(List<ExpressionAnd> expressionAnds) {
+        this.expressionAnds = expressionAnds;
     }
 
     @Override
     public void genC(PW pw) {
-
+        expressionAnds.get(0).genC(pw);
+        expressionAnds.stream().skip(1).forEach(expressionAnd -> {
+            pw.print(" || ");
+            expressionAnd.genC(pw);
+        });
     }
 
 }

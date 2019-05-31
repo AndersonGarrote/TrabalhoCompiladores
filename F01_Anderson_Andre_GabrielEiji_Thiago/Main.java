@@ -1,3 +1,9 @@
+/*
+	Anderson Pinheiro Garrote RA: 743505
+	Andre Matheus Bariani Trava RA: 743506
+	Gabriel Eiji Uema Martin RA: 743536
+	Thiago Yussuki Uehara RA:743599
+*/
 import AST.*;
 import java.io.*;
 
@@ -53,15 +59,15 @@ public class Main {
 			PrintWriter printWriter = new PrintWriter(outputStream);
 			program = null;
 			// the generated code goes to a file and so are the errors
-			// try {
+			try {
 				program = compiler.compile(input, printWriter);
-			// } catch (RuntimeException e) {
-			// 	System.out.println(e);
-			// }
+			} catch (RuntimeException e) {
+				System.out.println(e);
+			}
 			if (program != null) {
 				PW pw = new PW();
 				pw.set(printWriter);
-				program.genC(pw);
+				//program.genC(pw);
 				if (printWriter.checkError()) {
 					System.out.println("There was an error in the output");
 				}

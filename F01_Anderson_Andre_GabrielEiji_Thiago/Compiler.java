@@ -146,14 +146,13 @@ public class Compiler {
 		List<Statement> statements = new ArrayList<Statement>();
 
 		if (lexer.token == Symbol.LEFT_CURLY_BRACKET) {
-
-			do {
-				if (lexer.token != Symbol.RIGHT_CURLY_BRACKET) {
-					System.out.println(lexer.token);
-					lexer.nextToken();
-				}
+			
+			System.out.println(lexer.token);
+			lexer.nextToken();
+			
+			while (lexer.token != Symbol.RIGHT_CURLY_BRACKET){
 				statements.add(stat());
-			} while (lexer.token != Symbol.RIGHT_CURLY_BRACKET);
+			} 
 
 			System.out.println(lexer.token);
 			lexer.nextToken();

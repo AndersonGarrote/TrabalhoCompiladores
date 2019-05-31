@@ -1,12 +1,3 @@
-function fatorial(n : Int) -> Int {
-    if n <= 0 {
-        return 1;
-    }
-    else {
-        return n*fatorial(n-1);
-    }
-}
-
 function imprima(berofe: Int, valor: Int, after: String) {
     var i : Int;
     i = 0;

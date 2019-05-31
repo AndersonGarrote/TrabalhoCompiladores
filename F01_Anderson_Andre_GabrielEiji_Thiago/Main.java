@@ -53,11 +53,11 @@ public class Main {
 			PrintWriter printWriter = new PrintWriter(outputStream);
 			program = null;
 			// the generated code goes to a file and so are the errors
-			try {
+			// try {
 				program = compiler.compile(input, printWriter);
-			} catch (RuntimeException e) {
-				System.out.println(e);
-			}
+			// } catch (RuntimeException e) {
+			// 	System.out.println(e);
+			// }
 			if (program != null) {
 				PW pw = new PW();
 				pw.set(printWriter);

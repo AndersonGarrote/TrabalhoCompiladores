@@ -7,13 +7,13 @@ public class LiteralInt extends Literal implements Printable{
 
     private int value;
 
-    LiteralInt(int value) throws IllegalArgumentException {
+    public LiteralInt(int value) throws IllegalArgumentException {
 
-        if(value >= MAX_VALUE) {
+        if(value > MAX_VALUE) {
             throw new IllegalArgumentException("Integer underflow");
         }
 
-        if(value >= MIN_VALUE) {
+        if(value < MIN_VALUE) {
             throw new IllegalArgumentException("Integer overflow");
         }
 

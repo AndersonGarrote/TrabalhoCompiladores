@@ -13,6 +13,11 @@ public class ParameterList implements Printable {
 
     @Override
     public void genC(PW pw) {
+
+        if(parameters == null) {
+            return;
+        }
+
         for (Iterator<Parameter> iterator = parameters.iterator(); iterator.hasNext();) {
             Parameter parameter = iterator.next();
             parameter.genC(pw);

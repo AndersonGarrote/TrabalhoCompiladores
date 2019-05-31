@@ -1,10 +1,10 @@
 package AST;
 
-public class ExpressionLiteral implements Printable{
+public class ExpressionLiteral extends ExpressionPrimary implements Printable{
 
 private Literal literal;
 
-    ExpressionLiteral(Literal literal) {
+    public ExpressionLiteral(Literal literal) {
         this.literal = literal;
     }
 

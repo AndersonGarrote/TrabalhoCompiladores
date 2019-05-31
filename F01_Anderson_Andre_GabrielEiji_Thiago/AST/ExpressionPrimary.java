@@ -1,5 +1,5 @@
 package AST;
 
-abstract class ExpressionPrimary implements Printable{
+public abstract class ExpressionPrimary implements Printable {
 
 }

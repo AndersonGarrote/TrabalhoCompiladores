@@ -4,7 +4,7 @@ public class LiteralString extends Literal implements Printable{
 
     private String value;
 
-    LiteralString(String value) {
+    public LiteralString(String value) {
         this.value = value;
     }
 

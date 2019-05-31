@@ -49,7 +49,7 @@ public class Lexer {
 		this.error = error;
 	}
 
-	public void nextToken() {
+	public Symbol nextToken() {
 		char ch;
 
 		while ((ch = input[tokenPos]) == ' ' || ch == '\r' || ch == '\t' || ch == '\n') {
@@ -190,7 +190,11 @@ public class Lexer {
 			}
 			beforeLastTokenPos = lastTokenPos;
 			lastTokenPos = tokenPos - 1;
+			
 		}
+
+		return token;
+
 	}
 
 	// return the line number of the last token got with getToken()

@@ -6,7 +6,7 @@ public class Expression implements Printable {
 
     private List<ExpressionAnd> expressionEnds;
 
-    Expression(List<ExpressionAnd> expressionEnds) {
+    public Expression(List<ExpressionAnd> expressionEnds) {
         this.expressionEnds = expressionEnds;
     }
 

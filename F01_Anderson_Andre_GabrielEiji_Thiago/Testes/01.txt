@@ -7,7 +7,7 @@ function fatorial(n : Int) -> Int {
     }
 }
 
-function inprima(berofe: Int, valor: Int, after: String) {
+function imprima(berofe: Int, valor: Int, after: String) {
     var i : Int;
     i = 0;
     while i < before {

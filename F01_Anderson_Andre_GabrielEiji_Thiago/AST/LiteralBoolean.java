@@ -4,7 +4,7 @@ public class LiteralBoolean extends Literal implements Printable{
 
     private boolean value;
 
-    LiteralBoolean(boolean value) {
+    public LiteralBoolean(boolean value) {
         this.value = value;
     }
 

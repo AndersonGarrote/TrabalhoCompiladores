@@ -1,15 +1,22 @@
 package AST;
 
+import java.util.ArrayList;
 import java.util.List;
 
-class ExpressionMultiplication implements Printable {
+import Lexer.Symbol;
+import javafx.util.Pair;
 
-    private List<String> operator;
-    private List<ExpressionUnary> expressionUnary;
+public class ExpressionMultiplication implements Printable {
 
-    ExpressionMultiplication(List<String> operator, List<ExpressionUnary> expressionUnary) {
-        this.operator = operator;
-        this.expressionUnary = expressionUnary;
+    List<Pair<Symbol, ExpressionUnary>> operatorExpressionUnaryPairs;
+
+    public ExpressionMultiplication(ExpressionUnary expressionUnary) {
+        this.operatorExpressionUnaryPairs = new ArrayList<Pair<Symbol, ExpressionUnary>>();
+        this.operatorExpressionUnaryPairs.add(new Pair<Symbol, ExpressionUnary>(Symbol.TIMES, expressionUnary));
+    }
+
+    public void addOperatorExpressionUnary(Symbol operator, ExpressionUnary expressionUnary) {
+        this.operatorExpressionUnaryPairs.add(new Pair<Symbol, ExpressionUnary>(operator, expressionUnary));
     }
 
     @Override

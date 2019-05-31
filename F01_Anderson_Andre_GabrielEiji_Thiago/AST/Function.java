@@ -30,9 +30,7 @@ public class Function implements Printable {
         identifier.genC(pw);
 
         pw.print("(");
-        if (parameters != null) {
-            parameters.genC(pw);
-        }
+        parameters.genC(pw);
         pw.print(") ");
 
         statements.genC(pw);

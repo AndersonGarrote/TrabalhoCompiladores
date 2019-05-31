@@ -6,7 +6,7 @@ public class ExpressionRelational implements Printable {
     private RelationalOperator relationalOperator;
     private ExpressionAddition rightExpressionAddition;
 
-    ExpressionRelational(ExpressionAddition leftExpressionAddition, RelationalOperator relationalOperator, ExpressionAddition rightExpressionAddition) {
+    public ExpressionRelational(ExpressionAddition leftExpressionAddition, RelationalOperator relationalOperator, ExpressionAddition rightExpressionAddition) {
         this.leftExpressionAddition = leftExpressionAddition;
         this.relationalOperator = relationalOperator;
         this.rightExpressionAddition = rightExpressionAddition;

@@ -1,15 +1,22 @@
 package AST;
 
+import java.util.ArrayList;
 import java.util.List;
 
-class ExpressionAddition implements Printable {
+import Lexer.Symbol;
+import javafx.util.Pair;
 
-    List<String> operator;
-    List<ExpressionMultiplication> expressionMultiplication;
+public class ExpressionAddition implements Printable {
 
-    ExpressionAddition(List<String> operator, List<ExpressionMultiplication> expressionMultiplication) {
-        this.operator = operator;
-        this.expressionMultiplication = expressionMultiplication;
+    List<Pair<Symbol, ExpressionMultiplication>> operatorExpressionMultiplicationPairs;
+
+    public ExpressionAddition(ExpressionMultiplication expressionMultiplication) {
+        this.operatorExpressionMultiplicationPairs = new ArrayList<Pair<Symbol, ExpressionMultiplication>>();
+        this.operatorExpressionMultiplicationPairs.add(new Pair<Symbol, ExpressionMultiplication>(Symbol.PLUS, expressionMultiplication));
+    }
+
+    public void addOperatorExpressionMultiplication(Symbol operator, ExpressionMultiplication expressionMultiplication) {
+        this.operatorExpressionMultiplicationPairs.add(new Pair<Symbol, ExpressionMultiplication>(operator, expressionMultiplication));
     }
 
     @Override

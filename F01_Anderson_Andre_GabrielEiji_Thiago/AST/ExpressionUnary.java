@@ -1,11 +1,15 @@
 package AST;
 
-class ExpressionUnary implements Printable {
+import Lexer.Symbol;
 
-    private char sign;
+public class ExpressionUnary implements Printable {
 
-    ExpressionUnary(char sign) {
-        this.sign = sign;
+    private Symbol operator;
+    private ExpressionPrimary expressionPrimary;
+
+    public ExpressionUnary(Symbol operator, ExpressionPrimary expressionPrimary) {
+        this.operator = operator;
+        this.expressionPrimary = expressionPrimary;
     }
     
     @Override

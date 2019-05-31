@@ -6,7 +6,7 @@ public class ExpressionAnd implements Printable {
 
     private List<ExpressionRelational> expressionOrs;
 
-    ExpressionAnd(List<ExpressionRelational> expressionOrs) {
+    public ExpressionAnd(List<ExpressionRelational> expressionOrs) {
         this.expressionOrs = expressionOrs;
     }
 

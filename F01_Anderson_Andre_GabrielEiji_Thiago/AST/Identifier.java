@@ -1,6 +1,6 @@
 package AST;
 
-public class Identifier implements Printable {
+public class Identifier extends ExpressionPrimary implements Printable {
 
     private String name;
 

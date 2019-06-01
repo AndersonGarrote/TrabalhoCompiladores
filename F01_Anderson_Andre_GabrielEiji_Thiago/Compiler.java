@@ -435,7 +435,6 @@ public class Compiler {
 		ExpressionMultiplication expressionMultiplication = new ExpressionMultiplication(exprUnary());
 
 		while (lexer.token == Symbol.TIMES || lexer.token == Symbol.DIVISION) {
-
 			Symbol operator = lexer.nextToken();
 			expressionMultiplication.addOperatorExpressionUnary(operator, exprUnary());
 		}
@@ -446,17 +445,21 @@ public class Compiler {
 
 	public ExpressionUnary exprUnary() {
 
-		Symbol operator = Symbol.PLUS;
+		Symbol operator = null;
 
 		if (lexer.token == Symbol.PLUS || lexer.token == Symbol.MINUS) {
 			operator = lexer.token;
-
 			lexer.nextToken();
 		}
 
 		ExpressionPrimary expressionPrimary = exprPrimary();
 
-		return new ExpressionUnary(operator, expressionPrimary);
+		if(operator == null) {
+			return new ExpressionUnary(expressionPrimary);
+		} else {
+			return new ExpressionUnary(operator, expressionPrimary);
+		}
+		
 	}
 
 	public ExpressionPrimary exprPrimary() {

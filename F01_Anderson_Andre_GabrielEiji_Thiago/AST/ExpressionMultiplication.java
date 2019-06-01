@@ -27,7 +27,12 @@ public class ExpressionMultiplication implements Printable {
 
     @Override
     public void genC(PW pw) {
+        operatorExpressionUnaryPairs.get(0).getValue().genC(pw);
 
+        operatorExpressionUnaryPairs.stream().skip(1).forEach(pair -> {
+            pw.print(" " + pair.getKey() + " ");
+            pair.getValue().genC(pw);
+        });
     }
 
 }

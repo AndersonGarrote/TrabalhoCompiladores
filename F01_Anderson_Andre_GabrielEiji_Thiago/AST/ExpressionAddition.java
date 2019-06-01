@@ -32,6 +32,13 @@ public class ExpressionAddition implements Printable {
     @Override
     public void genC(PW pw) {
 
+        operatorExpressionMultiplicationPairs.get(0).getValue().genC(pw);
+
+        operatorExpressionMultiplicationPairs.stream().skip(1).forEach(pair -> {
+            pw.print(" " + pair.getKey() + " ");
+            pair.getValue().genC(pw);
+        });
+        
     }
 
 }

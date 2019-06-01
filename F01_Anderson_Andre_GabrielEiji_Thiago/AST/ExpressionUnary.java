@@ -13,6 +13,11 @@ public class ExpressionUnary implements Printable {
     private Symbol operator;
     private ExpressionPrimary expressionPrimary;
 
+    public ExpressionUnary(ExpressionPrimary expressionPrimary) {
+        this.operator = null;
+        this.expressionPrimary = expressionPrimary;
+    }
+
     public ExpressionUnary(Symbol operator, ExpressionPrimary expressionPrimary) {
         this.operator = operator;
         this.expressionPrimary = expressionPrimary;
@@ -20,7 +25,10 @@ public class ExpressionUnary implements Printable {
     
     @Override
     public void genC(PW pw) {
-
+        if(operator != null) {
+            pw.print(operator.toString());
+        }
+        expressionPrimary.genC(pw);
     }
 
 }

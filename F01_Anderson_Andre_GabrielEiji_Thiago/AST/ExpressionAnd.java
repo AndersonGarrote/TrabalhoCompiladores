@@ -20,12 +20,10 @@ public class ExpressionAnd implements Printable {
 
     @Override
     public void genC(PW pw) {
-        for (Iterator<ExpressionRelational> iterator = expressionRelationals.iterator(); iterator.hasNext();) {
-            ExpressionRelational expressionRelational = iterator.next();
+        expressionRelationals.get(0).genC(pw);
+        expressionRelationals.stream().skip(1).forEach(expressionRelational -> {
+            pw.print(" && ");
             expressionRelational.genC(pw);
-            if (iterator.hasNext()) {
-                pw.print(" && ");
-            }
-        }
+        });
     }
 }

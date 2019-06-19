@@ -207,7 +207,7 @@ public class Lexer {
 			
 		}
 
-		System.out.println(token);
+		// System.out.println(token);
 
 		return token;
 

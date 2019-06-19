@@ -4,7 +4,8 @@
 	Gabriel Eiji Uema Martin RA: 743536
 	Thiago Yussuki Uehara RA:743599
 */
-import AST.*;
+import AST.Program;
+import AST.PW;
 import java.io.*;
 
 public class Main {
@@ -67,7 +68,7 @@ public class Main {
 			if (program != null) {
 				PW pw = new PW();
 				pw.set(printWriter);
-				//program.genC(pw);
+				// program.genC(pw);
 				if (printWriter.checkError()) {
 					System.out.println("There was an error in the output");
 				}

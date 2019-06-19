@@ -6,27 +6,26 @@
 */
 package AST;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import Lexer.Symbol;
-import javafx.util.Pair;
 
 public class ExpressionAddition implements Printable {
 
-    List<Pair<Symbol, ExpressionMultiplication>> operatorExpressionMultiplicationPairs;
+    List<AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>> operatorExpressionMultiplicationPairs;
 
     public ExpressionAddition(ExpressionMultiplication expressionMultiplication) {
-        this.operatorExpressionMultiplicationPairs = new ArrayList<Pair<Symbol, ExpressionMultiplication>>();
+        this.operatorExpressionMultiplicationPairs = new ArrayList<AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>>();
         this.operatorExpressionMultiplicationPairs
-                .add(new Pair<Symbol, ExpressionMultiplication>(Symbol.PLUS, expressionMultiplication));
+                .add(new AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>(Symbol.PLUS, expressionMultiplication));
     }
 
     public void addOperatorExpressionMultiplication(Symbol operator,
             ExpressionMultiplication expressionMultiplication) {
         this.operatorExpressionMultiplicationPairs
-                .add(new Pair<Symbol, ExpressionMultiplication>(operator, expressionMultiplication));
+                .add(new AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>(operator, expressionMultiplication));
     }
 
     @Override

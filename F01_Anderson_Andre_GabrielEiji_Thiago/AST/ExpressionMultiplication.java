@@ -6,23 +6,23 @@
 */
 package AST;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 
 import Lexer.Symbol;
-import javafx.util.Pair;
 
 public class ExpressionMultiplication implements Printable {
 
-    List<Pair<Symbol, ExpressionUnary>> operatorExpressionUnaryPairs;
+    List<AbstractMap.SimpleEntry<Symbol, ExpressionUnary>> operatorExpressionUnaryPairs;
 
     public ExpressionMultiplication(ExpressionUnary expressionUnary) {
-        this.operatorExpressionUnaryPairs = new ArrayList<Pair<Symbol, ExpressionUnary>>();
-        this.operatorExpressionUnaryPairs.add(new Pair<Symbol, ExpressionUnary>(Symbol.TIMES, expressionUnary));
+        this.operatorExpressionUnaryPairs = new ArrayList<AbstractMap.SimpleEntry<Symbol, ExpressionUnary>>();
+        this.operatorExpressionUnaryPairs.add(new AbstractMap.SimpleEntry<Symbol, ExpressionUnary>(Symbol.TIMES, expressionUnary));
     }
 
     public void addOperatorExpressionUnary(Symbol operator, ExpressionUnary expressionUnary) {
-        this.operatorExpressionUnaryPairs.add(new Pair<Symbol, ExpressionUnary>(operator, expressionUnary));
+        this.operatorExpressionUnaryPairs.add(new AbstractMap.SimpleEntry<Symbol, ExpressionUnary>(operator, expressionUnary));
     }
 
     @Override

@@ -11,12 +11,13 @@ public class CompilerError {
 	private Lexer lexer;
 	private PrintWriter out;
 	private boolean thereWasAnError;
-
+	private String fileName;
 	
-	public CompilerError( Lexer lexer, PrintWriter out ) {
+	public CompilerError( Lexer lexer, PrintWriter out, String fileName) {
 		// output of an error is done in out
 		this.lexer = lexer;
 		this.out = out;
+		this.fileName = fileName;
 		thereWasAnError = false;
 	}
 	public void setLexer( Lexer lexer ) {
@@ -29,17 +30,23 @@ public class CompilerError {
 		show( strMessage, false );
 	}
 	public void show( String strMessage, boolean goPreviousToken ) {
+
+		out.print("\n");
+		//Nome do arquivo
+		out.print( fileName );
+		
 		//is goPreviousToken is true, the error is signalled at the line of the
 		//	previous token, not the last one.
 		if( goPreviousToken ) {
-			out.println("Error at line " + lexer.getLineNumberBeforeLastToken() + ": ");
-			out.println( lexer.getLineBeforeLastToken() );
+			out.print(":" + lexer.getLineNumberBeforeLastToken() + ": ");
+			out.println( strMessage );
+			out.print( lexer.getLineBeforeLastToken() );
 		}
 		else {
-			out.println("Error at line " + lexer.getLineNumber() + ": ");
-			out.println(lexer.getCurrentLine());
+			out.print(":" + lexer.getLineNumber() + ": ");
+			out.println( strMessage );
+			out.print(lexer.getCurrentLine());
 		}
-		out.println( strMessage );
 		out.flush();
 		if ( out.checkError() )
 			System.out.println("Error in signaling an error");

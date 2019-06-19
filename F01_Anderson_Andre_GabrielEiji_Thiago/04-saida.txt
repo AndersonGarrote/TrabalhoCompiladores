@@ -1,0 +1,3 @@
+
+Testes/04.txt:31: Esperado token de tipo ("Int", "Boolean" ou "String").
+    res = a + b;

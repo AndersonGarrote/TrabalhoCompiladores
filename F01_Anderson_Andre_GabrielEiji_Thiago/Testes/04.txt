@@ -25,7 +25,9 @@ function makeSub(a : Int, b : Int) -> Int {
 
 function makeSoma(a : Int, b : Int) -> Int {
     var res : Int;
-
+	
+	var aa :
+	
     res = a + b;
 
     return res;

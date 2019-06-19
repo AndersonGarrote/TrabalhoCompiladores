@@ -24,10 +24,10 @@ public class Compiler {
 	public Compiler() {
 	}
 
-	public Program compile(char[] p_input, PrintWriter printWriter) {
+	public Program compile(char[] p_input, PrintWriter printWriter, String fileName) {
 		input = p_input;
 		outError = printWriter;
-		error = new CompilerError(lexer, outError);
+		error = new CompilerError(lexer, outError, fileName);
 		lexer = new Lexer(input, error);
 		error.setLexer(lexer);
 
@@ -36,8 +36,6 @@ public class Compiler {
 	}
 
 	public Program program() {
-
-		// System.out.println("Program");
 
 		List<Function> functionList = new ArrayList<Function>();
 

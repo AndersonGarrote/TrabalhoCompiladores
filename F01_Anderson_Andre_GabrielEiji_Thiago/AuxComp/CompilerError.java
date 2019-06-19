@@ -35,7 +35,6 @@ public class CompilerError {
 		//Nome do arquivo
 		out.print( fileName );
 		
-		//is goPreviousToken is true, the error is signalled at the line of the
 		//	previous token, not the last one.
 		if( goPreviousToken ) {
 			out.print(":" + lexer.getLineNumberBeforeLastToken() + ": ");

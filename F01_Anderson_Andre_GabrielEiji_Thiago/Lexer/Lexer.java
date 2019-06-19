@@ -148,6 +148,13 @@ public class Lexer {
 						token = Symbol.ASSIGN;
 					}
 					break;
+				
+				case '!':
+					if (input[tokenPos] == '=') {
+						tokenPos++;
+						token = Symbol.NOT_EQUAL;
+					}
+					break;
 
 				case '(':
 					token = Symbol.LEFT_PARENTHESIS;

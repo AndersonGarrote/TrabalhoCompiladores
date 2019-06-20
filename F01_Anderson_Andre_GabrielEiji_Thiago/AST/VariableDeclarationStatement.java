@@ -11,6 +11,10 @@ public class VariableDeclarationStatement extends Statement {
     private Identifier identifier;
     private Type type;
 
+    public VariableDeclarationStatement() {
+        
+    }
+
     public VariableDeclarationStatement(Identifier identifier, Type type) {
         this.identifier = identifier;
         this.type = type;

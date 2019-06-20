@@ -14,6 +14,10 @@ public class Identifier extends ExpressionPrimary implements Printable {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public void genC(PW pw) {
         pw.print(name);

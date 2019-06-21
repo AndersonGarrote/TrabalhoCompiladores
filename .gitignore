@@ -23,6 +23,7 @@
 hs_err_pid*
 
 #arquivos do eclipse e de compilação
-.settings
+.settings/
+.classpath
 .project
 bin/

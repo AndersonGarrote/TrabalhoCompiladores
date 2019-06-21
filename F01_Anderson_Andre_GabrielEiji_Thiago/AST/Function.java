@@ -21,6 +21,10 @@ public class Function implements Printable {
         this.statements = statements;
     }
 
+    public int getParamListSize() {
+        return this.parameters.getSize();
+    }
+
     @Override
     public void genC(PW pw) {
 

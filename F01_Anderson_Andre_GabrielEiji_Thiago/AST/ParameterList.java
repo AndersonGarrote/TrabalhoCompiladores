@@ -17,6 +17,10 @@ public class ParameterList implements Printable {
         this.parameters = parameters;
     }
 
+    public int getSize() {
+        return this.parameters.size();
+    }
+
     @Override
     public void genC(PW pw) {
 
@@ -30,6 +34,5 @@ public class ParameterList implements Printable {
             pw.print(", ");
             parameter.genC(pw);
         });
-        
     }
 }

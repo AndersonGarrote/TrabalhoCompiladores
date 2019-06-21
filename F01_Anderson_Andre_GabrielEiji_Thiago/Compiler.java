@@ -655,6 +655,11 @@ public class Compiler {
 				} else {
 					error.signal("Esperado o token \")\".");
 				}
+
+				Function func = Function.class.cast(function);
+				if ( func.getParamListSize() != expressionFunctionCall.getSize() ) {
+					error.signal("Quantidade de parâmetros incorreta.");
+				}
 			}
 		} else {
 			error.signal("Esperado o token \"(\".");

@@ -9,14 +9,24 @@ package AST;
 public class Identifier extends ExpressionPrimary implements Printable {
 
     private String name;
-
-    public Identifier(String name) {
+    private Type type;
+    
+    public Identifier(String name, Type type) {
         this.name = name;
+        this.setType(type);
     }
 
     @Override
     public void genC(PW pw) {
         pw.print(name);
     }
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 
 }

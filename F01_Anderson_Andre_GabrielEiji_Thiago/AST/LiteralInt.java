@@ -24,6 +24,7 @@ public class LiteralInt extends Literal implements Printable{
         }
 
         this.value = value;
+        this.type = new IntegerType();
         
     }
 

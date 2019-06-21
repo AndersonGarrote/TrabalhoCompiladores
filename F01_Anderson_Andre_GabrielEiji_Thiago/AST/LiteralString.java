@@ -12,6 +12,7 @@ public class LiteralString extends Literal implements Printable{
 
     public LiteralString(String value) {
         this.value = value;
+        this.type = new StringType();
     }
 
     public void genC(PW pw) {

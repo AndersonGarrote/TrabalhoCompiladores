@@ -37,5 +37,12 @@ public class ExpressionRelational implements Printable {
         }
 
     }
+    
+    Type getType() {
+    	if( relationalOperator == null)
+    		return leftExpressionAddition.getType();
+    	else
+    		return new BooleanType();
+    }
 
 }

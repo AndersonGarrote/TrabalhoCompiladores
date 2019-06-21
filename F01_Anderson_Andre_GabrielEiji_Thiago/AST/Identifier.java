@@ -24,12 +24,13 @@ public class Identifier extends ExpressionPrimary implements Printable {
     public void genC(PW pw) {
         pw.print(name);
     }
-
+    
+    @Override
 	public Type getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	private void setType(Type type) {
 		this.type = type;
 	}
 

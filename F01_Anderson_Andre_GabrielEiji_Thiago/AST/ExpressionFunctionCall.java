@@ -30,5 +30,8 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
     public void genC(PW pw) {
 
     }
-
+    @Overrride
+    Type getType() {
+    	return this.identifier.getType();
+    }
 }

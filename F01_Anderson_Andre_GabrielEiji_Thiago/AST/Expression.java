@@ -24,5 +24,12 @@ public class Expression implements Printable {
             expressionAnd.genC(pw);
         });
     }
+    
+    Type getType() {
+    	if( this.expressionAnds.size() == 1)
+    		return this.expressionAnds.get(0).getType();
+    	else
+    		return new BooleanType();
+    }
 
 }

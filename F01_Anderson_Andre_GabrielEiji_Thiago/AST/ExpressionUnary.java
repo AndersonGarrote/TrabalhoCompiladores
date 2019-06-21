@@ -30,5 +30,9 @@ public class ExpressionUnary implements Printable {
         }
         expressionPrimary.genC(pw);
     }
+    
+    public Type getType(){
+    	return this.expressionPrimary.getType();
+    }
 
 }

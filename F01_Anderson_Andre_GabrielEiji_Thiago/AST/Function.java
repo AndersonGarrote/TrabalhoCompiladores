@@ -13,9 +13,6 @@ public class Function implements Printable {
     private Type type;
     private StatementList statements;
 
-    public Function() {
-        
-    }
 
     public Function(Identifier identifier, ParameterList parameters, Type type, StatementList statements) {
         this.identifier = identifier;
@@ -47,6 +44,10 @@ public class Function implements Printable {
 
         pw.breakLine();
 
+    }
+    
+    public Type getType(){
+    	return this.type;
     }
 
 }

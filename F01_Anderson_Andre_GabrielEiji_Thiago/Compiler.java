@@ -21,7 +21,10 @@ public class Compiler {
 	char[] input;
 	PrintWriter outError;
 
+	Hashtable<String, Object> symbolTable;
+
 	public Compiler() {
+		symbolTable = new Hashtable<>();
 	}
 
 	public Program compile(char[] p_input, PrintWriter printWriter, String fileName) {
@@ -62,6 +65,12 @@ public class Compiler {
 
 			id = id();
 
+			if(symbolTable.containsKey(id.getName())) {
+				error.signal(id.getName() + " redeclarado");
+			}
+
+			symbolTable.put(id.getName(), new Function()); // Doubt
+
 			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
 				lexer.nextToken();
@@ -69,7 +78,6 @@ public class Compiler {
 				parameterList = paramList();
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
-
 					lexer.nextToken();
 				} else {
 					error.signal("Esperado token \")\".");
@@ -85,6 +93,10 @@ public class Compiler {
 			statementList = statList();
 
 			function = new Function(id, parameterList, ret, statementList);
+
+			symbolTable.put(id.getName(), function);
+
+			System.out.println(symbolTable);
 
 		} else {
 			error.signal("Esperado o token \"function\".");
@@ -253,6 +265,12 @@ public class Compiler {
 
 			Identifier identifier = id();
 
+			if(symbolTable.containsKey(identifier.getName())) {
+				error.signal(identifier.getName() + " redeclarado");
+			}
+
+			symbolTable.put(identifier.getName(), new VariableDeclarationStatement()); // Doubt
+
 			if (lexer.token == Symbol.COLON) {
 
 				lexer.nextToken();
@@ -261,6 +279,10 @@ public class Compiler {
 
 				if (lexer.token == Symbol.SEMICOLON) {
 					variableDeclarationStatement = new VariableDeclarationStatement(identifier, type);
+
+					symbolTable.put(identifier.getName(), variableDeclarationStatement);
+
+					System.out.println(symbolTable);
 
 					lexer.nextToken();
 				} else {
@@ -482,6 +504,16 @@ public class Compiler {
 
 			Identifier identifier = id();
 
+			Object variable = symbolTable.get(identifier.getName());
+
+			if(variable == null) {
+				error.signal(identifier.getName() + " não foi declarada");
+			}
+
+			if(variable.getClass() != VariableDeclarationStatement.class) {
+				error.signal(identifier.getName() + " não é uma variável");
+			}
+
 			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 				expressionPrimary = funcCall(identifier);
 			} else {
@@ -586,6 +618,16 @@ public class Compiler {
 	public ExpressionFunctionCall funcCall(Identifier identifier) {
 
 		// Recebe o Identifier da chamada anterior
+
+		Object function = symbolTable.get(identifier.getName());
+
+		if(function == null) {
+			error.signal(identifier.getName() + " não foi declarada");
+		}
+
+		if(function.getClass() != Function.class) {
+			error.signal(identifier.getName() + " não é uma função");
+		}
 
 		ExpressionFunctionCall expressionFunctionCall = null;
 

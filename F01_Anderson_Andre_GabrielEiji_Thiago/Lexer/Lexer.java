@@ -67,6 +67,7 @@ public class Lexer {
 			}
 			tokenPos++;
 		}
+
 		if (ch == '\0') {
 			token = Symbol.EOF;
 		} else {

@@ -1,0 +1,3 @@
+
+.\Testes\05.txt:5: aaa redeclarado
+function aaa {

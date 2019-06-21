@@ -1,0 +1,7 @@
+function teste {
+    var aaa : Int;
+}
+
+function aaa {
+
+}

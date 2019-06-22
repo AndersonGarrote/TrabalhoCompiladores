@@ -1,5 +1,6 @@
 function main {
-    1 = 4;
+    var i : Int ;
+    i = "aa";
     "str" = "string";
     true = false;
 }

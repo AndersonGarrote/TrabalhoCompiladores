@@ -222,6 +222,10 @@ public class Compiler {
 			
 			rightExpression = expr();
 			
+			//TODO Verifica se a expressão a esquerda é id
+			
+			
+			//Verificação de tipos
 			try {
 				if(! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
 					error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
@@ -679,9 +683,14 @@ public class Compiler {
 		Identifier identifier = null;
 
 		if (lexer.token == Symbol.IDENTIFIER) {
+			//Procura identificador na SymbolTable
+			identifier = this.symbolTable.get(lexer.stringValue);
 			
-			identifier = new Identifier(lexer.stringValue );
-
+			//Se não achou, cria um novo
+			if(identifier == null){
+				identifier = new Identifier(lexer.stringValue);
+			}
+			
 			lexer.nextToken();
 		} else {
 			error.signal("Esperado um identificador.");

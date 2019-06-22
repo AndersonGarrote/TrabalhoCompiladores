@@ -1,7 +1,17 @@
 
-Testes/06.txt:2: Não foi possível verificar os tipos das expressões.
-    1 = 4;
-Testes/06.txt:3: Não foi possível verificar os tipos das expressões.
-    "str" = "string";
-Testes/06.txt:4: Não foi possível verificar os tipos das expressões.
-    true = false;
+Testes/06.txt:3: Tipos das expressões são incompatíveis: integer e string.
+    i = "aa";
+Testes/06.txt:9: Não foi possível verificar os tipos das expressões.
+    4 = main() ;
+Testes/06.txt:10: Tipos das expressões são incompatíveis: integer e string.
+    1 = "string";
+Testes/06.txt:11: Tipos das expressões são incompatíveis: string e boolean.
+    "str" = false;
+Testes/06.txt:12: Tipos das expressões são incompatíveis: boolean e integer.
+    true = 4;
+Testes/06.txt:14: Tipos das expressões são incompatíveis: integer e boolean.
+    1 = false;
+Testes/06.txt:15: Tipos das expressões são incompatíveis: string e integer.
+    "str" = 4;
+Testes/06.txt:16: Tipos das expressões são incompatíveis: boolean e string.
+    true = "string";

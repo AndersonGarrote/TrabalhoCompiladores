@@ -6,9 +6,9 @@
 */
 package AST;
 
-public class ExpressionLiteral extends ExpressionPrimary implements Printable{
+public class ExpressionLiteral extends ExpressionPrimary implements Printable {
 
-private Literal literal;
+    private Literal literal;
 
     public ExpressionLiteral(Literal literal) {
         this.literal = literal;

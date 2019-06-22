@@ -6,23 +6,18 @@
 */
 package AST;
 
-public class Variable {
-	
-	private String name;
+public class Variable extends Identifiable {
+
 	private Type type;
 	
-	public Variable( String name, Type type ) {
-		this.name = name;
+	public Variable(Identifier identifier, Type type) {
+		this.setIdentifier(identifier);
 		this.type = type;
 	}
-	public Variable( String name ) {
-		this.name = name;
-	}
-	public void setType( Type type ) {
-		this.type = type;
-	}
-	public String getName() { return name; }
+
+	@Override
 	public Type getType() {
 		return type;
 	}
+
 }

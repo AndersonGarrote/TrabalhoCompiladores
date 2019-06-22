@@ -5,54 +5,67 @@
 	Thiago Yussuki Uehara RA:743599
 */
 package AuxComp;
-import Lexer.*; import java.io.*;
+
+import Lexer.*;
+import java.io.*;
 
 public class CompilerError {
 	private Lexer lexer;
 	private PrintWriter out;
 	private boolean thereWasAnError;
 	private String fileName;
-	
-	public CompilerError( Lexer lexer, PrintWriter out, String fileName) {
+
+	public CompilerError(Lexer lexer, PrintWriter out, String fileName) {
 		// output of an error is done in out
 		this.lexer = lexer;
 		this.out = out;
 		this.fileName = fileName;
 		thereWasAnError = false;
 	}
-	public void setLexer( Lexer lexer ) {
+
+	public void setLexer(Lexer lexer) {
 		this.lexer = lexer;
 	}
+
 	public boolean wasAnErrorSignalled() {
 		return thereWasAnError;
 	}
-	public void show( String strMessage ) {
-		show( strMessage, false );
+
+	public void show(String strMessage) {
+		show(strMessage, false);
 	}
-	public void show( String strMessage, boolean goPreviousToken ) {
+
+	public void show(String strMessage, boolean goPreviousToken) {
 
 		out.print("\n");
-		//Nome do arquivo
-		out.print( fileName );
-		
-		//	previous token, not the last one.
-		if( goPreviousToken ) {
+		// Nome do arquivo
+		out.print(fileName);
+
+		// previous token, not the last one.
+		if (goPreviousToken) {
 			out.print(":" + lexer.getLineNumberBeforeLastToken() + ": ");
-			out.println( strMessage );
-			out.print( lexer.getLineBeforeLastToken() );
-		}
-		else {
+			out.println(strMessage);
+			out.print(lexer.getLineBeforeLastToken());
+		} else {
 			out.print(":" + lexer.getLineNumber() + ": ");
-			out.println( strMessage );
+			out.println(strMessage);
 			out.print(lexer.getCurrentLine());
 		}
 		out.flush();
-		if ( out.checkError() )
+		if (out.checkError())
 			System.out.println("Error in signaling an error");
 		thereWasAnError = true;
 	}
-	public void signal( String strMessage ) {
-		show( strMessage );
+
+	public void signal(String strMessage) {
+		show(strMessage);
+		out.flush();
+		thereWasAnError = true;
+		throw new RuntimeException();
+	}
+
+	public void signalWrongToken(Symbol expected) {
+		show("Esperado o token " + expected + ", encontrado " + lexer.token);
 		out.flush();
 		thereWasAnError = true;
 		throw new RuntimeException();

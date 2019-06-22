@@ -7,24 +7,21 @@
 
 package AST;
 
+import java.util.List;
+
 public class WhileStatement extends Statement {
 
     private Expression expression;
-    private StatementList statements;
+    private List<Statement> statements;
 
-    public WhileStatement(Expression expression, StatementList statements) {
+    public WhileStatement(Expression expression, List<Statement> statements) {
         this.expression = expression;
         this.statements = statements;
     }
 
     @Override
     public void genC(PW pw) {
-        pw.print("while (");
-        expression.genC(pw);
-        pw.print(") ");
-        pw.breakLine();
-        statements.genC(pw);
-        pw.breakLine();
+
     }
 
 }

@@ -34,8 +34,6 @@ public class Lexer {
 		keywordsTable.put("if", Symbol.IF);
 		keywordsTable.put("else", Symbol.ELSE);
 		keywordsTable.put("while", Symbol.WHILE);
-		keywordsTable.put("write", Symbol.WRITE);
-		keywordsTable.put("writeln", Symbol.WRITELN);
 		keywordsTable.put("true", Symbol.TRUE);
 		keywordsTable.put("false", Symbol.FALSE);
 		keywordsTable.put("and", Symbol.AND);

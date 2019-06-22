@@ -1,3 +1,4 @@
+
 /*
 	Anderson Pinheiro Garrote RA: 743505
 	Andre Matheus Bariani Trava RA: 743506
@@ -21,10 +22,16 @@ public class Compiler {
 	char[] input;
 	PrintWriter outError;
 
-	Hashtable<String, Object> symbolTable;
+	SymbolTable symbolTable = new SymbolTable();
 
 	public Compiler() {
-		symbolTable = new Hashtable<>();
+		// Colocar as funções pré-definidas aqui
+		Identifier write = new Identifier("write");
+		write.setIdentifiable(new Function(write));
+		symbolTable.put(write);
+		Identifier writeln = new Identifier("writeln");
+		writeln.setIdentifiable(new Function(writeln));
+		symbolTable.put(writeln);
 	}
 
 	public Program compile(char[] p_input, PrintWriter printWriter, String fileName) {
@@ -33,12 +40,11 @@ public class Compiler {
 		error = new CompilerError(lexer, outError, fileName);
 		lexer = new Lexer(input, error);
 		error.setLexer(lexer);
-
 		lexer.nextToken();
 		return program();
 	}
 
-	public Program program() {
+	private Program program() {
 
 		List<Function> functionList = new ArrayList<Function>();
 
@@ -51,61 +57,58 @@ public class Compiler {
 		return new Program(functionList);
 	}
 
-	public Function func() {
+	private Function func() {
 
-		Function function = null;
-		Identifier id = null;
-		ParameterList parameterList = null;
-		Type ret = null;
-		StatementList statementList = null;
+		if (lexer.token != Symbol.FUNCTION) {
+			error.signalWrongToken(Symbol.FUNCTION);
+		}
 
-		if (lexer.token == Symbol.FUNCTION) {
+		lexer.nextToken();
+
+		Identifier identifier = id();
+
+		if (symbolTable.has(identifier)) {
+			error.signal(identifier.getName() + " redeclarado");
+		}
+
+		symbolTable.put(identifier);
+
+		List<Parameter> parameterList;
+
+		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
 			lexer.nextToken();
 
-			id = id();
+			parameterList = paramList();
 
-			if(symbolTable.containsKey(id.getName())) {
-				error.signal(id.getName() + " redeclarado");
+			if (lexer.token != Symbol.RIGHT_PARENTHESIS) {
+				error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 			}
 
-			symbolTable.put(id.getName(), new Function()); // Doubt
-
-			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
-
-				lexer.nextToken();
-
-				parameterList = paramList();
-
-				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
-					lexer.nextToken();
-				} else {
-					error.signal("Esperado token \")\".");
-				}
-
-			}
-			if (lexer.token == Symbol.ARROW) {
-
-				lexer.nextToken();
-				ret = type();
-			}
-
-			statementList = statList();
-
-			function = new Function(id, parameterList, ret, statementList);
-
-			symbolTable.put(id.getName(), function);
-
-			System.out.println(symbolTable);
+			lexer.nextToken();
 
 		} else {
-			error.signal("Esperado o token \"function\".");
+			parameterList = null;
 		}
 
-		return function;
+		Type type;
+
+		if (lexer.token == Symbol.ARROW) {
+			lexer.nextToken();
+			type = type();
+		} else {
+			type = null;
+		}
+
+		List<Statement> statementList = statList();
+
+		symbolTable.clearLocal();
+
+		return new Function(identifier, parameterList, type, statementList);
+
 	}
 
-	public ParameterList paramList() {
+	private List<Parameter> paramList() {
 
 		List<Parameter> parameters = new ArrayList<Parameter>();
 
@@ -117,16 +120,18 @@ public class Compiler {
 			parameters.add(paramDec());
 		} while (lexer.token == Symbol.COMMA);
 
-		return new ParameterList(parameters);
+		return parameters;
 
 	}
 
-	public Parameter paramDec() {
+	private Parameter paramDec() {
 		Identifier identifier = id();
+		symbolTable.putLocal(identifier);
 		if (lexer.token == Symbol.COLON) {
 
 			lexer.nextToken();
 			Type type = type();
+			Variable variable = new Variable(identifier, type);
 			return new Parameter(identifier, type);
 		} else {
 			error.signal("Esperado o token \":\".");
@@ -134,7 +139,7 @@ public class Compiler {
 		}
 	}
 
-	public Type type() {
+	private Type type() {
 
 		Type type = null;
 
@@ -159,16 +164,16 @@ public class Compiler {
 
 	}
 
-	public StatementList statList() {
+	private List<Statement> statList() {
 
-		StatementList statementList = new StatementList();
+		List<Statement> statementList = new ArrayList<>();
 
 		if (lexer.token == Symbol.LEFT_CURLY_BRACKET) {
 
 			lexer.nextToken();
 
 			while (lexer.token != Symbol.RIGHT_CURLY_BRACKET) {
-				statementList.addStatement(stat());
+				statementList.add(stat());
 			}
 
 			lexer.nextToken();
@@ -176,13 +181,13 @@ public class Compiler {
 			return statementList;
 
 		} else {
-			error.signal("Esperado o token \"{\"");
+			error.signalWrongToken(Symbol.LEFT_CURLY_BRACKET);
 			return null;
 		}
 
 	}
 
-	public Statement stat() {
+	private Statement stat() {
 
 		Statement statement = null;
 
@@ -202,7 +207,7 @@ public class Compiler {
 
 	}
 
-	public AssignmentExpressionStatement assignExprStat() {
+	private AssignmentExpressionStatement assignExprStat() {
 
 		AssignmentExpressionStatement assignmentExpressionStatement = null;
 		Expression leftExpression = null;
@@ -231,7 +236,7 @@ public class Compiler {
 
 	}
 
-	public ReturnStatement returnStat() {
+	private ReturnStatement returnStat() {
 
 		ReturnStatement returnStatement = null;
 		Expression expression = null;
@@ -255,7 +260,7 @@ public class Compiler {
 		return returnStatement;
 	}
 
-	public VariableDeclarationStatement varDecStat() {
+	private VariableDeclarationStatement varDecStat() {
 
 		VariableDeclarationStatement variableDeclarationStatement = null;
 
@@ -265,11 +270,12 @@ public class Compiler {
 
 			Identifier identifier = id();
 
-			if(symbolTable.containsKey(identifier.getName())) {
+			if (symbolTable.has(identifier)) {
 				error.signal(identifier.getName() + " redeclarado");
 			}
 
-			symbolTable.put(identifier.getName(), new VariableDeclarationStatement()); // Doubt
+			symbolTable.put(identifier); // Adiciona o identificador sem a função ainda, para evitar que um
+											// identificador com o mesmo nome seja declarado
 
 			if (lexer.token == Symbol.COLON) {
 
@@ -278,11 +284,12 @@ public class Compiler {
 				Type type = type();
 
 				if (lexer.token == Symbol.SEMICOLON) {
-					variableDeclarationStatement = new VariableDeclarationStatement(identifier, type);
 
-					symbolTable.put(identifier.getName(), variableDeclarationStatement);
+					Variable variable = new Variable(identifier, type);
 
-					System.out.println(symbolTable);
+					variableDeclarationStatement = new VariableDeclarationStatement(variable);
+
+					symbolTable.put(identifier);
 
 					lexer.nextToken();
 				} else {
@@ -298,12 +305,12 @@ public class Compiler {
 		return variableDeclarationStatement;
 	}
 
-	public IfStatement ifStat() {
+	private IfStatement ifStat() {
 
 		IfStatement ifStatement = null;
 		Expression expression = null;
-		StatementList statementsTrue = null;
-		StatementList statementsFalse = null;
+		List<Statement> statementsTrue = null;
+		List<Statement> statementsFalse = null;
 
 		if (lexer.token == Symbol.IF) {
 
@@ -326,7 +333,7 @@ public class Compiler {
 		return ifStatement;
 	}
 
-	public WhileStatement whileStat() {
+	private WhileStatement whileStat() {
 
 		WhileStatement whileStatement = null;
 
@@ -335,7 +342,7 @@ public class Compiler {
 			lexer.nextToken();
 
 			Expression expression = expr();
-			StatementList statementList = statList();
+			List<Statement> statementList = statList();
 
 			whileStatement = new WhileStatement(expression, statementList);
 
@@ -347,7 +354,7 @@ public class Compiler {
 
 	}
 
-	public Expression expr() {
+	private Expression expr() {
 
 		List<ExpressionAnd> expressionAndList = new ArrayList<ExpressionAnd>();
 
@@ -362,7 +369,7 @@ public class Compiler {
 		return new Expression(expressionAndList);
 	}
 
-	public ExpressionAnd exprAnd() {
+	private ExpressionAnd exprAnd() {
 
 		List<ExpressionRelational> expressionRelationalList = new ArrayList<ExpressionRelational>();
 
@@ -377,7 +384,7 @@ public class Compiler {
 		return new ExpressionAnd(expressionRelationalList);
 	}
 
-	public ExpressionRelational exprRel() {
+	private ExpressionRelational exprRel() {
 
 		ExpressionAddition expressionAddLeft = exprAdd();
 
@@ -396,7 +403,7 @@ public class Compiler {
 
 	}
 
-	public RelationalOperator relOp() {
+	private RelationalOperator relOp() {
 
 		RelationalOperator relationalOperator = null;
 
@@ -436,7 +443,7 @@ public class Compiler {
 
 	}
 
-	public ExpressionAddition exprAdd() {
+	private ExpressionAddition exprAdd() {
 
 		ExpressionAddition expressionAddition = new ExpressionAddition(exprMult());
 
@@ -450,7 +457,7 @@ public class Compiler {
 
 	}
 
-	public ExpressionMultiplication exprMult() {
+	private ExpressionMultiplication exprMult() {
 
 		ExpressionMultiplication expressionMultiplication = new ExpressionMultiplication(exprUnary());
 
@@ -463,7 +470,7 @@ public class Compiler {
 
 	}
 
-	public ExpressionUnary exprUnary() {
+	private ExpressionUnary exprUnary() {
 
 		Symbol operator = null;
 
@@ -474,49 +481,37 @@ public class Compiler {
 
 		ExpressionPrimary expressionPrimary = exprPrimary();
 
-		if(operator == null) {
+		if (operator == null) {
 			return new ExpressionUnary(expressionPrimary);
 		} else {
 			return new ExpressionUnary(operator, expressionPrimary);
 		}
-		
+
 	}
 
-	public ExpressionPrimary exprPrimary() {
+	private ExpressionPrimary exprPrimary() {
 
 		ExpressionPrimary expressionPrimary = null;
 
-		if (lexer.token == Symbol.WRITE) {
-
-			lexer.nextToken();
-
-			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
-				expressionPrimary = funcCall(new Identifier("write"));
-			}
-		} else if (lexer.token == Symbol.WRITELN) {
-
-			lexer.nextToken();
-
-			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
-				expressionPrimary = funcCall(new Identifier("writeLn"));
-			}
-		} else if (lexer.token == Symbol.IDENTIFIER) {
+		if (lexer.token == Symbol.IDENTIFIER) {
 
 			Identifier identifier = id();
 
-			Object variable = symbolTable.get(identifier.getName());
-
-			if(variable == null) {
+			if (!symbolTable.has(identifier)) {
 				error.signal(identifier.getName() + " não foi declarada");
 			}
 
-			if(variable.getClass() != VariableDeclarationStatement.class) {
-				error.signal(identifier.getName() + " não é uma variável");
-			}
+			Identifiable identifiable = symbolTable.get(identifier).getIdentifiable();
 
 			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
-				expressionPrimary = funcCall(identifier);
+				if (identifiable.getClass() != Function.class) {
+					error.signal(identifier.getName() + " não é uma função");
+				}
+				expressionPrimary = funcCall((Function) identifiable);
 			} else {
+				if (identifiable.getClass() != Variable.class) {
+					error.signal(identifier.getName() + " não é uma variável");
+				}
 				expressionPrimary = identifier;
 			}
 
@@ -527,7 +522,7 @@ public class Compiler {
 		return expressionPrimary;
 	}
 
-	public ExpressionLiteral exprLiteral() {
+	private ExpressionLiteral exprLiteral() {
 
 		ExpressionLiteral expressionLiteral = null;
 		Literal literal = null;
@@ -558,7 +553,7 @@ public class Compiler {
 		return expressionLiteral;
 	}
 
-	public LiteralBoolean literalBoolean() {
+	private LiteralBoolean literalBoolean() {
 
 		LiteralBoolean literalBoolean = null;
 
@@ -583,7 +578,7 @@ public class Compiler {
 
 	}
 
-	public LiteralInt literalInt() {
+	private LiteralInt literalInt() {
 
 		LiteralInt literalInt = null;
 
@@ -599,7 +594,7 @@ public class Compiler {
 
 	}
 
-	public LiteralString literalString() {
+	private LiteralString literalString() {
 
 		LiteralString literalString = null;
 
@@ -615,19 +610,9 @@ public class Compiler {
 
 	}
 
-	public ExpressionFunctionCall funcCall(Identifier identifier) {
+	private ExpressionFunctionCall funcCall(Function function) {
 
-		// Recebe o Identifier da chamada anterior
-
-		Object function = symbolTable.get(identifier.getName());
-
-		if(function == null) {
-			error.signal(identifier.getName() + " não foi declarada");
-		}
-
-		if(function.getClass() != Function.class) {
-			error.signal(identifier.getName() + " não é uma função");
-		}
+		// Recebe o Function da chamada anterior
 
 		ExpressionFunctionCall expressionFunctionCall = null;
 
@@ -635,16 +620,19 @@ public class Compiler {
 
 			lexer.nextToken();
 
+			if(function.getIdentifier().getName() == "write") {
+				// Caso especial para write()
+			}
+
 			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 
 				lexer.nextToken();
 
 			} else {
 
-				expressionFunctionCall = new ExpressionFunctionCall(identifier, expr());
+				expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier(), expr());
 
 				while (lexer.token == Symbol.COMMA) {
-
 					lexer.nextToken();
 					expressionFunctionCall.addExpression(expr());
 				}
@@ -653,17 +641,17 @@ public class Compiler {
 
 					lexer.nextToken();
 				} else {
-					error.signal("Esperado o token \")\".");
+					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 				}
 			}
 		} else {
-			error.signal("Esperado o token \"(\".");
+			error.signalWrongToken(Symbol.LEFT_PARENTHESIS);
 		}
 
 		return expressionFunctionCall;
 	}
 
-	public Identifier id() {
+	private Identifier id() {
 
 		Identifier identifier = null;
 

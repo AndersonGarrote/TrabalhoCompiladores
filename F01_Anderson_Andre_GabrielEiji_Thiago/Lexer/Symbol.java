@@ -9,8 +9,6 @@ package Lexer;
 public enum Symbol {
 
     FUNCTION("function"),
-    WRITE("write"),
-    WRITELN("writeln"),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
     ARROW("->"),

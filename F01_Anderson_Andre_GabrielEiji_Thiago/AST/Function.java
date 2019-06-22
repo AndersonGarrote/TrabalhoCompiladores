@@ -6,19 +6,20 @@
 */
 package AST;
 
-public class Function implements Printable {
+import java.util.List;
 
-    private Identifier identifier;
-    private ParameterList parameters;
+public class Function extends Identifiable implements Printable {
+
+    private List<Parameter> parameters;
     private Type type;
-    private StatementList statements;
+    private List<Statement> statements;
 
-    public Function() {
-        
+    public Function(Identifier identifier) {
+        this.setIdentifier(identifier);
     }
 
-    public Function(Identifier identifier, ParameterList parameters, Type type, StatementList statements) {
-        this.identifier = identifier;
+    public Function(Identifier identifier, List<Parameter> parameters, Type type, List<Statement> statements) {
+        this.setIdentifier(identifier);
         this.parameters = parameters;
         this.type = type;
         this.statements = statements;
@@ -26,27 +27,15 @@ public class Function implements Printable {
 
     @Override
     public void genC(PW pw) {
+    }
 
-        // type identifier(parameters) statements
+    @Override
+    public Type getType() {
+        return type;
+    }
 
-        if (type != null) {
-            type.genC(pw);
-        } else {
-            pw.print("void");
-        }
-
-        pw.print(" ");
-
-        identifier.genC(pw);
-
-        pw.print("(");
-        parameters.genC(pw);
-        pw.print(") ");
-
-        statements.genC(pw);
-
-        pw.breakLine();
-
+    public List<Parameter> getParameters() {
+        return parameters;
     }
 
 }

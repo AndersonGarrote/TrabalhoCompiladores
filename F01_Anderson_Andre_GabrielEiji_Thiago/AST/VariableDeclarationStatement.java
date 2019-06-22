@@ -8,25 +8,19 @@ package AST;
 
 public class VariableDeclarationStatement extends Statement {
 
-    private Identifier identifier;
-    private Type type;
+    private Variable variable;
 
     public VariableDeclarationStatement() {
         
     }
 
-    public VariableDeclarationStatement(Identifier identifier, Type type) {
-        this.identifier = identifier;
-        this.type = type;
+    public VariableDeclarationStatement(Variable variable) {
+        this.variable = variable;
     }
 
     @Override
     public void genC(PW pw) {
-        type.genC(pw);
-        pw.print(" ");
-        identifier.genC(pw);
-        pw.print(";");
-        pw.breakLine();
+
     }
 
 }

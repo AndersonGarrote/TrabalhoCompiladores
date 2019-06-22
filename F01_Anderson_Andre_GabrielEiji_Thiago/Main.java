@@ -63,7 +63,7 @@ public class Main {
 			try {
 				program = compiler.compile(input, printWriter, args[0]);
 			} catch (RuntimeException e) {
-				System.out.println(e);
+				e.printStackTrace();
 			}
 			if (program != null) {
 				PW pw = new PW();

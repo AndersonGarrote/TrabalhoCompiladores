@@ -43,5 +43,10 @@ public class ExpressionAddition implements Printable {
     public Type getType(){
     	return this.operatorExpressionMultiplicationPairs.get(0).getValue().getType();
     }
+    
+    public boolean isIdentifier() {
+    	return this.operatorExpressionMultiplicationPairs.size() == 1
+    			&& this.operatorExpressionMultiplicationPairs.get(0).getValue().isIdentifier();
+    }
 
 }

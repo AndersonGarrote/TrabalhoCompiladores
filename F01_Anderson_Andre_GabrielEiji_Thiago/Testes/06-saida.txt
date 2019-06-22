@@ -1,9 +1,0 @@
-
-Testes/06.txt:9: Expressão à direita não tem tipo associado.
-    1 = main();
-Testes/06.txt:10: Expressão à esquerda não tem tipo associado.
-    main() = 1;
-Testes/06.txt:11: Esperado uma expressão.
-     = 1;
-Testes/06.txt:11: Não foi possível verificar os tipos das expressões.
-     = 1;

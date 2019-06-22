@@ -34,5 +34,9 @@ public class ExpressionUnary implements Printable {
     public Type getType(){
     	return this.expressionPrimary.getType();
     }
+    
+    public boolean isIdentifier() {
+    	return this.expressionPrimary.isIdentifier();
+    }
 
 }

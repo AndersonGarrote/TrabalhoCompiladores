@@ -39,5 +39,10 @@ public class ExpressionMultiplication implements Printable {
     public Type getType(){
     	return this.operatorExpressionUnaryPairs.get(0).getValue().getType();
     }
+    
+    public boolean isIdentifier() {
+    	return this.operatorExpressionUnaryPairs.size() == 1
+    			&& this.operatorExpressionUnaryPairs.get(0).getValue().isIdentifier();
+    }
 
 }

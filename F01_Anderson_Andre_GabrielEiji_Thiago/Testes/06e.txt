@@ -11,15 +11,25 @@ function getBooleanZero -> Boolean{
 }
 
 function main {
+
     var i : Int ;
     var s : String ;
     var b : Boolean;
 
-    i = 1;
-    s = "Um";
-    b = true;
+    s = 1;
+    b = "Um";
+    i = true;
 
-    i = getIntegerZero();
-    s = getStringZero();
-    b = getBooleanZero();
+    b = "1";
+    i = "Um";
+    s = true;
+
+
+    s = getIntegerZero();
+    b = getStringZero();
+    i = getBooleanZero();
+
+    b = getIntegerZero();
+    i = getStringZero();
+    s = getBooleanZero();
 }

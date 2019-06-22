@@ -9,4 +9,8 @@ package AST;
 public abstract class ExpressionPrimary implements Printable {
     
     abstract public Type getType();
+    
+    public boolean isIdentifier() {
+    	return this.getClass() == Identifier.class;
+    }
 }

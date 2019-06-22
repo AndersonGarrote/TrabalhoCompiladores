@@ -31,5 +31,10 @@ public class Expression implements Printable {
     	else
     		return new BooleanType();
     }
+    
+    public boolean isIdentifier() {
+    	return this.expressionAnds.size() == 1
+    			&& this.expressionAnds.get(0).isIdentifier();
+	}
 
 }

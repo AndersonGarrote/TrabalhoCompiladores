@@ -223,6 +223,9 @@ public class Compiler {
 			rightExpression = expr();
 			
 			//TODO Verifica se a expressão a esquerda é id
+			if(leftExpression != null && !leftExpression.isIdentifier()) {
+				error.signal("Expressão à esquerda não é um identificador.");
+			}
 			
 			
 			//Verificação de tipos		

@@ -38,11 +38,16 @@ public class ExpressionRelational implements Printable {
 
     }
     
-    Type getType() {
+    public Type getType() {
     	if( relationalOperator == null)
     		return leftExpressionAddition.getType();
     	else
     		return new BooleanType();
+    }
+    
+    public boolean isIdentifier() {
+    	return this.relationalOperator == null
+    			&& this.leftExpressionAddition.isIdentifier();
     }
 
 }

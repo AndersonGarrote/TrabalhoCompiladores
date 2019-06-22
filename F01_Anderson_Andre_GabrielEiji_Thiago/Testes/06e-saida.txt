@@ -1,0 +1,25 @@
+
+Testes/06e.txt:19: Tipos das expressões são incompatíveis: string e integer.
+    s = 1;
+Testes/06e.txt:20: Tipos das expressões são incompatíveis: boolean e string.
+    b = "Um";
+Testes/06e.txt:21: Tipos das expressões são incompatíveis: integer e boolean.
+    i = true;
+Testes/06e.txt:23: Tipos das expressões são incompatíveis: boolean e string.
+    b = "1";
+Testes/06e.txt:24: Tipos das expressões são incompatíveis: integer e string.
+    i = "Um";
+Testes/06e.txt:25: Tipos das expressões são incompatíveis: string e boolean.
+    s = true;
+Testes/06e.txt:28: Tipos das expressões são incompatíveis: string e integer.
+    s = getIntegerZero();
+Testes/06e.txt:29: Tipos das expressões são incompatíveis: boolean e string.
+    b = getStringZero();
+Testes/06e.txt:30: Tipos das expressões são incompatíveis: integer e boolean.
+    i = getBooleanZero();
+Testes/06e.txt:32: Tipos das expressões são incompatíveis: boolean e integer.
+    b = getIntegerZero();
+Testes/06e.txt:33: Tipos das expressões são incompatíveis: integer e string.
+    i = getStringZero();
+Testes/06e.txt:34: Tipos das expressões são incompatíveis: string e boolean.
+    s = getBooleanZero();

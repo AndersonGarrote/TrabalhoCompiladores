@@ -1,0 +1,12 @@
+function fun -> Int{
+    return 0;
+}
+
+function main {
+    var i : Int ;
+
+    i = fun();
+    i = 3*3;
+    i = 2;
+    i = i;
+}

@@ -26,10 +26,15 @@ public class ExpressionAnd implements Printable {
         });
     }
     
-    Type getType() {
+    public Type getType() {
     	if( this.expressionRelationals.size() == 1)
     		return this.expressionRelationals.get(0).getType();
     	else
     		return new BooleanType();
     }
+    
+    public boolean isIdentifier() {
+    	return this.expressionRelationals.size() == 1
+    			&& this.expressionRelationals.get(0).isIdentifier();
+	}
 }

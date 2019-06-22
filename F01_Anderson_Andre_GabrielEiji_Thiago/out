@@ -1,0 +1,3 @@
+
+.\Testes\Corretos Sint�ticamente\16.in:2: Exceções para writeln ainda não definidas
+  writeln("**************");

@@ -25,4 +25,11 @@ public class ExpressionAnd implements Printable {
             expressionRelational.genC(pw);
         });
     }
+    
+    Type getType() {
+    	if( this.expressionRelationals.size() == 1)
+    		return this.expressionRelationals.get(0).getType();
+    	else
+    		return new BooleanType();
+    }
 }

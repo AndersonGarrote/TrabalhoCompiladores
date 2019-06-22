@@ -46,4 +46,9 @@ public class Identifier extends ExpressionPrimary implements Printable {
         pw.print(name);
     }
 
+    @Override
+    public Type getType() {
+        return identifiable.getType();
+    }
+
 }

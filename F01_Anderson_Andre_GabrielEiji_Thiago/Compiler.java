@@ -620,10 +620,6 @@ public class Compiler {
 
 			lexer.nextToken();
 
-			if(function.getIdentifier().getName() == "write") {
-				// Caso especial para write()
-			}
-
 			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 
 				lexer.nextToken();
@@ -642,6 +638,20 @@ public class Compiler {
 					lexer.nextToken();
 				} else {
 					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
+				}
+
+				if(function.getIdentifier().getName() == "write") {
+					// Caso especial para write()
+					error.signal("Exceções para write ainda não definidas");
+				}
+				
+				if(function.getIdentifier().getName() == "writeln") {
+					// Caso especial para writeln()
+					error.signal("Exceções para writeln ainda não definidas");
+				}
+				
+				if (function.getParamListSize() != expressionFunctionCall.getSize()) {
+					error.signal("Quantidade de parâmetros incorreta.");
 				}
 			}
 		} else {

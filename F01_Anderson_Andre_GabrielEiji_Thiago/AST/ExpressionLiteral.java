@@ -17,5 +17,10 @@ public class ExpressionLiteral extends ExpressionPrimary implements Printable {
     public void genC(PW pw) {
         this.literal.genC(pw);
     }
+    
+    @Override
+    public Type getType(){
+    	return this.literal.getType();
+    }
 
 }

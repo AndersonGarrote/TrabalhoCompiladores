@@ -30,4 +30,9 @@ class FunctionCall extends ExpressionPrimary implements Printable{
             expression.genC(pw);
         });
     }
+    
+    @Override
+    public Type getType() {
+    	return this.id.getType();
+    }
 }

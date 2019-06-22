@@ -39,5 +39,9 @@ public class ExpressionAddition implements Printable {
         });
         
     }
+    
+    public Type getType(){
+    	return this.operatorExpressionMultiplicationPairs.get(0).getValue().getType();
+    }
 
 }

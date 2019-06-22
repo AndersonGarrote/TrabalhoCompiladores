@@ -25,6 +25,10 @@ public class Function extends Identifiable implements Printable {
         this.statements = statements;
     }
 
+    public int getParamListSize() {
+        return parameters == null ? 0 : this.parameters.size();
+    }
+
     @Override
     public void genC(PW pw) {
     }

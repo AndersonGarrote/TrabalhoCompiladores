@@ -34,5 +34,10 @@ public class ExpressionMultiplication implements Printable {
             pair.getValue().genC(pw);
         });
     }
+    
+    
+    public Type getType(){
+    	return this.operatorExpressionUnaryPairs.get(0).getValue().getType();
+    }
 
 }

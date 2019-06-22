@@ -640,18 +640,16 @@ public class Compiler {
 					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 				}
 
-				if(function.getIdentifier().getName() == "write") {
+				if (function.getIdentifier().getName() == "write") {
 					// Caso especial para write()
 					error.signal("Exceções para write ainda não definidas");
-				}
-				
-				if(function.getIdentifier().getName() == "writeln") {
+				} else if (function.getIdentifier().getName() == "writeln") {
 					// Caso especial para writeln()
 					error.signal("Exceções para writeln ainda não definidas");
-				}
-				
-				if (function.getParamListSize() != expressionFunctionCall.getSize()) {
-					error.signal("Quantidade de parâmetros incorreta.");
+				} else {
+					if (function.getParamListSize() != expressionFunctionCall.getSize()) {
+						error.signal("Quantidade de parâmetros incorreta.");
+					}
 				}
 			}
 		} else {

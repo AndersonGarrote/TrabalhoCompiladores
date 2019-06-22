@@ -44,5 +44,11 @@ public class ExpressionMultiplication implements Printable {
     	return this.operatorExpressionUnaryPairs.size() == 1
     			&& this.operatorExpressionUnaryPairs.get(0).getValue().isIdentifier();
     }
+    
+
+    public boolean isFunctionWithReturn() {
+    	return this.operatorExpressionUnaryPairs.size() == 1
+    			&& this.operatorExpressionUnaryPairs.get(0).getValue().isFunctionWithReturn();
+    }
 
 }

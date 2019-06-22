@@ -222,9 +222,8 @@ public class Compiler {
 			
 			rightExpression = expr();
 			
-			//TODO Verifica se a expressão a esquerda é id
 			if(leftExpression != null && !leftExpression.isIdentifier()) {
-				error.signal("Expressão à esquerda não é um identificador.");
+				error.signal("Expressão à esquerda não é um identificador válido.");
 			}
 			
 			
@@ -238,9 +237,10 @@ public class Compiler {
 					error.signal("Expressão à direita não tem tipo associado.");
 				}
 				
-				if( leftExpression.getType() != null && rightExpression.getType() != null)
+				if( leftExpression.getType() != null && rightExpression.getType() != null) {
 					if( ! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
-					error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
+						error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
+					}
 				}
 			}catch( NullPointerException e ) {	
 				error.signal("Não foi possível verificar os tipos das expressões.");
@@ -249,7 +249,9 @@ public class Compiler {
 			assignmentExpressionStatement = new AssignmentExpressionStatement(leftExpression, rightExpression);
 		} else {
 			
-			//TODO verificar se é uma função com retorno, se for, erro
+			if(leftExpression != null && leftExpression.isFunctionWithReturn()) {
+				error.signal("Função com retorno não está associada a uma variável.");
+			}
 			
 		}
 
@@ -300,10 +302,7 @@ public class Compiler {
 			lexer.nextToken();
 
 			Identifier identifier = id();
-
-			//symbolTable.put(identifier); // Adiciona o identificador sem a função ainda, para evitar que um
-											// identificador com o mesmo nome seja declarado
-			
+		
 			if (lexer.token == Symbol.COLON) {
 
 				lexer.nextToken();
@@ -530,6 +529,7 @@ public class Compiler {
 
 			if (!symbolTable.has(identifier)) {
 				error.signal(identifier.getName() + " não foi declarada");
+				return null;
 			}
 
 			Identifiable identifiable = symbolTable.get(identifier).getIdentifiable();

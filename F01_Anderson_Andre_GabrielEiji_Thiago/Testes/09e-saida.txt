@@ -1,0 +1,5 @@
+
+Testes/09e.txt:13: Função com retorno não está associada a uma variável.
+    getFalse();
+Testes/09e.txt:15: Expressão à direita não tem tipo associado.
+    l = noReturn();

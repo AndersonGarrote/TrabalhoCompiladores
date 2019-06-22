@@ -35,4 +35,10 @@ class FunctionCall extends ExpressionPrimary implements Printable{
     public Type getType() {
     	return this.id.getType();
     }
+    
+    @Override
+    public boolean isFunctionWithReturn() {
+    	return id.getIdentifiable().getType() != null;
+    }
+    
 }

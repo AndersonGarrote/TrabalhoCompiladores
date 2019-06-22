@@ -36,7 +36,11 @@ public class ExpressionUnary implements Printable {
     }
     
     public boolean isIdentifier() {
-    	return this.expressionPrimary.isIdentifier();
+    	return this.expressionPrimary != null && this.expressionPrimary.isIdentifier();
+    }
+    
+    public boolean isFunctionWithReturn() {
+    	return this.expressionPrimary.isFunctionWithReturn();
     }
 
 }

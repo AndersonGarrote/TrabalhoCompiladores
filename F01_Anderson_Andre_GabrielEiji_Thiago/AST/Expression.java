@@ -36,5 +36,10 @@ public class Expression implements Printable {
     	return this.expressionAnds.size() == 1
     			&& this.expressionAnds.get(0).isIdentifier();
 	}
-
+    
+    
+    public boolean isFunctionWithReturn() {
+    	return this.expressionAnds.size() == 1
+    			&& this.expressionAnds.get(0).isFunctionWithReturn();
+	}
 }

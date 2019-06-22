@@ -44,5 +44,10 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
     public Type getType() {
         return identifier.getType();
     }
+    
+    @Override
+    public boolean isFunctionWithReturn() {
+    	return identifier.getType() != null;
+    }
 
 }

@@ -37,4 +37,9 @@ public class ExpressionAnd implements Printable {
     	return this.expressionRelationals.size() == 1
     			&& this.expressionRelationals.get(0).isIdentifier();
 	}
+    
+    public boolean isFunctionWithReturn() {
+    	return this.expressionRelationals.size() == 1
+    			&& this.expressionRelationals.get(0).isFunctionWithReturn();
+	}
 }

@@ -13,4 +13,9 @@ public abstract class ExpressionPrimary implements Printable {
     public boolean isIdentifier() {
     	return this.getClass() == Identifier.class;
     }
+    
+    public boolean isFunctionWithReturn() {
+    	return false;
+    }
+    
 }

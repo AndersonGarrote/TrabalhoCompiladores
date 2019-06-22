@@ -1,0 +1,10 @@
+function getFalse -> Boolean{
+    return false;
+}
+
+function main {
+
+    var l : Boolean ;
+
+    l = getFalse();
+}

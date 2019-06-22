@@ -1,0 +1,16 @@
+function getFalse -> Boolean{
+    return false;
+}
+
+function noReturn {
+
+}
+
+function main {
+
+    var l : Boolean ;
+
+    getFalse();
+
+    l = noReturn();
+}

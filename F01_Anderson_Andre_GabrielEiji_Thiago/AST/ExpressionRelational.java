@@ -49,5 +49,9 @@ public class ExpressionRelational implements Printable {
     	return this.relationalOperator == null
     			&& this.leftExpressionAddition.isIdentifier();
     }
-
+    
+    public boolean isFunctionWithReturn() {
+    	return this.relationalOperator == null
+    			&& this.leftExpressionAddition.isFunctionWithReturn();
+    }
 }

@@ -38,5 +38,4 @@ public class SymbolTable {
     public boolean has(Identifier identifier) {
         return has(identifier.getName());
     }
-
 }

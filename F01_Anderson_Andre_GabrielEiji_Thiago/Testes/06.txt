@@ -1,0 +1,16 @@
+function main {
+    1 = 4;
+    "str" = "string";
+    true = false;
+}
+
+function erro {
+    1 = ;
+    1 = "string";
+    "str" = false;
+    true = 4;
+
+    1 = false;
+    "str" = 4;
+    true = "string";
+}

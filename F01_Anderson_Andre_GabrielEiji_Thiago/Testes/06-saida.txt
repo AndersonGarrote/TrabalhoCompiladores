@@ -1,0 +1,3 @@
+
+Testes/06.txt:8: Esperado uma expressão literal.
+    1 = ;

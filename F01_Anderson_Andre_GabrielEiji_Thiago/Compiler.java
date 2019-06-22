@@ -132,6 +132,7 @@ public class Compiler {
 			lexer.nextToken();
 			Type type = type();
 			Variable variable = new Variable(identifier, type);
+			
 			return new Parameter(identifier, type);
 		} else {
 			error.signal("Esperado o token \":\".");
@@ -219,7 +220,17 @@ public class Compiler {
 
 			lexer.nextToken();
 			rightExpression = expr();
+			
+			//Verificar se os tipos das expressões são compatíveis
+			if( ! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
+				error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName());
+			}
+			
 			assignmentExpressionStatement = new AssignmentExpressionStatement(leftExpression, rightExpression);
+		} else {
+			
+			//TODO verificar se é uma função com retorno, se for, erro
+			
 		}
 
 		if (lexer.token == Symbol.SEMICOLON) {
@@ -664,7 +675,8 @@ public class Compiler {
 		Identifier identifier = null;
 
 		if (lexer.token == Symbol.IDENTIFIER) {
-			identifier = new Identifier(lexer.stringValue);
+			
+			identifier = new Identifier(lexer.stringValue );
 
 			lexer.nextToken();
 		} else {

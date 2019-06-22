@@ -1,3 +1,7 @@
 
-Testes/06.txt:8: Esperado uma expressão literal.
-    1 = ;
+Testes/06.txt:2: Não foi possível verificar os tipos das expressões.
+    1 = 4;
+Testes/06.txt:3: Não foi possível verificar os tipos das expressões.
+    "str" = "string";
+Testes/06.txt:4: Não foi possível verificar os tipos das expressões.
+    true = false;

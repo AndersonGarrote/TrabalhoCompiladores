@@ -5,7 +5,7 @@ function main {
 }
 
 function erro {
-    1 = ;
+    4 = main() ;
     1 = "string";
     "str" = false;
     true = 4;

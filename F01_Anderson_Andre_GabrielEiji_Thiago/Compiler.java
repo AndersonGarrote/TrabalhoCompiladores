@@ -219,11 +219,15 @@ public class Compiler {
 		if (lexer.token == Symbol.ASSIGN) {
 
 			lexer.nextToken();
+			
 			rightExpression = expr();
 			
-			//Verificar se os tipos das expressões são compatíveis
-			if( ! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
-				error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName());
+			try {
+				if(! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
+					error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
+				}
+			}catch( NullPointerException e ) {
+				error.signal("Não foi possível verificar os tipos das expressões.");
 			}
 			
 			assignmentExpressionStatement = new AssignmentExpressionStatement(leftExpression, rightExpression);
@@ -553,7 +557,7 @@ public class Compiler {
 			break;
 
 		default:
-			error.signal("Esperado uma expressão literal.");
+			error.signal("Esperado uma expressão.");
 			break;
 		}
 

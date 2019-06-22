@@ -61,13 +61,13 @@ public class CompilerError {
 		show(strMessage);
 		out.flush();
 		thereWasAnError = true;
-		//throw new RuntimeException();
+		throw new RuntimeException();
 	}
 
 	public void signalWrongToken(Symbol expected) {
 		show("Esperado o token " + expected + ", encontrado " + lexer.token);
 		out.flush();
 		thereWasAnError = true;
-		//throw new RuntimeException();
+		throw new RuntimeException();
 	}
 }

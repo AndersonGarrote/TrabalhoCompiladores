@@ -1,17 +1,12 @@
 function main {
     var i : Int ;
-    i = "aa";
+    i = 1;
     "str" = "string";
     true = false;
 }
 
 function erro {
-    4 = main() ;
-    1 = "string";
-    "str" = false;
-    true = 4;
-
-    1 = false;
-    "str" = 4;
-    true = "string";
+    1 = main();
+    main() = 1;
+     = 1;
 }

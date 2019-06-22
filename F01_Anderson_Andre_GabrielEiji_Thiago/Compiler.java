@@ -99,7 +99,7 @@ public class Compiler {
 		} else {
 			type = null;
 		}
-
+		
 		List<Statement> statementList = statList();
 
 		symbolTable.clearLocal();
@@ -225,12 +225,21 @@ public class Compiler {
 			//TODO Verifica se a expressão a esquerda é id
 			
 			
-			//Verificação de tipos
+			//Verificação de tipos		
 			try {
-				if(! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
+				if( leftExpression.getType() == null) {
+					error.signal("Expressão à esquerda não tem tipo associado.");
+				}
+				
+				if( rightExpression.getType() == null) {
+					error.signal("Expressão à direita não tem tipo associado.");
+				}
+				
+				if( leftExpression.getType() != null && rightExpression.getType() != null)
+					if( ! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
 					error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
 				}
-			}catch( NullPointerException e ) {
+			}catch( NullPointerException e ) {	
 				error.signal("Não foi possível verificar os tipos das expressões.");
 			}
 			
@@ -633,7 +642,7 @@ public class Compiler {
 
 		// Recebe o Function da chamada anterior
 
-		ExpressionFunctionCall expressionFunctionCall = null;
+		ExpressionFunctionCall expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier());
 
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
@@ -642,6 +651,7 @@ public class Compiler {
 			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 
 				lexer.nextToken();
+				expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier());
 
 			} else {
 

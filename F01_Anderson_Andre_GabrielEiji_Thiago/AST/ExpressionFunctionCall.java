@@ -13,7 +13,12 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
 
     private Identifier identifier;
     private List<Expression> expressions;
-
+    
+    public ExpressionFunctionCall(Identifier identifier) {
+    	expressions = new ArrayList<Expression>();
+        this.identifier = identifier;
+    }
+    
     public ExpressionFunctionCall(Identifier identifier, Expression expression) {
 
         expressions = new ArrayList<Expression>();

@@ -301,13 +301,9 @@ public class Compiler {
 
 			Identifier identifier = id();
 
-			if (symbolTable.has(identifier)) {
-				error.signal(identifier.getName() + " redeclarado");
-			}
-
-			symbolTable.put(identifier); // Adiciona o identificador sem a função ainda, para evitar que um
+			//symbolTable.put(identifier); // Adiciona o identificador sem a função ainda, para evitar que um
 											// identificador com o mesmo nome seja declarado
-
+			
 			if (lexer.token == Symbol.COLON) {
 
 				lexer.nextToken();
@@ -315,13 +311,17 @@ public class Compiler {
 				Type type = type();
 
 				if (lexer.token == Symbol.SEMICOLON) {
+					
+					if (symbolTable.has(identifier)) {
+						error.signal(identifier.getName() + " redeclarado");
+					} else {
+						Variable variable = new Variable(identifier, type);
 
-					Variable variable = new Variable(identifier, type);
+						variableDeclarationStatement = new VariableDeclarationStatement(variable);
 
-					variableDeclarationStatement = new VariableDeclarationStatement(variable);
-
-					symbolTable.put(identifier);
-
+						symbolTable.putLocal(identifier);
+					}
+					
 					lexer.nextToken();
 				} else {
 					error.signal("Esperado o token \";\".");

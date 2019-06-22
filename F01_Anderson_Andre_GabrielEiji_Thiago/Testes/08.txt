@@ -1,0 +1,6 @@
+function main {
+    var i : Int ;
+    i = 1;
+
+    i = i + 2;
+}

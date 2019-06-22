@@ -1,0 +1,8 @@
+function main {
+    var i : Int ;
+    i = 1;
+
+    var i : Boolean ;
+    i = true;
+    i = 2;
+}

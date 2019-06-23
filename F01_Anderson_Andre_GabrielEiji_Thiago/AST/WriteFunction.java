@@ -7,17 +7,22 @@
 package AST;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class WriteFunction extends Function {
 
     public WriteFunction() {
-        super(new Identifier("write"));
+		this(new Identifier("write"));
 	}
 
 	public WriteFunction(Identifier identifier) {
-		super(identifier);
+        super(identifier);
+		List<Parameter> parameters = new ArrayList<>();
+		parameters.add(new Parameter(new Identifier("type"), Type.stringType));
+		setParameters(parameters);
 	}
 	
+	@Override
 	public boolean validateParameters(List<Expression> parameters) {
 
 		if(parameters.size() != 1) {

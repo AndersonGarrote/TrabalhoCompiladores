@@ -1,3 +1,3 @@
 
-.\Testes\10.txt:8: Tipos errados para write
+.\Testes\10.txt:13: Parâmetros da função write incorretos.
     write(x + 1 > 2);

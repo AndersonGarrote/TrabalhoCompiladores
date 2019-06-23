@@ -28,17 +28,26 @@ public class Function extends Identifiable implements Printable {
 
     public Function(Identifier identifier, List<Parameter> parameters, Type type, List<Statement> statements) {
         this.setIdentifier(identifier);
-        if (this.parameters == null) {
+        if (parameters == null) {
             this.parameters = new ArrayList<>();
         } else {
             this.parameters = parameters;
         }
         this.type = type;
-        if (this.statements == null) {
+        if (statements == null) {
             this.statements = new ArrayList<>();
         } else {
             this.statements = statements;
         }
+    }
+
+    public boolean validateParameters(List<Expression> parameters) {
+        for(int i = 0; i < parameters.size(); i++) {
+            if(parameters.get(i).getType() != this.parameters.get(i).getType()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -56,6 +65,10 @@ public class Function extends Identifiable implements Printable {
 
     public List<Parameter> getParameters() {
         return parameters;
+    }
+
+    public void setParameters(List<Parameter> parameters) {
+        this.parameters = parameters;
     }
 
 }

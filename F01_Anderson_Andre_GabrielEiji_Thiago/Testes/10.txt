@@ -1,10 +1,17 @@
+function teste(a : Int, b : String) {
+
+}
+
 function main {
 
     var x : Int;
+    var z : String;
 
     write(x);
     writeln(x);
 
     write(x + 1 > 2);
+
+    teste(x, z);
 
 }

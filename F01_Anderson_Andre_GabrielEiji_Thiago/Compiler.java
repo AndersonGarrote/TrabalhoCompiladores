@@ -1,3 +1,4 @@
+
 /*
 	Anderson Pinheiro Garrote RA: 743505
 	Andre Matheus Bariani Trava RA: 743506
@@ -97,7 +98,7 @@ public class Compiler {
 		} else {
 			type = null;
 		}
-		
+
 		List<Statement> statementList = statList();
 
 		symbolTable.clearLocal();
@@ -130,7 +131,7 @@ public class Compiler {
 			lexer.nextToken();
 			Type type = type();
 			Variable variable = new Variable(identifier, type);
-			
+
 			return new Parameter(identifier, type);
 		} else {
 			error.signal("Esperado o token \":\".");
@@ -217,40 +218,40 @@ public class Compiler {
 		if (lexer.token == Symbol.ASSIGN) {
 
 			lexer.nextToken();
-			
+
 			rightExpression = expr();
-			
-			if(leftExpression != null && !leftExpression.isIdentifier()) {
+
+			if (leftExpression != null && !leftExpression.isIdentifier()) {
 				error.signal("Expressão à esquerda não é um identificador válido.");
 			}
-			
-			
-			//Verificação de tipos		
+
+			// Verificação de tipos
 			try {
-				if( leftExpression.getType() == null) {
+				if (leftExpression.getType() == null) {
 					error.signal("Expressão à esquerda não tem tipo associado.");
 				}
-				
-				if( rightExpression.getType() == null) {
+
+				if (rightExpression.getType() == null) {
 					error.signal("Expressão à direita não tem tipo associado.");
 				}
-				
-				if( leftExpression.getType() != null && rightExpression.getType() != null) {
-					if( ! leftExpression.getType().getClass().equals(rightExpression.getType().getClass()) ) {
-						error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName() + " e " + rightExpression.getType().getName() + ".");
+
+				if (leftExpression.getType() != null && rightExpression.getType() != null) {
+					if (!leftExpression.getType().getClass().equals(rightExpression.getType().getClass())) {
+						error.signal("Tipos das expressões são incompatíveis: " + leftExpression.getType().getName()
+								+ " e " + rightExpression.getType().getName() + ".");
 					}
 				}
-			}catch( NullPointerException e ) {	
+			} catch (NullPointerException e) {
 				error.signal("Não foi possível verificar os tipos das expressões.");
 			}
-			
+
 			assignmentExpressionStatement = new AssignmentExpressionStatement(leftExpression, rightExpression);
 		} else {
-			
-			if(leftExpression != null && leftExpression.isFunctionWithReturn()) {
+
+			if (leftExpression != null && leftExpression.isFunctionWithReturn()) {
 				error.signal("Função com retorno não está associada a uma variável.");
 			}
-			
+
 		}
 
 		if (lexer.token == Symbol.SEMICOLON) {
@@ -300,7 +301,7 @@ public class Compiler {
 			lexer.nextToken();
 
 			Identifier identifier = id();
-		
+
 			if (lexer.token == Symbol.COLON) {
 
 				lexer.nextToken();
@@ -308,7 +309,7 @@ public class Compiler {
 				Type type = type();
 
 				if (lexer.token == Symbol.SEMICOLON) {
-					
+
 					if (symbolTable.has(identifier)) {
 						error.signal(identifier.getName() + " redeclarado");
 					} else {
@@ -318,7 +319,7 @@ public class Compiler {
 
 						symbolTable.putLocal(identifier);
 					}
-					
+
 					lexer.nextToken();
 				} else {
 					error.signal("Esperado o token \";\".");
@@ -669,20 +670,12 @@ public class Compiler {
 					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 				}
 
-				if (function == Function.writeFunction) {
-					// Caso especial para write()
-					if(!Function.writeFunction.validateParameters(expressionFunctionCall.getExpressions())) {
-						error.signal("Tipos errados para write");
-					}
-				} else if (function == Function.writelnFunction) {
-					// Caso especial para writeln()
-					if(!Function.writelnFunction.validateParameters(expressionFunctionCall.getExpressions())) {
-						error.signal("Tipos errados para writeln");
-					}
-				} else {
-					if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
-						error.signal("Quantidade de parâmetros incorreta.");
-					}
+				if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
+					error.signal("Quantidade de parâmetros incorreta.");
+				}
+
+				if (!function.validateParameters(expressionFunctionCall.getExpressions())) {
+					error.signal("Parâmetros da função " + function.getIdentifier().getName() + " incorretos.");
 				}
 			}
 		} else {
@@ -697,14 +690,14 @@ public class Compiler {
 		Identifier identifier = null;
 
 		if (lexer.token == Symbol.IDENTIFIER) {
-			//Procura identificador na SymbolTable
+			// Procura identificador na SymbolTable
 			identifier = this.symbolTable.get(lexer.stringValue);
-			
-			//Se não achou, cria um novo
-			if(identifier == null){
+
+			// Se não achou, cria um novo
+			if (identifier == null) {
 				identifier = new Identifier(lexer.stringValue);
 			}
-			
+
 			lexer.nextToken();
 		} else {
 			error.signal("Esperado um identificador.");

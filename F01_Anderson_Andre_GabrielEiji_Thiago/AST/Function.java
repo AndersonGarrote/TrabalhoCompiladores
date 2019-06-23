@@ -41,10 +41,6 @@ public class Function extends Identifiable implements Printable {
         }
     }
 
-    public int getParamListSize() {
-        return this.parameters.size();
-    }
-
     @Override
     public void genC(PW pw) {
     }

@@ -680,7 +680,7 @@ public class Compiler {
 						error.signal("Tipos errados para writeln");
 					}
 				} else {
-					if (function.getParamListSize() != expressionFunctionCall.getSize()) {
+					if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
 						error.signal("Quantidade de parâmetros incorreta.");
 					}
 				}

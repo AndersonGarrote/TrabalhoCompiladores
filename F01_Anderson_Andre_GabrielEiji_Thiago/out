@@ -1,5 +1,3 @@
 
-.\Testes\10.txt:5: Tipos errados para write
-    write(x);
-.\Testes\10.txt:6: Tipos errados para writeln
-    writeln(x);
+.\Testes\10.txt:8: Tipos errados para write
+    write(x + 1 > 2);

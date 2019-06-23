@@ -32,10 +32,6 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
         expressions.add(expression);
     }
 
-    public int getSize() {
-        return this.expressions.size();
-    }
-
     public void genC(PW pw) {
 
     }

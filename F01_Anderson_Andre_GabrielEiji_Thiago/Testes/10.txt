@@ -1,8 +1,10 @@
 function main {
 
-    var x : Boolean;
+    var x : Int;
 
     write(x);
     writeln(x);
+
+    write(x + 1 > 2);
 
 }

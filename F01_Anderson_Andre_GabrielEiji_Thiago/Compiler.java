@@ -302,12 +302,17 @@ public class Compiler {
 			lexer.nextToken();
 			expression = expr();
 
-			if (lexer.token == Symbol.SEMICOLON) {
-				returnStatement = new ReturnStatement(expression);
+			if (currentFunction.getType() == expression.getType()) {
 
-				lexer.nextToken();
+				if (lexer.token == Symbol.SEMICOLON) {
+					returnStatement = new ReturnStatement(expression);
+	
+					lexer.nextToken();
+				} else {
+					error.signal("Esperado o token \";\".");
+				}
 			} else {
-				error.signal("Esperado o token \";\".");
+				error.signal("Tipo do retorno e função imcompatíveis.");
 			}
 		} else {
 			error.signal("Esperado o token \"return\".");

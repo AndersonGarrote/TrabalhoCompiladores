@@ -698,11 +698,11 @@ public class Compiler {
 				}
 
 				if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
-					error.signal("Quantidade de parâmetros incorreta.");
+					error.signal("A função " + function.getIdentifier().getName() + " espera " + function.getParameters().size() + " parâmetros, mas foram fornecidos " + expressionFunctionCall.getExpressions().size());
 				}
 
 				if (!function.validateParameters(expressionFunctionCall.getExpressions())) {
-					error.signal("Parâmetros da função " + function.getIdentifier().getName() + " incorretos.");
+					error.signal("Tipos dos parâmetros da função " + function.getIdentifier().getName() + " incorretos.");
 				}
 			}
 		} else {

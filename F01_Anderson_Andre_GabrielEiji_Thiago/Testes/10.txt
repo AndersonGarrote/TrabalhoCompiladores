@@ -5,6 +5,7 @@ function teste(a : Int, b : String) {
 function main {
 
     var x : Int;
+    var y : Boolean;
     var z : String;
 
     write(x);
@@ -13,5 +14,7 @@ function main {
     write(x + 1 - 2);
 
     teste(x, z);
+
+    teste(x, y, z);
 
 }

@@ -71,4 +71,8 @@ public class Function extends Identifiable implements Printable {
         this.parameters = parameters;
     }
 
+    public void setStatements(List<Statement> statements) {
+        this.statements = statements;
+    }
+
 }

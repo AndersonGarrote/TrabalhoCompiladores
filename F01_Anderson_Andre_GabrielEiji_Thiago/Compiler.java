@@ -25,6 +25,8 @@ public class Compiler {
 
 	SymbolTable symbolTable = new SymbolTable();
 
+	Function currentFunction;
+
 	public Compiler() {
 		// Colocar as funções pré-definidas aqui
 		symbolTable.put(Function.readIntFunction);
@@ -54,6 +56,7 @@ public class Compiler {
 		}
 
 		return new Program(functionList);
+
 	}
 
 	private Function func() {
@@ -69,8 +72,12 @@ public class Compiler {
 		if (symbolTable.has(identifier)) {
 			error.signal(identifier.getName() + " redeclarado");
 		}
-
+		
 		symbolTable.put(identifier);
+
+		Function function = new Function(identifier);
+
+		currentFunction = function;
 
 		List<Parameter> parameterList;
 
@@ -78,7 +85,7 @@ public class Compiler {
 
 			lexer.nextToken();
 
-			parameterList = paramList();
+			function.setParameters(paramList());
 
 			if (lexer.token != Symbol.RIGHT_PARENTHESIS) {
 				error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
@@ -86,24 +93,18 @@ public class Compiler {
 
 			lexer.nextToken();
 
-		} else {
-			parameterList = null;
 		}
-
-		Type type;
 
 		if (lexer.token == Symbol.ARROW) {
 			lexer.nextToken();
-			type = type();
-		} else {
-			type = null;
+			function.setType(type());
 		}
 
-		List<Statement> statementList = statList();
+		function.setStatements(statList());
 
 		symbolTable.clearLocal();
 
-		return new Function(identifier, parameterList, type, statementList);
+		return function;
 
 	}
 

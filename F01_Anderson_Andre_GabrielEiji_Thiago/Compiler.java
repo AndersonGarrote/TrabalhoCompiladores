@@ -1,4 +1,3 @@
-
 /*
 	Anderson Pinheiro Garrote RA: 743505
 	Andre Matheus Bariani Trava RA: 743506
@@ -11,6 +10,7 @@ import static AST.Type.*;
 
 import java.io.PrintWriter;
 import java.util.*;
+
 import Lexer.*;
 import AST.*;
 import AuxComp.*;
@@ -26,12 +26,10 @@ public class Compiler {
 
 	public Compiler() {
 		// Colocar as funções pré-definidas aqui
-		Identifier write = new Identifier("write");
-		write.setIdentifiable(new Function(write));
-		symbolTable.put(write);
-		Identifier writeln = new Identifier("writeln");
-		writeln.setIdentifiable(new Function(writeln));
-		symbolTable.put(writeln);
+		symbolTable.put(Function.readIntFunction);
+		symbolTable.put(Function.readStringFunction);
+		symbolTable.put(Function.writeFunction);
+		symbolTable.put(Function.writelnFunction);
 	}
 
 	public Program compile(char[] p_input, PrintWriter printWriter, String fileName) {
@@ -535,12 +533,12 @@ public class Compiler {
 			Identifiable identifiable = symbolTable.get(identifier).getIdentifiable();
 
 			if (lexer.token == Symbol.LEFT_PARENTHESIS) {
-				if (identifiable.getClass() != Function.class) {
+				if (!(identifiable instanceof Function)) {
 					error.signal(identifier.getName() + " não é uma função");
 				}
 				expressionPrimary = funcCall((Function) identifiable);
 			} else {
-				if (identifiable.getClass() != Variable.class) {
+				if (!(identifiable instanceof Variable)) {
 					error.signal(identifier.getName() + " não é uma variável");
 				}
 				expressionPrimary = identifier;
@@ -645,7 +643,7 @@ public class Compiler {
 
 		// Recebe o Function da chamada anterior
 
-		ExpressionFunctionCall expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier());
+		ExpressionFunctionCall expressionFunctionCall = new ExpressionFunctionCall(function);
 
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
@@ -654,11 +652,11 @@ public class Compiler {
 			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 
 				lexer.nextToken();
-				expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier());
+				expressionFunctionCall = new ExpressionFunctionCall(function);
 
 			} else {
 
-				expressionFunctionCall = new ExpressionFunctionCall(function.getIdentifier(), expr());
+				expressionFunctionCall = new ExpressionFunctionCall(function, expr());
 
 				while (lexer.token == Symbol.COMMA) {
 					lexer.nextToken();
@@ -666,18 +664,21 @@ public class Compiler {
 				}
 
 				if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
-
 					lexer.nextToken();
 				} else {
 					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 				}
 
-				if (function.getIdentifier().getName() == "write") {
+				if (function == Function.writeFunction) {
 					// Caso especial para write()
-					error.signal("Exceções para write ainda não definidas");
-				} else if (function.getIdentifier().getName() == "writeln") {
+					if(!Function.writeFunction.validateParameters(expressionFunctionCall.getExpressions())) {
+						error.signal("Tipos errados para write");
+					}
+				} else if (function == Function.writelnFunction) {
 					// Caso especial para writeln()
-					error.signal("Exceções para writeln ainda não definidas");
+					if(!Function.writelnFunction.validateParameters(expressionFunctionCall.getExpressions())) {
+						error.signal("Tipos errados para writeln");
+					}
 				} else {
 					if (function.getParamListSize() != expressionFunctionCall.getSize()) {
 						error.signal("Quantidade de parâmetros incorreta.");

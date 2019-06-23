@@ -23,4 +23,9 @@ public class Parameter implements Printable {
         pw.print(" ");
         identifier.genC(pw);
     }
+
+    public Type getType() {
+        return type;
+    }
+    
 }

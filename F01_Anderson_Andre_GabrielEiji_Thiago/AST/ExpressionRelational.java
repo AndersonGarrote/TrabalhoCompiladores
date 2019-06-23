@@ -42,7 +42,7 @@ public class ExpressionRelational implements Printable {
     	if( relationalOperator == null)
     		return leftExpressionAddition.getType();
     	else
-    		return new BooleanType();
+    		return Type.booleanType;
     }
     
     public boolean isIdentifier() {

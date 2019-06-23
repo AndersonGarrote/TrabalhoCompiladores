@@ -30,7 +30,7 @@ public class ExpressionAnd implements Printable {
     	if( this.expressionRelationals.size() == 1)
     		return this.expressionRelationals.get(0).getType();
     	else
-    		return new BooleanType();
+    		return Type.booleanType;
     }
     
     public boolean isIdentifier() {

@@ -11,19 +11,19 @@ import java.util.List;
 
 public class ExpressionFunctionCall extends ExpressionPrimary implements Printable {
 
-    private Identifier identifier;
+    private Function function;
     private List<Expression> expressions;
     
-    public ExpressionFunctionCall(Identifier identifier) {
+    public ExpressionFunctionCall(Function function) {
     	expressions = new ArrayList<Expression>();
-        this.identifier = identifier;
+        this.function = function;
     }
     
-    public ExpressionFunctionCall(Identifier identifier, Expression expression) {
+    public ExpressionFunctionCall(Function function, Expression expression) {
 
         expressions = new ArrayList<Expression>();
 
-        this.identifier = identifier;
+        this.function = function;
         this.expressions.add(expression);
 
     }
@@ -42,12 +42,16 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
 
     @Override
     public Type getType() {
-        return identifier.getType();
+        return function.getType();
     }
     
     @Override
     public boolean isFunctionWithReturn() {
-    	return identifier.getType() != null;
+    	return function.getType() != null;
+    }
+
+    public List<Expression> getExpressions() {
+        return expressions;
     }
 
 }

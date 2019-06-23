@@ -1,15 +1,12 @@
 import java.util.Hashtable;
 
 import AST.Identifier;
+import AST.Identifiable;
 
 public class SymbolTable {
 
     private Hashtable<String, Identifier> globalTable = new Hashtable<>();
     private Hashtable<String, Identifier> localTable = new Hashtable<>();
-
-    public SymbolTable() {
-        // Adicionar funções pré-definidas
-    }
 
     public void putLocal(Identifier identifier) {
         localTable.put(identifier.getName(), identifier);
@@ -21,6 +18,10 @@ public class SymbolTable {
 
     public void put(Identifier identifier) {
         globalTable.put(identifier.getName(), identifier);
+    }
+
+    public void put(Identifiable identifiable) {
+        put(identifiable.getIdentifier());
     }
 
     public Identifier get(String name) {

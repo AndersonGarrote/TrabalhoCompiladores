@@ -12,7 +12,7 @@ public class LiteralBoolean extends Literal implements Printable{
 
     public LiteralBoolean(boolean value) {
         this.value = value;
-        this.type = new BooleanType();
+        this.type = Type.booleanType;
     }
 
     public void genC(PW pw) {

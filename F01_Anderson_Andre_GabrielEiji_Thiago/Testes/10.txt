@@ -1,0 +1,8 @@
+function main {
+
+    var x : Boolean;
+
+    write(x);
+    writeln(x);
+
+}

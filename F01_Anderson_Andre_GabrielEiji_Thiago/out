@@ -1,3 +1,5 @@
 
-.\Testes\Corretos Sint�ticamente\1.in:12: Exceções para writeln ainda não definidas
-  writeln (result);
+.\Testes\10.txt:5: Tipos errados para write
+    write(x);
+.\Testes\10.txt:6: Tipos errados para writeln
+    writeln(x);

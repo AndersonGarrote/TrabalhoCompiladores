@@ -29,7 +29,7 @@ public class Expression implements Printable {
     	if( this.expressionAnds.size() == 1)
     		return this.expressionAnds.get(0).getType();
     	else
-    		return new BooleanType();
+    		return Type.booleanType;
     }
     
     public boolean isIdentifier() {

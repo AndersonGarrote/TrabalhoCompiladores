@@ -1,7 +1,6 @@
 function soma (x : Int, y : Int) -> Int{
   var a : Int;
-
-  a = x + y;
+  a = 2;
   return a;
 }
 

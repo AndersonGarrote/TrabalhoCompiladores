@@ -64,10 +64,19 @@ public class CompilerError {
 		//throw new RuntimeException();
 	}
 
+	private void signalWrongToken(String token) {
+		signal("Esperado o token " + token + ", encontrado " + "'" + lexer.token + "'");
+	}
+
 	public void signalWrongToken(Symbol expected) {
-		show("Esperado o token " + expected + ", encontrado " + lexer.token);
-		out.flush();
-		thereWasAnError = true;
-		//throw new RuntimeException();
+		signalWrongToken("'" + expected.toString() + "'");
+	}
+
+	public void signalWrongToken(Symbol... expected) {
+		String tokens = "'" + expected[0].toString() + "'";
+		for(int i = 1; i < expected.length; i++) {
+			tokens += " | '" + expected[i].toString() + "'";
+		}
+		signalWrongToken(tokens);
 	}
 }

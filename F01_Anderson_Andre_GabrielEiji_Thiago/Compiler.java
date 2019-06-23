@@ -67,15 +67,15 @@ public class Compiler {
 		}
 
 		if (main == null) {
-			error.signal("Esperado Função main.");
+			error.signal("Não foi declarada uma função main.");
 		}
 
 		if (main.getParameters().size() != 0) {
-			error.signal("Função main não pode ter parâmetros.");
+			error.signal("A função main não pode ter parâmetros.");
 		}
 
 		if (main.getType() != null) {
-			error.signal("Função main nao pode ter retorno.");
+			error.signal("A função main não pode ter retorno.");
 		}
 
 		return new Program(functionList);
@@ -95,7 +95,7 @@ public class Compiler {
 		if (symbolTable.has(identifier)) {
 			error.signal(identifier.getName() + " redeclarado");
 		}
-		
+
 		symbolTable.put(identifier);
 
 		Function function = new Function(identifier);
@@ -151,14 +151,12 @@ public class Compiler {
 		Identifier identifier = id();
 		symbolTable.putLocal(identifier);
 		if (lexer.token == Symbol.COLON) {
-
 			lexer.nextToken();
 			Type type = type();
 			Variable variable = new Variable(identifier, type);
-
 			return new Parameter(identifier, type);
 		} else {
-			error.signal("Esperado o token \":\".");
+			error.signalWrongToken(Symbol.COLON);
 			return null;
 		}
 	}
@@ -178,7 +176,7 @@ public class Compiler {
 			type = stringType;
 			break;
 		default:
-			error.signal("Esperado token de tipo (\"Int\", \"Boolean\" ou \"String\").");
+			error.signalWrongToken(Symbol.BOOLEAN, Symbol.INTEGER, Symbol.STRING);
 			return null;
 		}
 
@@ -285,7 +283,7 @@ public class Compiler {
 				assignmentExpressionStatement = new AssignmentExpressionStatement(leftExpression);
 			}
 		} else {
-			error.signal("Esperado o token \";\".");
+			error.signalWrongToken(Symbol.SEMICOLON);
 		}
 
 		return assignmentExpressionStatement;
@@ -306,16 +304,17 @@ public class Compiler {
 
 				if (lexer.token == Symbol.SEMICOLON) {
 					returnStatement = new ReturnStatement(expression);
-	
+
 					lexer.nextToken();
 				} else {
-					error.signal("Esperado o token \";\".");
+					error.signalWrongToken(Symbol.SEMICOLON);
 				}
 			} else {
-				error.signal("Tipo do retorno e função imcompatíveis.");
+				error.signal("A função retorna " + currentFunction.getType().getName()
+						+ ", mas a expressão do return é do tipo " + expression.getType().getName());
 			}
 		} else {
-			error.signal("Esperado o token \"return\".");
+			error.signalWrongToken(Symbol.RETURN);
 		}
 
 		return returnStatement;
@@ -351,13 +350,13 @@ public class Compiler {
 
 					lexer.nextToken();
 				} else {
-					error.signal("Esperado o token \";\".");
+					error.signalWrongToken(Symbol.SEMICOLON);
 				}
 			} else {
-				error.signal("Esperado o token \":\".");
+				error.signalWrongToken(Symbol.COLON);
 			}
 		} else {
-			error.signal("Esperado o token \"var\".");
+			error.signalWrongToken(Symbol.VAR);
 		}
 
 		return variableDeclarationStatement;
@@ -385,7 +384,7 @@ public class Compiler {
 				ifStatement = new IfStatement(expression, statementsTrue, statementsFalse);
 			}
 		} else {
-			error.signal("Esperado o token \"if\".");
+			error.signalWrongToken(Symbol.IF);
 		}
 
 		return ifStatement;
@@ -405,7 +404,7 @@ public class Compiler {
 			whileStatement = new WhileStatement(expression, statementList);
 
 		} else {
-			error.signal("Esperado o token \"while\".");
+			error.signalWrongToken(Symbol.WHILE);
 		}
 
 		return whileStatement;
@@ -491,7 +490,8 @@ public class Compiler {
 			break;
 
 		default:
-			error.signal("Esperado o token relacional (\"<\", \"<=\", \">\", \">=\", \"==\", \"!=\")");
+			error.signalWrongToken(Symbol.LESS, Symbol.LESS_OR_EQUAL, Symbol.GREATER, Symbol.GREATER_OR_EQUAL,
+					Symbol.EQUAL, Symbol.NOT_EQUAL);
 			break;
 		}
 
@@ -557,7 +557,6 @@ public class Compiler {
 
 			if (!symbolTable.has(identifier)) {
 				error.signal(identifier.getName() + " não foi declarada");
-				return null;
 			}
 
 			Identifiable identifiable = symbolTable.get(identifier).getIdentifiable();
@@ -601,7 +600,7 @@ public class Compiler {
 			break;
 
 		default:
-			error.signal("Esperado uma expressão.");
+			error.signalWrongToken(Symbol.WORD, Symbol.NUMBER, Symbol.TRUE, Symbol.FALSE);
 			break;
 		}
 
@@ -629,7 +628,7 @@ public class Compiler {
 			lexer.nextToken();
 			break;
 		default:
-			error.signal("Esperado um valor booleano(\"true\" ou \"false\").");
+			error.signalWrongToken(Symbol.TRUE, Symbol.FALSE);
 			break;
 		}
 
@@ -643,10 +642,9 @@ public class Compiler {
 
 		if (lexer.token == Symbol.NUMBER) {
 			literalInt = new LiteralInt(lexer.numberValue);
-
 			lexer.nextToken();
 		} else {
-			error.signal("Esperado um número inteiro.");
+			error.signalWrongToken(Symbol.NUMBER);
 		}
 
 		return literalInt;
@@ -662,7 +660,7 @@ public class Compiler {
 
 			lexer.nextToken();
 		} else {
-			error.signal("Esperado uma string.");
+			error.signalWrongToken(Symbol.WORD);
 		}
 
 		return literalString;
@@ -729,7 +727,7 @@ public class Compiler {
 
 			lexer.nextToken();
 		} else {
-			error.signal("Esperado um identificador.");
+			error.signalWrongToken(Symbol.IDENTIFIER);
 		}
 
 		return identifier;

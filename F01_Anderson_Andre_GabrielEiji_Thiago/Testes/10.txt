@@ -10,7 +10,7 @@ function main {
     write(x);
     writeln(x);
 
-    write(x + 1 > 2);
+    write(x + 1 - 2);
 
     teste(x, z);
 

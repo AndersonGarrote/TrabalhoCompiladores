@@ -7,6 +7,7 @@
 package AST;
 
 abstract public class Literal implements Printable {
+	
 	protected Type type;
 
 	public Type getType() {

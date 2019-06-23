@@ -53,6 +53,29 @@ public class Compiler {
 			functionList.add(func());
 		}
 
+		Iterator<Function> iterator = functionList.iterator();
+		Function main = null;
+
+		while (iterator.hasNext()) {
+			Function function = iterator.next();
+			if (function.getIdentifier().getName().equals("main")) {
+				main = function;
+				break;
+			}
+		}
+
+		if (main == null) {
+			error.signal("Esperado Função main.");
+		}
+
+		if (main.getParameters().size() != 0) {
+			error.signal("Função main não pode ter parâmetros.");
+		}
+
+		if (main.getType() != null) {
+			error.signal("Função main nao pode ter retorno.");
+		}
+
 		return new Program(functionList);
 	}
 

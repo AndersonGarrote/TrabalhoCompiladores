@@ -682,6 +682,10 @@ public class Compiler {
 				lexer.nextToken();
 				expressionFunctionCall = new ExpressionFunctionCall(function);
 
+				if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
+					error.signal("A função " + function.getIdentifier().getName() + " espera " + function.getParameters().size() + " parâmetros, mas foram fornecidos " + expressionFunctionCall.getExpressions().size());
+				}
+
 			} else {
 
 				expressionFunctionCall = new ExpressionFunctionCall(function, expr());

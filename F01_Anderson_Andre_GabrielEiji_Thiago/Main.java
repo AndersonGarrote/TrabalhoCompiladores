@@ -64,6 +64,7 @@ public class Main {
 				program = compiler.compile(input, printWriter, args[0]);
 			} catch (RuntimeException e) {
 				e.printStackTrace();
+				System.exit(1);
 			}
 			if (program != null) {
 				PW pw = new PW();

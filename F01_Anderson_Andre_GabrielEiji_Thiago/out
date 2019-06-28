@@ -1,5 +1,0 @@
-
-.\Testes\10.txt:18: A função teste espera 2 parâmetros, mas foram fornecidos 3
-    teste(x, y, z);
-.\Testes\10.txt:18: Tipos dos parâmetros da função teste incorretos.
-    teste(x, y, z);

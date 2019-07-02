@@ -17,6 +17,11 @@ public class Program implements Printable {
 	}
 
 	public void genC(PW pw) {
+		
+		pw.print("#include <stdio.h>");
+		pw.breakLine();
+		pw.breakLine();
+		
 		for (Function function : functions) {
 			function.genC(pw);
 		}

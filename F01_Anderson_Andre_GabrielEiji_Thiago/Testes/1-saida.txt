@@ -1,0 +1,3 @@
+
+Testes/01.txt:13: before não foi declarada
+    while i < before {

@@ -52,6 +52,48 @@ public class Function extends Identifiable implements Printable {
 
     @Override
     public void genC(PW pw) {
+    	//Colocando o tipo	
+		if( this.type == null ) {
+			pw.print("void");
+		} else {
+			this.type.genC(pw);
+		}
+		pw.print(" ");
+		
+		//Colocando o nome
+		this.getIdentifier().genC(pw);
+		
+		//Colocando os parâmetros
+		pw.print("(");
+		
+		boolean first = true;
+		if( ! this.parameters.isEmpty() ) {
+			for (Parameter param : this.parameters) {
+				
+				if(first)
+					first = false;
+				else
+					pw.print(" , ");
+				
+				param.genC(pw);
+			}
+    	}
+		pw.print(") {");
+		pw.breakLine();
+		
+		if( ! this.statements.isEmpty() ) {	
+			for (Statement stat : this.statements) {
+				
+				stat.genC(pw);
+				pw.breakLine();
+			}
+		}
+		
+		pw.print("}");
+		pw.breakLine();
+
+		pw.breakLine();
+	
     }
 
     @Override

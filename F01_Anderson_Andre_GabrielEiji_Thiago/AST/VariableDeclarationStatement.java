@@ -20,7 +20,19 @@ public class VariableDeclarationStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-
+    	
+    	this.variable.getType().genC(pw);
+    	
+    	pw.print(" ");
+    	
+    	this.variable.getIdentifier().genC(pw);
+    	
+    	if( this.variable.getType() == Type.stringType )
+    		pw.print("[]");
+    	
+    	pw.print(";");
+    	pw.breakLine();
+    		
     }
 
 }

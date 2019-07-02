@@ -22,7 +22,38 @@ public class IfStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-
+    	pw.print( "if ( " );
+    	
+    	this.expression.genC(pw);
+    	
+    	pw.print(" ) {");
+    	pw.breakLine();
+    	
+    	for (Statement stat : this.statementsTrue) {
+			
+			stat.genC(pw);
+			pw.breakLine();
+		}
+    	
+    	pw.print("} ");
+    	pw.breakLine();
+    	
+    	if (this.statementsFalse != null) {
+    		
+    		pw.print( "else {" );
+        	pw.breakLine();
+        	
+        	for (Statement stat : this.statementsFalse) {
+    			
+    			stat.genC(pw);
+    			pw.breakLine();
+    		}
+        	
+        	pw.print("} ");
+        	pw.breakLine();
+        }
+    	
+        pw.breakLine();
     }
 
 }

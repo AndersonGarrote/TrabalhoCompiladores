@@ -381,8 +381,10 @@ public class Compiler {
 				lexer.nextToken();
 				statementsFalse = statList();
 
-				ifStatement = new IfStatement(expression, statementsTrue, statementsFalse);
 			}
+			
+			ifStatement = new IfStatement(expression, statementsTrue, statementsFalse);
+
 		} else {
 			error.signalWrongToken(Symbol.IF);
 		}

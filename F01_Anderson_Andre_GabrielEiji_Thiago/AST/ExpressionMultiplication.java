@@ -52,5 +52,12 @@ public class ExpressionMultiplication implements Printable {
     	return this.operatorExpressionUnaryPairs.size() == 1
     			&& this.operatorExpressionUnaryPairs.get(0).getValue().isFunctionWithReturn();
     }
+    
+    public Function getFunction() {
+    	if(this.operatorExpressionUnaryPairs.size() == 1)
+    		return this.operatorExpressionUnaryPairs.get(0).getValue().getFunction();
+    	else
+    		return null;
+    }
 
 }

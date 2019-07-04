@@ -18,4 +18,8 @@ public abstract class ExpressionPrimary implements Printable {
     	return false;
     }
     
+    public Function getFunction(){
+    	return null;
+    }
+    
 }

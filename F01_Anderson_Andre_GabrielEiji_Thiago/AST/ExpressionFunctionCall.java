@@ -90,5 +90,10 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
     public List<Expression> getExpressions() {
         return expressions;
     }
+    
+    @Override
+    public Function getFunction(){
+    	return this.function;
+    }
 
 }

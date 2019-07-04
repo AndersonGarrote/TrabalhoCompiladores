@@ -42,4 +42,11 @@ public class Expression implements Printable {
     	return this.expressionAnds.size() == 1
     			&& this.expressionAnds.get(0).isFunctionWithReturn();
 	}
+    
+    public Function getFunction() {
+        if(this.expressionAnds.size() == 1)
+    		return this.expressionAnds.get(0).getFunction();
+    	else
+    		return null;
+    }
 }

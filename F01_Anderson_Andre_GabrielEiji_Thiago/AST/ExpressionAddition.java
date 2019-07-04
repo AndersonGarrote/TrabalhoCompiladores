@@ -53,5 +53,12 @@ public class ExpressionAddition implements Printable {
         return this.operatorExpressionMultiplicationPairs.size() == 1
                 && this.operatorExpressionMultiplicationPairs.get(0).getValue().isFunctionWithReturn();
     }
-
+    
+    public Function getFunction() {
+        if(this.operatorExpressionMultiplicationPairs.size() == 1)
+    		return this.operatorExpressionMultiplicationPairs.get(0).getValue().getFunction();
+    	else
+    		return null;
+    }
+    
 }

@@ -54,4 +54,11 @@ public class ExpressionRelational implements Printable {
     	return this.relationalOperator == null
     			&& this.leftExpressionAddition.isFunctionWithReturn();
     }
+    
+    public Function getFunction() {
+        if(this.relationalOperator == null)
+    		return this.leftExpressionAddition.getFunction();
+    	else
+    		return null;
+    }
 }

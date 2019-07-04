@@ -5,15 +5,15 @@ int num;
 
 int numDois;
 
-char* texto[];
+char[] texto;
 
-num = ;
+num = readInt();
 
-numDois = ;
+numDois = readInt();
 
-texto = ;
+texto = readString();
 
-;
+writeln(texto);
 
 return num Identifier numDois;
 
@@ -27,9 +27,9 @@ char logico;
 logico = true;
 
 while ( logico ) {
-result = ;
+result = recebeDado();
 
-;
+writeln(result);
 
 if ( result == 0 ) {
 logico = false;
@@ -40,7 +40,7 @@ logico = false;
 } 
 
 
-;
+writeln("teste sem erro");
 
 }
 

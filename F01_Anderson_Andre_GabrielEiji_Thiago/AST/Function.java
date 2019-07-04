@@ -65,15 +65,17 @@ public class Function extends Identifiable implements Printable {
 
     @Override
     public void genC(PW pw) {
-    	//Colocando o tipo	
+    	// Colocando o tipo	
 		if( this.type == null ) {
 			pw.print("void");
-		} else {
+		} else if (this.type == Type.stringType) {
+            pw.print("char *");
+        } else {
 			this.type.genC(pw);
 		}
 		pw.print(" ");
 		
-		//Colocando o nome
+		// Colocando o nome
 		this.getIdentifier().genC(pw);
 		
 		//Colocando os parâmetros
@@ -86,7 +88,7 @@ public class Function extends Identifiable implements Printable {
 				if(first)
 					first = false;
 				else
-					pw.print(" , ");
+					pw.print(", ");
 				
 				param.genC(pw);
 			}

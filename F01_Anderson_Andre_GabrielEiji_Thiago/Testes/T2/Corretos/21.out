@@ -7,23 +7,23 @@ int y;
 
 int result;
 
-;
+write("Correto semantico");
 
 result = x Identifier y;
 
-;
+writeln(result);
 
 result = x Identifier y;
 
-;
+writeln(result);
 
 result = x Identifier y;
 
-;
+writeln(result);
 
 result = x Identifier y;
 
-;
+writeln(result);
 
 }
 

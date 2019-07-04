@@ -249,6 +249,7 @@ public class Compiler {
 
 			// Verificação de tipos
 			try {
+				
 				if (leftExpression.getType() == null) {
 					error.signal("Expressão à esquerda não tem tipo associado.");
 				}
@@ -263,6 +264,7 @@ public class Compiler {
 								+ " e " + rightExpression.getType().getName() + ".");
 					}
 				}
+
 			} catch (NullPointerException e) {
 				error.signal("Não foi possível verificar os tipos das expressões.");
 			}
@@ -509,7 +511,8 @@ public class Compiler {
 
 		while (lexer.token == Symbol.PLUS || lexer.token == Symbol.MINUS) {
 
-			Symbol operator = lexer.nextToken();
+			Symbol operator = lexer.token;
+			lexer.nextToken();
 			expressionAddition.addOperatorExpressionMultiplication(operator, exprMult());
 		}
 

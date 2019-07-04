@@ -1,0 +1,11 @@
+function string -> String {
+    return "ola";
+}
+
+function main {
+    var x : String;
+
+    x = "ola";
+
+    x = string();
+}

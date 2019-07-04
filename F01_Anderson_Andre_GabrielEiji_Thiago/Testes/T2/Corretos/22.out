@@ -6,38 +6,38 @@ return 1;
 
 } 
 else {
-return n Identifier ;
+return n Identifier fatorial(n Number 1);
 
 } 
 
 
 }
 
-void imprima(int before , int valor , char* after[]) {
+void imprima(int before, int valor, char[] after[]) {
 int i;
 
 i = 0;
 
 while ( i < before ) {
-;
+write("*");
 
 i = i Number 1;
 
 } 
 
 
-;
+writeln("");
 
-;
+writeln(valor);
 
-;
+writeln(after);
 
 }
 
 void main() {
-;
+imprima(50, fatorial(5) Number 2 Identifier fatorial(3), "        fim");
 
-;
+writeln("teste sem erro");
 
 }
 

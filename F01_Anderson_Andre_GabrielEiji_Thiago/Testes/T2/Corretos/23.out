@@ -19,7 +19,7 @@ return valorB;
 
 }
 
-int multiplicar(int multA , int multB , char tipo) {
+int multiplicar(int multA, int multB, char tipo) {
 int total;
 
 if ( tipo == true ) {
@@ -52,7 +52,7 @@ return total;
 
 }
 
-char maiorIgual(int valorAa , int valorBb) {
+char maiorIgual(int valorAa, int valorBb) {
 if ( valorAa >= valorBb ) {
 return true;
 
@@ -65,8 +65,8 @@ return false;
 
 }
 
-char* mensagem(char* msg[]) {
-;
+char[] mensagem(char[] msg[]) {
+writeln(msg);
 
 return "write";
 
@@ -77,9 +77,9 @@ int valor;
 
 int x;
 
-x = - Number 100;
+x = -constante() Number 100;
 
-valor = 1 Identifier ;
+valor = 1 Identifier constante();
 
 if ( oper == true || x > 80 && x < 0 && valor != 2 || valor > 50 ) {
 valor = valor Number 50;
@@ -89,22 +89,22 @@ valor = valor Number 50;
 
 }
 
-void mensagens(char* msgA[] , char* msgB[]) {
-char* aux[];
+void mensagens(char[] msgA[], char[] msgB[]) {
+char[] aux;
 
 aux = "Ola, sua mensagem:";
 
-;
+write(aux);
 
-;
+writeln(msgA);
 
-;
+write(aux);
 
-;
+writeln(msgB);
 
 }
 
-char portaAnd(char eA , char eB) {
+char portaAnd(char eA, char eB) {
 eA;
 
 eB;
@@ -125,8 +125,8 @@ return resultado;
 
 }
 
-void comparador(char* msgF[] , char tipoComp) {
-char* com[];
+void comparador(char[] msgF[], char tipoComp) {
+char[] com;
 
 com = "Permitido";
 
@@ -137,7 +137,7 @@ com = "Proibido";
 
 
 if ( msgF == com ) {
-;
+write("Acertou");
 
 } 
 
@@ -156,19 +156,19 @@ while ( true ) {
 void main() {
 int resultadoM;
 
-char* texto[];
+char[] texto;
 
-resultadoM = ;
+resultadoM = multiplicar(constante(), 10, true);
 
-;
+calc(maiorIgual(resultadoM, 10));
 
-texto = ;
+texto = mensagem("ola");
 
-;
+mensagens("Cuidado", "Pode ir");
 
-;
+comparador("Permitido", portaAnd(true, true));
 
-;
+loopInfinito();
 
 }
 

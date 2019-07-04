@@ -39,4 +39,9 @@ public class WriteFunction extends Function {
 
 	}
 
+	@Override
+	public void genC(PW pw) {
+		pw.print("test");
+	}
+
 }

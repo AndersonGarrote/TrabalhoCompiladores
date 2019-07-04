@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void soma(int x , int y) {
+void soma(int x, int y) {
 }
 
 void main() {

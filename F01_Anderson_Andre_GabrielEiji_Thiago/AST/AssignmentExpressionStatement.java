@@ -23,13 +23,25 @@ public class AssignmentExpressionStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-        leftExpression.genC(pw);
-        if (rightExpression != null) {
-            pw.print(" = ");
+        // Atribuição de string: s = "string" ou string()
+        if (rightExpression != null && rightExpression.getType() == Type.stringType) {
+            pw.print("strcpy(");
+            leftExpression.genC(pw);
+            pw.print(", ");
             rightExpression.genC(pw);
+            pw.print(");");
+            pw.breakLine();
+        } else {
+            leftExpression.genC(pw);
+            if (rightExpression != null) {
+                pw.print(" = ");
+                rightExpression.genC(pw);
+
+            }
+            pw.print(";");
+            pw.breakLine();
         }
-        pw.print(";");
-        pw.breakLine();
+
     }
 
 }

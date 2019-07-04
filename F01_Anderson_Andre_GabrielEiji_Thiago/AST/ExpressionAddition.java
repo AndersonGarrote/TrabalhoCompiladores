@@ -18,8 +18,8 @@ public class ExpressionAddition implements Printable {
 
     public ExpressionAddition(ExpressionMultiplication expressionMultiplication) {
         this.operatorExpressionMultiplicationPairs = new ArrayList<AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>>();
-        this.operatorExpressionMultiplicationPairs
-                .add(new AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>(Symbol.PLUS, expressionMultiplication));
+        this.operatorExpressionMultiplicationPairs.add(
+                new AbstractMap.SimpleEntry<Symbol, ExpressionMultiplication>(Symbol.PLUS, expressionMultiplication));
     }
 
     public void addOperatorExpressionMultiplication(Symbol operator,
@@ -37,21 +37,21 @@ public class ExpressionAddition implements Printable {
             pw.print(" " + pair.getKey() + " ");
             pair.getValue().genC(pw);
         });
-        
+
     }
-    
-    public Type getType(){
-    	return this.operatorExpressionMultiplicationPairs.get(0).getValue().getType();
+
+    public Type getType() {
+        return this.operatorExpressionMultiplicationPairs.get(0).getValue().getType();
     }
-    
+
     public boolean isIdentifier() {
-    	return this.operatorExpressionMultiplicationPairs.size() == 1
-    			&& this.operatorExpressionMultiplicationPairs.get(0).getValue().isIdentifier();
-    }    
-    
+        return this.operatorExpressionMultiplicationPairs.size() == 1
+                && this.operatorExpressionMultiplicationPairs.get(0).getValue().isIdentifier();
+    }
+
     public boolean isFunctionWithReturn() {
-    	return this.operatorExpressionMultiplicationPairs.size() == 1
-    			&& this.operatorExpressionMultiplicationPairs.get(0).getValue().isFunctionWithReturn();
+        return this.operatorExpressionMultiplicationPairs.size() == 1
+                && this.operatorExpressionMultiplicationPairs.get(0).getValue().isFunctionWithReturn();
     }
 
 }

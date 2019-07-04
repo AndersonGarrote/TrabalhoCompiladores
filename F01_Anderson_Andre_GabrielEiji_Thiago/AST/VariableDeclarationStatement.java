@@ -28,7 +28,7 @@ public class VariableDeclarationStatement extends Statement {
     	this.variable.getIdentifier().genC(pw);
     	
     	if( this.variable.getType() == Type.stringType )
-    		pw.print("[]");
+    		pw.print("[255]");
     	
     	pw.print(";");
     	pw.breakLine();

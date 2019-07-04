@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int soma(int x , int y) {
+int soma(int x, int y) {
 int a;
 
 a = 2;
@@ -12,9 +12,9 @@ return a;
 void main() {
 int result;
 
-result = ;
+result = soma(3, 2);
 
-;
+write(result);
 
 }
 

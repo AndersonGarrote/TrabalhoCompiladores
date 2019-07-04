@@ -1,21 +1,21 @@
 #include <stdio.h>
 
-void imprime(int q , int w , int e , char nomeFunc[]) {
-;
+void imprime(int q, int w, int e, char[] nomeFunc[]) {
+writeln("**************");
 
-;
+writeln(q);
 
-;
+writeln(w);
 
-;
+writeln(e);
 
-;
+writeln(nomeFunc);
 
-;
+writeln("***Fim***");
 
 }
 
-void aninhamento(int k , int l) {
+void aninhamento(int k, int l) {
 int i;
 
 int j;
@@ -64,7 +64,7 @@ i = i Number 1;
 } 
 
 
-;
+imprime(i, j, b, " aninhamento");
 
 }
 
@@ -73,20 +73,20 @@ int h;
 
 int g;
 
-;
+aninhamento(h, g);
 
-char n[];
+char[] n;
 
 n = "variavel de texto da main";
 
-;
+imprime(90, 30, 30, "chamada de funcao da main");
 
 int i;
 
 i = 0;
 
 while ( i != 3 ) {
-;
+imprime(i, i Number 1, i Number 2, "i, i+1, i+2");
 
 i = i Number 1;
 

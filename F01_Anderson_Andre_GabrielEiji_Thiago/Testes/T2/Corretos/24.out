@@ -6,7 +6,7 @@ return 1;
 
 } 
 else {
-return n Identifier ;
+return n Identifier fatorial(n Number 1);
 
 } 
 
@@ -16,9 +16,9 @@ return n Identifier ;
 void main() {
 int fat;
 
-fat =  Number 2 Identifier ;
+fat = fatorial(5) Number 2 Identifier fatorial(3);
 
-;
+writeln("teste sem erro");
 
 }
 

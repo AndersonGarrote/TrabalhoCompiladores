@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-void soma(int x , int y) {
+void soma(int x, int y) {
 int a;
 
 a = x Identifier y;
 
-;
+write(a);
 
 }
 
 void main() {
-;
+soma(3, 2);
 
 }
 

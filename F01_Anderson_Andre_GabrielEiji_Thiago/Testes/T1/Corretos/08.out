@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 void main() {
-char s[];
+char[] s;
 
-;
+write(s);
 
 }
 

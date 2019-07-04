@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+char * string() {
+return "ola";
+
+}
+
+void main() {
+char x[255];
+
+strcpy(x, "ola");
+
+strcpy(x, string());
+
+}
+

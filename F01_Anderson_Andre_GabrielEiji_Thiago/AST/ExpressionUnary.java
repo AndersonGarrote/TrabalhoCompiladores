@@ -42,5 +42,9 @@ public class ExpressionUnary implements Printable {
     public boolean isFunctionWithReturn() {
     	return this.expressionPrimary.isFunctionWithReturn();
     }
+    
+    public Function getFunction(){
+    	return this.expressionPrimary.getFunction();
+    }
 
 }

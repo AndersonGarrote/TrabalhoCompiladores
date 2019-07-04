@@ -20,6 +20,8 @@ public class Program implements Printable {
 		
 		pw.print("#include <stdio.h>");
 		pw.breakLine();
+		pw.print("#include <string.h>");
+		pw.breakLine();
 		pw.breakLine();
 		
 		for (Function function : functions) {

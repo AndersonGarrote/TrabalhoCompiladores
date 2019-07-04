@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int calculaFibo(int n) {
 if ( n == 0 ) {
@@ -18,7 +19,7 @@ return calculaFibo(n - 1) + calculaFibo(n - 2);
 }
 
 void main() {
-write("f(5) = ", calculaFibo(5));
+printf("%s%d", "f(5) = ", calculaFibo(5));
 
 }
 

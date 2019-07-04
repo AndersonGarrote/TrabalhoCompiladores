@@ -33,16 +33,48 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
     }
 
     public void genC(PW pw) {
-        function.getIdentifier().genC(pw);
-        pw.print("(");
-        if (expressions.size() != 0) {
+
+        if (function == Function.writeFunction || function == Function.writelnFunction) {
+
+            pw.print("printf(\"");
+            
+            expressions.stream().forEach(expression -> {
+                if (expression.getType() == Type.integerType) {
+                    pw.print("%d");
+                } else {
+                    pw.print("%s");
+                }
+            });
+
+            if(function == Function.writelnFunction) {
+                pw.print("\\r\\n");
+            }
+
+            pw.print("\", ");
+
             expressions.get(0).genC(pw);
+
+            expressions.stream().skip(1).forEach(expression -> {
+                pw.print(", ");
+                expression.genC(pw);
+            });
+
+            pw.print(")");
+
+        } else {
+
+            function.getIdentifier().genC(pw);
+            pw.print("(");
+            if (expressions.size() != 0) {
+                expressions.get(0).genC(pw);
+            }
+            expressions.stream().skip(1).forEach(expression -> {
+                pw.print(", ");
+                expression.genC(pw);
+            });
+            pw.print(")");
+
         }
-        expressions.stream().skip(1).forEach(expression -> {
-            pw.print(", ");
-            expression.genC(pw);
-        });
-        pw.print(")");
     }
 
     @Override

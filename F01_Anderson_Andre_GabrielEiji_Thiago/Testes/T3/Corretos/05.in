@@ -1,0 +1,28 @@
+function palavra -> String {
+    return "arou";
+}
+
+function constante -> Int {
+    return 2;
+}
+
+function main {
+    writeln("ola");
+    write("ola");
+    writeln("ola ", 2);
+    write("ola ", 2);
+
+    var x : Int;
+
+    x = 3;
+
+    writeln(x, " ", constante());
+    write(x, " ", constante());
+
+    var y : String;
+
+    y = "aaaaarou";
+
+    writeln(palavra(), " ", y);
+    write(palavra(), " ", y);
+}

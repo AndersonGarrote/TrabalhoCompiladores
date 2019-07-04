@@ -20,6 +20,12 @@ public class Function extends Identifiable implements Printable {
     public static WriteFunction writeFunction = new WriteFunction();
     public static WritelnFunction writelnFunction = new WritelnFunction();
 
+    public enum ParamsValidation {
+        VALID_PARAMS,
+        WRONG_PARAM_NUMBER,
+        WRONG_PARAM_TYPE
+    };
+
     public Function(Identifier identifier) {
         this.setIdentifier(identifier);
         this.parameters = new ArrayList<>();
@@ -41,13 +47,20 @@ public class Function extends Identifiable implements Printable {
         }
     }
 
-    public boolean validateParameters(List<Expression> parameters) {
+    public ParamsValidation validateParameters(List<Expression> parameters) {
+
+        if(this.parameters.size() != parameters.size()) {
+            return ParamsValidation.WRONG_PARAM_NUMBER;
+        }
+
         for(int i = 0; i < parameters.size(); i++) {
             if(parameters.get(i).getType() != this.parameters.get(i).getType()) {
-                return false;
+                return ParamsValidation.WRONG_PARAM_TYPE;
             }
         }
-        return true;
+
+        return ParamsValidation.VALID_PARAMS;
+        
     }
 
     @Override

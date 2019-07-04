@@ -1,0 +1,3 @@
+
+Testes\T3\Incorretos\01.in:2: True não foi declarada
+    write(True);

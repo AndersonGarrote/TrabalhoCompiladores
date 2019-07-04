@@ -79,4 +79,5 @@ public class CompilerError {
 		}
 		signalWrongToken(tokens);
 	}
+	
 }

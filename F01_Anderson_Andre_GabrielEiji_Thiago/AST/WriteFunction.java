@@ -23,19 +23,19 @@ public class WriteFunction extends Function {
 	}
 	
 	@Override
-	public boolean validateParameters(List<Expression> parameters) {
+	public ParamsValidation validateParameters(List<Expression> parameters) {
 
-		if(parameters.size() != 1) {
-			return false;
+		if(parameters.size() == 0) {
+			return ParamsValidation.WRONG_PARAM_NUMBER;
 		}
 
 		Type parameterType = parameters.get(0).getType();
 
 		if(parameterType != Type.integerType && parameterType != Type.stringType) {
-			return false;
+			return ParamsValidation.WRONG_PARAM_TYPE;
 		}
 
-		return true;
+		return ParamsValidation.VALID_PARAMS;
 
 	}
 

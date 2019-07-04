@@ -382,7 +382,7 @@ public class Compiler {
 				statementsFalse = statList();
 
 			}
-			
+
 			ifStatement = new IfStatement(expression, statementsTrue, statementsFalse);
 
 		} else {
@@ -682,11 +682,8 @@ public class Compiler {
 			if (lexer.token == Symbol.RIGHT_PARENTHESIS) {
 
 				lexer.nextToken();
-				expressionFunctionCall = new ExpressionFunctionCall(function);
 
-				if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
-					error.signal("A função " + function.getIdentifier().getName() + " espera " + function.getParameters().size() + " parâmetros, mas foram fornecidos " + expressionFunctionCall.getExpressions().size());
-				}
+				expressionFunctionCall = new ExpressionFunctionCall(function);
 
 			} else {
 
@@ -703,14 +700,21 @@ public class Compiler {
 					error.signalWrongToken(Symbol.RIGHT_PARENTHESIS);
 				}
 
-				if (function.getParameters().size() != expressionFunctionCall.getExpressions().size()) {
-					error.signal("A função " + function.getIdentifier().getName() + " espera " + function.getParameters().size() + " parâmetros, mas foram fornecidos " + expressionFunctionCall.getExpressions().size());
-				}
-
-				if (!function.validateParameters(expressionFunctionCall.getExpressions())) {
-					error.signal("Tipos dos parâmetros da função " + function.getIdentifier().getName() + " incorretos.");
-				}
 			}
+
+			switch (function.validateParameters(expressionFunctionCall.getExpressions())) {
+			case WRONG_PARAM_NUMBER:
+				error.signal("A função " + function.getIdentifier().getName() + " espera "
+						+ function.getParameters().size() + " parâmetros, mas foram fornecidos "
+						+ expressionFunctionCall.getExpressions().size());
+				break;
+			case WRONG_PARAM_TYPE:
+				error.signal("Tipos dos parâmetros da função " + function.getIdentifier().getName() + " incorretos.");
+				break;
+			case VALID_PARAMS:
+				break;
+			}
+
 		} else {
 			error.signalWrongToken(Symbol.LEFT_PARENTHESIS);
 		}

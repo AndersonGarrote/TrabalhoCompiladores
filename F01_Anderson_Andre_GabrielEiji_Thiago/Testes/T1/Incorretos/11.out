@@ -1,0 +1,3 @@
+
+Testes\T1\Incorretos\11.in:10: b não foi declarada
+    a = somaD (a,b);

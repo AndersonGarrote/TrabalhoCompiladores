@@ -1,0 +1,3 @@
+
+Testes\T1\Incorretos\02.in:1: Esperado o token 'Identifier', encontrado ')'
+function soma(){

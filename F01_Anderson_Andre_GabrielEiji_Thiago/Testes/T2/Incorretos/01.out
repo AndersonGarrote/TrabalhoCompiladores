@@ -1,0 +1,3 @@
+
+Testes\T2\Incorretos\01.in:4: x redeclarado
+  var x:Boolean;

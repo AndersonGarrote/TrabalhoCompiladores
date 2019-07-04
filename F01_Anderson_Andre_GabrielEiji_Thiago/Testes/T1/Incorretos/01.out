@@ -1,0 +1,3 @@
+
+Testes\T1\Incorretos\01.in:2: Esperado o token 'Word' | 'Number' | 'true' | 'false', encontrado 'eof'
+function main {

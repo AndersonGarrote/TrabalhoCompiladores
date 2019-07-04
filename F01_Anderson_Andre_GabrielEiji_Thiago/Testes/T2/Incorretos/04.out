@@ -1,0 +1,3 @@
+
+Testes\T2\Incorretos\04.in:2: fatorial não foi declarada
+  fatorial(1,2);

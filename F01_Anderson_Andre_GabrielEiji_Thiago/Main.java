@@ -64,14 +64,15 @@ public class Main {
 				program = compiler.compile(input, printWriter, args[0]);
 			} catch (RuntimeException e) {
 				e.printStackTrace();
-				System.exit(1);
+				System.exit(2);
 			}
 			if (program != null) {
 				PW pw = new PW();
 				pw.set(printWriter);
-				program.genC(pw);
+				// program.genC(pw);
 				if (printWriter.checkError()) {
 					System.out.println("There was an error in the output");
+					System.exit(2);
 				}
 			}
 		}

@@ -61,7 +61,7 @@ public class CompilerError {
 		show(strMessage);
 		out.flush();
 		thereWasAnError = true;
-		//throw new RuntimeException();
+		throw new RuntimeException();
 	}
 
 	private void signalWrongToken(String token) {

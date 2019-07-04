@@ -1,0 +1,3 @@
+
+Testes\T1\Incorretos\10.in:7: Esperado o token 'Word' | 'Number' | 'true' | 'false', encontrado '}'
+}

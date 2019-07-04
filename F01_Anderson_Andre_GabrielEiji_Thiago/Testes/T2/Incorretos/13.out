@@ -1,0 +1,3 @@
+
+Testes\T2\Incorretos\13.in:20: A função soma espera 2 parâmetros, mas foram fornecidos 0
+  soma();

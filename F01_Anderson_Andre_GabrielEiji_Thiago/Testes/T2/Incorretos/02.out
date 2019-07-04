@@ -1,0 +1,3 @@
+
+Testes\T2\Incorretos\02.in:5: a não foi declarada
+  x = y + a;

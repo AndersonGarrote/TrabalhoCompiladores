@@ -1,0 +1,3 @@
+
+Testes\T1\Incorretos\14.in:6: Esperado o token 'Word' | 'Number' | 'true' | 'false', encontrado ';'
+  teste(;

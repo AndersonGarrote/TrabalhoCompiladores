@@ -1,9 +1,8 @@
 #include <stdio.h>
+#include <string.h>
 
 void main() {
-char l;
-
-l = true;
-
+	char l;
+	l = true;
 }
 

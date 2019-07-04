@@ -6,7 +6,7 @@ int constante() {
 	int valorB;
 	valorA = 1 * +2 + +5 * -4;
 	valorB = 10 / 2 - 20 / -5;
-	if ( false || valorB != 10 ) {
+	if ( 0 || valorB != 10 ) {
 		return valorA;
 	} 
 	return valorB;
@@ -14,7 +14,7 @@ int constante() {
 
 int multiplicar(int multA, int multB, char tipo) {
 	int total;
-	if ( tipo == true ) {
+	if ( tipo == 1 ) {
 		int i;
 		i = 1;
 		total = 0;
@@ -24,7 +24,7 @@ int multiplicar(int multA, int multB, char tipo) {
 		} 
 		return total;
 	} 
-	if ( tipo == false ) {
+	if ( tipo == 0 ) {
 		total = multA * multB;
 		return total;
 	} 
@@ -32,11 +32,10 @@ int multiplicar(int multA, int multB, char tipo) {
 
 char maiorIgual(int valorAa, int valorBb) {
 	if ( valorAa >= valorBb ) {
-		return true;
+		return 1;
 	} else {
-		return false;
+		return 0;
 	}
-	
 }
 
 char * mensagem(char msg[]) {
@@ -49,7 +48,7 @@ void calc(char oper) {
 	int x;
 	x = -constante() + 100;
 	valor = 1 + constante();
-	if ( oper == true || x > 80 && x < 0 && valor != 2 || valor > 50 ) {
+	if ( oper == 1 || x > 80 && x < 0 && valor != 2 || valor > 50 ) {
 		valor = valor + 50;
 	} 
 }
@@ -67,12 +66,11 @@ char portaAnd(char eA, char eB) {
 	eA;
 	eB;
 	char resultado;
-	if ( eA == true && eB == true ) {
-		resultado = true;
+	if ( eA == 1 && eB == 1 ) {
+		resultado = 1;
 	} else {
-		resultado = false;
+		resultado = 0;
 	}
-	
 	return resultado;
 }
 
@@ -89,7 +87,7 @@ void comparador(char msgF[], char tipoComp) {
 
 void loopInfinito() {
 	int expr;
-	while ( true ) {
+	while ( 1 ) {
 		
 	} 
 }
@@ -97,11 +95,11 @@ void loopInfinito() {
 void main() {
 	int resultadoM;
 	char texto[255];
-	resultadoM = multiplicar(constante(), 10, true);
+	resultadoM = multiplicar(constante(), 10, 1);
 	calc(maiorIgual(resultadoM, 10));
 	strcpy(texto, mensagem("ola"));
 	mensagens("Cuidado", "Pode ir");
-	comparador("Permitido", portaAnd(true, true));
+	comparador("Permitido", portaAnd(1, 1));
 	loopInfinito();
 }
 

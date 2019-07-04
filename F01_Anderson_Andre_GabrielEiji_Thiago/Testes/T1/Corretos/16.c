@@ -21,9 +21,9 @@ int aninhamento(int k, int l) {
 	b = 4000;
 	i = 0;
 	j = k * l;
-	a = false;
+	a = 0;
 	while ( i <= k ) {
-		alternaLogico = true;
+		alternaLogico = 1;
 		while ( j >= l ) {
 			if ( a == alternaLogico ) {
 				b = b / 2;
@@ -33,8 +33,7 @@ int aninhamento(int k, int l) {
 					b = b - 1;
 				} 
 			}
-			
-			alternaLogico = false;
+			alternaLogico = 0;
 			j = j - 2;
 			final = final - 1;
 		} 

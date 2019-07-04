@@ -10,50 +10,64 @@ import java.util.List;
 
 public class IfStatement extends Statement {
 
-    private Expression expression;
-    private List<Statement> statementsTrue;
-    private List<Statement> statementsFalse;
+	private Expression expression;
+	private List<Statement> statementsTrue;
+	private List<Statement> statementsFalse;
 
-    public IfStatement(Expression expression, List<Statement> statementsTrue, List<Statement> statementsFalse) {
-        this.expression = expression;
-        this.statementsTrue = statementsTrue;
-        this.statementsFalse = statementsFalse;
-    }
+	public IfStatement(Expression expression, List<Statement> statementsTrue, List<Statement> statementsFalse) {
+		this.expression = expression;
+		this.statementsTrue = statementsTrue;
+		this.statementsFalse = statementsFalse;
+	}
 
-    @Override
-    public void genC(PW pw) {
-    	pw.print( "if ( " );
-    	
-    	this.expression.genC(pw);
-    	
-    	pw.print(" ) {");
-    	pw.breakLine();
-    	
-    	for (Statement stat : this.statementsTrue) {
-			
-			stat.genC(pw);
-			pw.breakLine();
+	@Override
+	public void genC(PW pw) {
+		pw.print("if ( ");
+
+		this.expression.genC(pw);
+
+		pw.print(" ) {");
+
+		pw.add();
+
+		pw.breakLine();
+
+		if (statementsTrue.size() > 0) {
+			statementsTrue.get(0).genC(pw);
 		}
-    	
-    	pw.print("} ");
-    	pw.breakLine();
-    	
-    	if (this.statementsFalse != null) {
-    		
-    		pw.print( "else {" );
-        	pw.breakLine();
-        	
-        	for (Statement stat : this.statementsFalse) {
-    			
-    			stat.genC(pw);
-    			pw.breakLine();
-    		}
-        	
-        	pw.print("} ");
-        	pw.breakLine();
-        }
-    	
-        pw.breakLine();
-    }
+
+		statementsTrue.stream().skip(1).forEach(statement -> {
+			pw.breakLine();
+			statement.genC(pw);
+		});
+
+		pw.breakLine(true);
+		pw.print("} ");
+		pw.sub();
+
+		if (this.statementsFalse != null) {
+
+			pw.print("else {");
+
+			pw.add();
+
+			pw.breakLine();
+
+			if (statementsFalse.size() > 0) {
+				statementsFalse.get(0).genC(pw);
+			}
+
+			statementsFalse.stream().skip(1).forEach(statement -> {
+				pw.breakLine();
+				statement.genC(pw);
+			});
+
+			pw.breakLine(true);
+			pw.print("}");
+			pw.sub();
+
+		}
+
+	}
 
 }

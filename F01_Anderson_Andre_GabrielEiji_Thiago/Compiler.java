@@ -525,7 +525,8 @@ public class Compiler {
 		ExpressionMultiplication expressionMultiplication = new ExpressionMultiplication(exprUnary());
 
 		while (lexer.token == Symbol.TIMES || lexer.token == Symbol.DIVISION) {
-			Symbol operator = lexer.nextToken();
+			Symbol operator = lexer.token;
+			lexer.nextToken();
 			expressionMultiplication.addOperatorExpressionUnary(operator, exprUnary());
 		}
 

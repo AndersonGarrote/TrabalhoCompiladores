@@ -11,32 +11,37 @@ import java.util.List;
 
 public class WhileStatement extends Statement {
 
-    private Expression expression;
-    private List<Statement> statements;
+	private Expression expression;
+	private List<Statement> statements;
 
-    public WhileStatement(Expression expression, List<Statement> statements) {
-        this.expression = expression;
-        this.statements = statements;
-    }
+	public WhileStatement(Expression expression, List<Statement> statements) {
+		this.expression = expression;
+		this.statements = statements;
+	}
 
-    @Override
-    public void genC(PW pw) {
-    	pw.print( "while ( " );
-    	
-    	this.expression.genC(pw);
-    	
-    	pw.print(" ) {");
-    	pw.breakLine();
-    	
-    	for (Statement stat : this.statements) {
-			
-			stat.genC(pw);
-			pw.breakLine();
+	@Override
+	public void genC(PW pw) {
+
+		pw.print("while ( ");
+
+		this.expression.genC(pw);
+
+		pw.print(" ) {");
+		pw.add();
+		pw.breakLine();
+
+		if(statements != null && statements.size() > 0) {
+			statements.get(0).genC(pw);
 		}
-    	
-    	pw.print("} ");
-    	pw.breakLine();    	
-        pw.breakLine();
-    }
+
+		statements.stream().skip(1).forEach(statement -> {
+			pw.breakLine();
+			statement.genC(pw);
+		});
+
+		pw.breakLine(true);
+		pw.print("} ");
+		pw.sub();
+	}
 
 }

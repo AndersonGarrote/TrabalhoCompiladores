@@ -15,12 +15,12 @@ int recebeDado() {
 void main() {
 	int result;
 	char logico;
-	logico = true;
+	logico = 1;
 	while ( logico ) {
 		result = recebeDado();
 		printf("%d\r\n", result);
 		if ( result == 0 ) {
-			logico = false;
+			logico = 0;
 		} 
 	} 
 	printf("%s\r\n", "teste sem erro");

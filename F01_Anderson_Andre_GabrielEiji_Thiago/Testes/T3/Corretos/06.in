@@ -1,0 +1,13 @@
+function main {
+
+    if 1 < 2 {
+        write("oi");
+    } else {
+        write("oiii");
+    }
+
+    while 1 {
+        write("vish");
+    }
+
+}

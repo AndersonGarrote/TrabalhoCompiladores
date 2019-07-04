@@ -31,7 +31,6 @@ public class VariableDeclarationStatement extends Statement {
     		pw.print("[255]");
     	
     	pw.print(";");
-    	pw.breakLine();
     		
     }
 

@@ -93,16 +93,25 @@ public class Function extends Identifiable implements Printable {
 				param.genC(pw);
 			}
     	}
-		pw.print(") {");
-		pw.breakLine();
-		
-		if( ! this.statements.isEmpty() ) {	
-			for (Statement stat : this.statements) {
-				
-				stat.genC(pw);
-				pw.breakLine();
-			}
-		}
+        pw.print(") {");
+        
+        pw.add();
+
+        pw.breakLine();
+        
+
+        if(statements.size() > 0) {
+            statements.get(0).genC(pw);
+        }
+
+        statements.stream().skip(1).forEach(statement -> {
+            pw.breakLine();
+            statement.genC(pw);
+        });
+
+        pw.breakLine(true);
+        
+        pw.sub();
 		
 		pw.print("}");
 		pw.breakLine();

@@ -10,35 +10,36 @@ import java.io.PrintWriter;
 
 public class PW {
 
-	private int currentIndent = 0;
-
-	public int step = 3;
+	private String currentIndent = "";
 	public PrintWriter out;
 
 	public void set(PrintWriter out) {
 		this.out = out;
-		this.currentIndent = 0;
-	}
-
-	public void set(int indent) {
-		this.currentIndent = indent;
+		this.currentIndent = "";
 	}
 
 	public void add() {
-		this.currentIndent+= step;
+		this.currentIndent += "\t";
 	}
 
 	public void sub() {
-		this.currentIndent-= step;
+		this.currentIndent = currentIndent.substring(0, currentIndent.length() - 1);
 	}
 
 	public void print(String s) {
-		this.out.print("".substring(0, currentIndent));
 		this.out.print(s);
 	}
 
 	public void breakLine() {
-		this.out.print("\r\n");
+		this.out.print("\r\n" + currentIndent);
+	}
+
+	public void breakLine(boolean sub) {
+		if (sub) {
+			sub();
+		}
+		breakLine();
+		add();
 	}
 
 }

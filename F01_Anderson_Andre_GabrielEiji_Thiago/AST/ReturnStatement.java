@@ -19,7 +19,6 @@ public class ReturnStatement extends Statement {
         pw.print("return ");
         expression.genC(pw);
         pw.print(";");
-        pw.breakLine();
     }
 
 }

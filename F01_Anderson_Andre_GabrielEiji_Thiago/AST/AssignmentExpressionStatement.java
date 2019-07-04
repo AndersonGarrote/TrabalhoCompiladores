@@ -30,7 +30,6 @@ public class AssignmentExpressionStatement extends Statement {
             pw.print(", ");
             rightExpression.genC(pw);
             pw.print(");");
-            pw.breakLine();
         } else {
             leftExpression.genC(pw);
             if (rightExpression != null) {
@@ -39,7 +38,6 @@ public class AssignmentExpressionStatement extends Statement {
 
             }
             pw.print(";");
-            pw.breakLine();
         }
 
     }

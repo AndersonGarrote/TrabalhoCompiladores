@@ -16,7 +16,7 @@ public class LiteralBoolean extends Literal implements Printable{
     }
 
     public void genC(PW pw) {
-        pw.out.print(this.value ? "true" : "false");
+        pw.out.print(this.value ? "1" : "0");
     }
 
 }

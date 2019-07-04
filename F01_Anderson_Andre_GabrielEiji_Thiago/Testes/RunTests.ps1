@@ -17,7 +17,7 @@ Foreach ($Ti in $Tn) {
     $Testes = Invoke-Expression "dir Testes\$Ti\Corretos\*.in | select BaseName" # Nomes dos arquivos .in corretos
     Foreach ($Teste in $Testes) {
         $Nome = $Teste.BaseName
-        Invoke-Expression "java Main Testes\$Ti\Corretos\$Nome.in Testes\$Ti\Corretos\$Nome.out 2>&1 | Out-Null" # Execução do teste
+        Invoke-Expression "java Main Testes\$Ti\Corretos\$Nome.in Testes\$Ti\Corretos\$Nome.c 2>&1 | Out-Null" # Execução do teste
         if ($lastExitCode -eq 0) {
             "  $Nome | Y"
         } else {

@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+void soma(int x , int y) {
+int a;
+
+a = x Identifier y;
+
+;
+
+}
+
+void main() {
+;
+
+}
+

@@ -2,7 +2,7 @@
 param([Int32]$arg1=0)
 
 # Compilação
-Invoke-Expression "javac *.java"
+Invoke-Expression "javac AST/*.java AuxComp/*.java Lexer/*.java *.java"
 
 # Testes
 $Tn = "T1", "T2", "T3"

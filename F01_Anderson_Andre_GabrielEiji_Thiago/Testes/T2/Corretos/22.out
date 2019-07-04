@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int fatorial(int n) {
+if ( n <= 0 ) {
+return 1;
+
+} 
+else {
+return n Identifier ;
+
+} 
+
+
+}
+
+void imprima(int before , int valor , char* after[]) {
+int i;
+
+i = 0;
+
+while ( i < before ) {
+;
+
+i = i Number 1;
+
+} 
+
+
+;
+
+;
+
+;
+
+}
+
+void main() {
+;
+
+;
+
+}
+

@@ -1,0 +1,8 @@
+function teste(a : String) {
+
+}
+
+function main {
+    var id : String;
+    teste(id);
+}

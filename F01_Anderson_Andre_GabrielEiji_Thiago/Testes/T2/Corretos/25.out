@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int recebeDado() {
+int num;
+
+int numDois;
+
+char* texto[];
+
+num = ;
+
+numDois = ;
+
+texto = ;
+
+;
+
+return num Identifier numDois;
+
+}
+
+void main() {
+int result;
+
+char logico;
+
+logico = true;
+
+while ( logico ) {
+result = ;
+
+;
+
+if ( result == 0 ) {
+logico = false;
+
+} 
+
+
+} 
+
+
+;
+
+}
+

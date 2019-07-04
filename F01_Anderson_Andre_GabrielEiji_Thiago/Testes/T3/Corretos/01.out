@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+void main() {
+write("Testando", "com", "varios", "parametros");
+
+writeln("Testando", "com", "varios", "parametros");
+
+write("Testando", "com", 4, "parametros");
+
+writeln("Testando", "com", 4, "parametros");
+
+write("Um unico parametro String");
+
+writeln("Um unico parametro String");
+
+write(1);
+
+writeln(1);
+
+}
+

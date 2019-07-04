@@ -1,0 +1,174 @@
+#include <stdio.h>
+
+int constante() {
+int valorA;
+
+int valorB;
+
+valorA = 1 + +2 + +5 - -4;
+
+valorB = 10 Number 2 Number 20 - -5;
+
+if ( false || valorB != 10 ) {
+return valorA;
+
+} 
+
+
+return valorB;
+
+}
+
+int multiplicar(int multA , int multB , char tipo) {
+int total;
+
+if ( tipo == true ) {
+int i;
+
+i = 1;
+
+total = 0;
+
+while ( i <= multB ) {
+total = total Identifier multA;
+
+i = i Number 1;
+
+} 
+
+
+return total;
+
+} 
+
+
+if ( tipo == false ) {
+total = multA Identifier multB;
+
+return total;
+
+} 
+
+
+}
+
+char maiorIgual(int valorAa , int valorBb) {
+if ( valorAa >= valorBb ) {
+return true;
+
+} 
+else {
+return false;
+
+} 
+
+
+}
+
+char* mensagem(char* msg[]) {
+;
+
+return "write";
+
+}
+
+void calc(char oper) {
+int valor;
+
+int x;
+
+x = - Number 100;
+
+valor = 1 Identifier ;
+
+if ( oper == true || x > 80 && x < 0 && valor != 2 || valor > 50 ) {
+valor = valor Number 50;
+
+} 
+
+
+}
+
+void mensagens(char* msgA[] , char* msgB[]) {
+char* aux[];
+
+aux = "Ola, sua mensagem:";
+
+;
+
+;
+
+;
+
+;
+
+}
+
+char portaAnd(char eA , char eB) {
+eA;
+
+eB;
+
+char resultado;
+
+if ( eA == true && eB == true ) {
+resultado = true;
+
+} 
+else {
+resultado = false;
+
+} 
+
+
+return resultado;
+
+}
+
+void comparador(char* msgF[] , char tipoComp) {
+char* com[];
+
+com = "Permitido";
+
+if ( tipoComp ) {
+com = "Proibido";
+
+} 
+
+
+if ( msgF == com ) {
+;
+
+} 
+
+
+}
+
+void loopInfinito() {
+int expr;
+
+while ( true ) {
+} 
+
+
+}
+
+void main() {
+int resultadoM;
+
+char* texto[];
+
+resultadoM = ;
+
+;
+
+texto = ;
+
+;
+
+;
+
+;
+
+}
+

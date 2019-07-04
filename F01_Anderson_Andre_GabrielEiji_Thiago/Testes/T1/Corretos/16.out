@@ -1,0 +1,117 @@
+#include <stdio.h>
+
+void imprime(int q , int w , int e , char nomeFunc[]) {
+;
+
+;
+
+;
+
+;
+
+;
+
+;
+
+}
+
+int aninhamento(int k , int l) {
+int i;
+
+int j;
+
+char alternaLogico;
+
+char a;
+
+int b;
+
+int final;
+
+final = 0;
+
+b = 4000;
+
+i = 0;
+
+j = k Identifier l;
+
+a = false;
+
+while ( i <= k ) {
+alternaLogico = true;
+
+while ( j >= l ) {
+if ( a == alternaLogico ) {
+b = b Number 2;
+
+final = final Number 1;
+
+} 
+else {
+if ( b < 2 || b != 4 && b > 5 ) {
+b = b Number 1;
+
+} 
+
+
+} 
+
+
+alternaLogico = false;
+
+j = j Number 2;
+
+final = final Number 1;
+
+} 
+
+
+i = i Number 1;
+
+} 
+
+
+;
+
+return final;
+
+}
+
+void main() {
+int h;
+
+int g;
+
+int res;
+
+res = ;
+
+char n[];
+
+n = "variavel de texto da main";
+
+;
+
+int i;
+
+i = 0;
+
+int resDois;
+
+while ( i != 3 ) {
+;
+
+i = i Number 1;
+
+if ( i == 2 ) {
+resDois = ;
+
+} 
+
+
+} 
+
+
+}
+

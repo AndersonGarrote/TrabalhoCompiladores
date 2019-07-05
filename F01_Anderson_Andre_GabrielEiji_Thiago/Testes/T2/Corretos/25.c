@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+typedef struct { char data[255]; } String; 
 
 int recebeDado() {
 	int num;
 	int numDois;
-	char texto[255];
-	num = readInt();
-	numDois = readInt();
-	strcpy(texto, readString());
-	printf("%s\r\n", texto);
+	String texto;
+	scanf("%d", &num);
+	scanf("%d", &numDois);
+	scanf("%s", texto.data);
+	printf("%s\r\n", texto.data);
 	return num * numDois;
 }
 
@@ -16,13 +17,13 @@ void main() {
 	int result;
 	char logico;
 	logico = 1;
-	while ( logico ) {
+	while (logico) {
 		result = recebeDado();
 		printf("%d\r\n", result);
-		if ( result == 0 ) {
+		if (result == 0) {
 			logico = 0;
 		} 
 	} 
-	printf("%s\r\n", "teste sem erro");
+	printf("%s\r\n", ((String) { "teste sem erro" }).data);
 }
 

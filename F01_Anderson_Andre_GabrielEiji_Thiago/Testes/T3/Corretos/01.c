@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct { char data[255]; } String; 
+typedef struct {
+	char data[255];
+} String; 
 
 void main() {
 	printf("%s%s%s%s", ((String) { "Testando" }).data, ((String) { "com" }).data, ((String) { "varios" }).data, ((String) { "parametros" }).data);

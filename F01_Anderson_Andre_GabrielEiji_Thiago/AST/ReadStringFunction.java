@@ -6,8 +6,6 @@
 */
 package AST;
 
-import java.util.List;
-
 public final class ReadStringFunction extends Function {
 
     public ReadStringFunction() {

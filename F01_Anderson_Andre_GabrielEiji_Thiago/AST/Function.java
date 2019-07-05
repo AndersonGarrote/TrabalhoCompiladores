@@ -21,9 +21,7 @@ public class Function extends Identifiable implements Printable {
     public static WritelnFunction writelnFunction = new WritelnFunction();
 
     public enum ParamsValidation {
-        VALID_PARAMS,
-        WRONG_PARAM_NUMBER,
-        WRONG_PARAM_TYPE
+        VALID_PARAMS, WRONG_PARAM_NUMBER, WRONG_PARAM_TYPE
     };
 
     public Function(Identifier identifier) {
@@ -49,58 +47,55 @@ public class Function extends Identifiable implements Printable {
 
     public ParamsValidation validateParameters(List<Expression> parameters) {
 
-        if(this.parameters.size() != parameters.size()) {
+        if (this.parameters.size() != parameters.size()) {
             return ParamsValidation.WRONG_PARAM_NUMBER;
         }
 
-        for(int i = 0; i < parameters.size(); i++) {
-            if(parameters.get(i).getType() != this.parameters.get(i).getType()) {
+        for (int i = 0; i < parameters.size(); i++) {
+            if (parameters.get(i).getType() != this.parameters.get(i).getType()) {
                 return ParamsValidation.WRONG_PARAM_TYPE;
             }
         }
 
         return ParamsValidation.VALID_PARAMS;
-        
+
     }
 
     @Override
     public void genC(PW pw) {
-    	// Colocando o tipo	
-		if( this.type == null ) {
-			pw.print("void");
-		} else if (this.type == Type.stringType) {
-            pw.print("char *");
+        // Colocando o tipo
+        if (this.type == null) {
+            pw.print("void");
         } else {
-			this.type.genC(pw);
-		}
-		pw.print(" ");
-		
-		// Colocando o nome
-		this.getIdentifier().genC(pw);
-		
-		//Colocando os parâmetros
-		pw.print("(");
-		
-		boolean first = true;
-		if( ! this.parameters.isEmpty() ) {
-			for (Parameter param : this.parameters) {
-				
-				if(first)
-					first = false;
-				else
-					pw.print(", ");
-				
-				param.genC(pw);
-			}
-    	}
+            this.type.genC(pw);
+        }
+        pw.print(" ");
+
+        // Colocando o nome
+        this.getIdentifier().genC(pw);
+
+        // Colocando os parâmetros
+        pw.print("(");
+
+        boolean first = true;
+        if (!this.parameters.isEmpty()) {
+            for (Parameter param : this.parameters) {
+
+                if (first)
+                    first = false;
+                else
+                    pw.print(", ");
+
+                param.genC(pw);
+            }
+        }
         pw.print(") {");
-        
+
         pw.add();
 
         pw.breakLine();
-        
 
-        if(statements.size() > 0) {
+        if (statements.size() > 0) {
             statements.get(0).genC(pw);
         }
 
@@ -110,14 +105,14 @@ public class Function extends Identifiable implements Printable {
         });
 
         pw.breakLine(true);
-        
-        pw.sub();
-		
-		pw.print("}");
-		pw.breakLine();
 
-		pw.breakLine();
-	
+        pw.sub();
+
+        pw.print("}");
+        pw.breakLine();
+
+        pw.breakLine();
+
     }
 
     @Override

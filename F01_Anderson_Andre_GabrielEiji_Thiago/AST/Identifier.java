@@ -15,7 +15,7 @@ public class Identifier extends ExpressionPrimary implements Printable {
         this.name = name;
         this.identifiable = null;
     }
-    
+
     public Identifier(String name, Identifiable identifiable) {
         this.name = name;
         identifiable.setIdentifier(this);
@@ -26,16 +26,16 @@ public class Identifier extends ExpressionPrimary implements Printable {
         return this.name;
     }
 
-	public Type getIdentifiableType() {
-		return identifiable.getType();
+    public Type getIdentifiableType() {
+        return identifiable.getType();
     }
-    
+
     public Identifiable getIdentifiable() {
         return identifiable;
     }
 
     public void setIdentifiable(Identifiable identifiable) {
-        if(identifiable.getIdentifier().getName() != this.name) {
+        if (identifiable.getIdentifier().getName() != this.name) {
             identifiable.setIdentifier(this);
         }
         this.identifiable = identifiable;

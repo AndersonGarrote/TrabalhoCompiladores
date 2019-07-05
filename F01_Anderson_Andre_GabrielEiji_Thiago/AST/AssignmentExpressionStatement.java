@@ -23,23 +23,42 @@ public class AssignmentExpressionStatement extends Statement {
 
     @Override
     public void genC(PW pw) {
-        // Atribuição de string: s = "string" ou string()
-        if (rightExpression != null && rightExpression.getType() == Type.stringType) {
-            pw.print("strcpy(");
-            leftExpression.genC(pw);
-            pw.print(", ");
-            rightExpression.genC(pw);
-            pw.print(");");
+
+        if (rightExpression != null) {
+
+            if (rightExpression.isFunctionWithReturn() && rightExpression.getFunction() == Function.readIntFunction) {
+                readIntFunctionGenC(pw);
+            } else if (rightExpression.isFunctionWithReturn()
+                    && rightExpression.getFunction() == Function.readStringFunction) {
+                readStringFunctionGenC(pw);
+            } else {
+                assignGenC(pw);
+            }
+
         } else {
             leftExpression.genC(pw);
-            if (rightExpression != null) {
-                pw.print(" = ");
-                rightExpression.genC(pw);
-
-            }
             pw.print(";");
         }
 
     }
 
+    private void assignGenC(PW pw) {
+        leftExpression.genC(pw);
+        pw.print(" = ");
+        rightExpression.genC(pw);
+        pw.print(";");
+    }
+
+    private void readIntFunctionGenC(PW pw) {
+        pw.print("scanf(\"%d\", &");
+        leftExpression.genC(pw);
+        pw.print(");");
+    }
+
+    private void readStringFunctionGenC(PW pw) {
+        pw.print("scanf(\"%s\", ");
+        leftExpression.genC(pw);
+        pw.print(".data");
+        pw.print(");");
+    }
 }

@@ -8,30 +8,27 @@ package AST;
 
 public class VariableDeclarationStatement extends Statement {
 
-    private Variable variable;
+	private Variable variable;
 
-    public VariableDeclarationStatement() {
-        
-    }
+	public VariableDeclarationStatement() {
 
-    public VariableDeclarationStatement(Variable variable) {
-        this.variable = variable;
-    }
+	}
 
-    @Override
-    public void genC(PW pw) {
-    	
-    	this.variable.getType().genC(pw);
-    	
-    	pw.print(" ");
-    	
-    	this.variable.getIdentifier().genC(pw);
-    	
-    	if( this.variable.getType() == Type.stringType )
-    		pw.print("[255]");
-    	
-    	pw.print(";");
-    		
-    }
+	public VariableDeclarationStatement(Variable variable) {
+		this.variable = variable;
+	}
+
+	@Override
+	public void genC(PW pw) {
+
+		this.variable.getType().genC(pw);
+
+		pw.print(" ");
+
+		this.variable.getIdentifier().genC(pw);
+
+		pw.print(";");
+
+	}
 
 }

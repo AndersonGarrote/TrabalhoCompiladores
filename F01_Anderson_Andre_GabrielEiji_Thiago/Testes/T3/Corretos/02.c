@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+typedef struct { char data[255]; } String; 
 
-void teste(char a[]) {
+void teste(String a[]) {
 	
 }
 
 void main() {
-	char id[255];
+	String id;
 	teste(id);
 }
 

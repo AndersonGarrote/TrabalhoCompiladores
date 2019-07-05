@@ -22,11 +22,11 @@ public class WhileStatement extends Statement {
 	@Override
 	public void genC(PW pw) {
 
-		pw.print("while ( ");
+		pw.print("while (");
 
 		this.expression.genC(pw);
 
-		pw.print(" ) {");
+		pw.print(") {");
 		pw.add();
 		pw.breakLine();
 

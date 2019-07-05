@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <string.h>
+typedef struct { char data[255]; } String; 
 
-char * string() {
-	return "ola";
+String string() {
+	return ((String) { "ola" });
 }
 
 void main() {
-	char x[255];
-	strcpy(x, "ola");
-	strcpy(x, string());
+	String x;
+	x = ((String) { "ola" });
+	x = string();
 }
 

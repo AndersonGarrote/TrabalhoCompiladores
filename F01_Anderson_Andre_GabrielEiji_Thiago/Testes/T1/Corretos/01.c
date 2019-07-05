@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct { char data[255]; } String; 
+typedef struct {
+	char data[255];
+} String; 
 
 int soma(int x, int y) {
 	int a;

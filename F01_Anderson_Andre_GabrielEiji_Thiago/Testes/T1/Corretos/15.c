@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct { char data[255]; } String; 
+typedef struct {
+	char data[255];
+} String; 
 
-void imprime(int q, int w, int e, String nomeFunc[]) {
+void imprime(int q, int w, int e, String nomeFunc) {
 	printf("%s\r\n", ((String) { "**************" }).data);
 	printf("%d\r\n", q);
 	printf("%d\r\n", w);

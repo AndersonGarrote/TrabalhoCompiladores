@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct { char data[255]; } String; 
+typedef struct {
+	char data[255];
+} String; 
 
 int fatorial(int n) {
 	if (n <= 0) {
@@ -10,7 +12,7 @@ int fatorial(int n) {
 	}
 }
 
-void imprima(int before, int valor, String after[]) {
+void imprima(int before, int valor, String after) {
 	int i;
 	i = 0;
 	while (i < before) {

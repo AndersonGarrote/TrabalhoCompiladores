@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-typedef struct { char data[255]; } String; 
+typedef struct {
+	char data[255];
+} String; 
 
 int constante() {
 	int valorA;
@@ -39,7 +41,7 @@ char maiorIgual(int valorAa, int valorBb) {
 	}
 }
 
-String mensagem(String msg[]) {
+String mensagem(String msg) {
 	printf("%s\r\n", msg.data);
 	return ((String) { "write" });
 }
@@ -54,7 +56,7 @@ void calc(char oper) {
 	} 
 }
 
-void mensagens(String msgA[], String msgB[]) {
+void mensagens(String msgA, String msgB) {
 	String aux;
 	aux = ((String) { "Ola, sua mensagem:" });
 	printf("%s", aux.data);
@@ -75,7 +77,7 @@ char portaAnd(char eA, char eB) {
 	return resultado;
 }
 
-void comparador(String msgF[], char tipoComp) {
+void comparador(String msgF, char tipoComp) {
 	String com;
 	com = ((String) { "Permitido" });
 	if (tipoComp) {

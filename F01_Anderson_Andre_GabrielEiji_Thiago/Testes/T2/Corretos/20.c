@@ -7,7 +7,7 @@ typedef struct {
 void main() {
 	int num;
 	String texto;
-	scanf("%d", &num);
-	scanf("%s", texto.data);
+	scanf(" %d", &num);
+	scanf(" %254[^\n]s", texto.data);
 }
 

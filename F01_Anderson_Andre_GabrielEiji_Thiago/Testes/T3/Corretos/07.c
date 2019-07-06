@@ -6,13 +6,13 @@ typedef struct {
 
 int recebeInt() {
 	int x;
-	scanf("%d", &x);
+	scanf(" %d", &x);
 	return x;
 }
 
 String recebeString() {
 	String x;
-	scanf("%s", x.data);
+	scanf(" %254[^\n]s", x.data);
 	return x;
 }
 

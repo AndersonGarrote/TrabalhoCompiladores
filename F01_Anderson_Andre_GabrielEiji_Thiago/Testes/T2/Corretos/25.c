@@ -8,9 +8,9 @@ int recebeDado() {
 	int num;
 	int numDois;
 	String texto;
-	scanf("%d", &num);
-	scanf("%d", &numDois);
-	scanf("%s", texto.data);
+	scanf(" %d", &num);
+	scanf(" %d", &numDois);
+	scanf(" %254[^\n]s", texto.data);
 	printf("%s\r\n", texto.data);
 	return num * numDois;
 }

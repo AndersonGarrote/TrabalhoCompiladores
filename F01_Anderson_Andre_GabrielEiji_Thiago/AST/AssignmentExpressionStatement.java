@@ -50,15 +50,14 @@ public class AssignmentExpressionStatement extends Statement {
     }
 
     private void readIntFunctionGenC(PW pw) {
-        pw.print("scanf(\"%d\", &");
+        pw.print("scanf(\" %d\", &");
         leftExpression.genC(pw);
         pw.print(");");
     }
 
     private void readStringFunctionGenC(PW pw) {
-        pw.print("scanf(\"%s\", ");
+        pw.print("scanf(\" %254[^\\n]s\", ");
         leftExpression.genC(pw);
-        pw.print(".data");
-        pw.print(");");
+        pw.print(".data);");
     }
 }

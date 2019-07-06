@@ -5,10 +5,10 @@ typedef struct {
 } String; 
 
 int calculaFibo(int n) {
-	if (n == 0) {
+	if () {
 		return 0;
 	} 
-	if (n == 1) {
+	if () {
 		return 1;
 	} 
 	return calculaFibo(n - 1) + calculaFibo(n - 2);

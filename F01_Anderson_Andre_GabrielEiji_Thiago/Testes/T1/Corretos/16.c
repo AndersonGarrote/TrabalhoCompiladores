@@ -28,11 +28,11 @@ int aninhamento(int k, int l) {
 	while (i <= k) {
 		alternaLogico = 1;
 		while (j >= l) {
-			if (a == alternaLogico) {
+			if () {
 				b = b / 2;
 				final = final + 1;
 			} else {
-				if (b < 2 || b != 4 && b > 5) {
+				if (b < 2 ||  && b > 5) {
 					b = b - 1;
 				} 
 			}
@@ -57,10 +57,10 @@ void main() {
 	int i;
 	i = 0;
 	int resDois;
-	while (i != 3) {
+	while () {
 		imprime(i, i + 1, i + 2, ((String) { "i, i+1, i+2" }));
 		i = i + 1;
-		if (i == 2) {
+		if () {
 			resDois = aninhamento(i, i + 1);
 		} 
 	} 

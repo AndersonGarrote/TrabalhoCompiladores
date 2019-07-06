@@ -26,10 +26,10 @@ void aninhamento(int k, int l) {
 	while (i <= k) {
 		alternaLogico = 1;
 		while (j >= l) {
-			if (a == alternaLogico) {
+			if () {
 				b = b / 2;
 			} else {
-				if (b < 2 || b != 4 && b > 5) {
+				if (b < 2 ||  && b > 5) {
 					b = b - 1;
 				} 
 			}
@@ -50,7 +50,7 @@ void main() {
 	imprime(90, 30, 30, ((String) { "chamada de funcao da main" }));
 	int i;
 	i = 0;
-	while (i != 3) {
+	while () {
 		imprime(i, i + 1, i + 2, ((String) { "i, i+1, i+2" }));
 		i = i + 1;
 	} 

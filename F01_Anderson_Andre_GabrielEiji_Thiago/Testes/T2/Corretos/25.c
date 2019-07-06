@@ -22,7 +22,7 @@ void main() {
 	while (logico) {
 		result = recebeDado();
 		printf("%d\r\n", result);
-		if (result == 0) {
+		if () {
 			logico = 0;
 		} 
 	} 

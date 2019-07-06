@@ -1,0 +1,125 @@
+=====Log dos erros=====
+
+
+- 02.c -
+  Imprime "5%"
+  
+  
+- 15.c -
+  15.c:29:8: error: expected expression before ‘)’ token
+    if () {
+    
+  15.c:32:24: warning: comparison between pointer and integer
+     if (b < 2 ||  && b > 5) {
+                        ^
+  15.c:32:5: error: label ‘b’ used but not defined
+     if (b < 2 ||  && b > 5) {
+     
+  15.c:20:7: warning: variable ‘a’ set but not used [-Wunused-but-set-variable]
+    char a;
+    
+  15.c:19:7: warning: variable ‘alternaLogico’ set but not used [-Wunused-but-set-variable]
+    char alternaLogico;
+         ^~~~~~~~~~~~~
+  15.c: At top level:
+  15.c: In function ‘main’:
+  15.c:53:9: error: expected expression before ‘)’ token
+    while () {
+           ^
+  15.c:54:3: error: too few arguments to function ‘imprime’
+     imprime(i, i + 1, i + 2, ((String) { "i, i+1, i+2" }));
+     ^~~~~~~
+  15.c:7:6: note: declared here
+   void imprime(int q, int w, int e, String nomeFunc) {
+        ^~~~~~~
+  15.c:48:9: warning: variable ‘n’ set but not used [-Wunused-but-set-variable]
+    String n;
+
+
+- 16.c -
+  16.c: In function ‘aninhamento’:
+  16.c:31:8: error: expected expression before ‘)’ token
+      if () {
+          ^
+  16.c:35:24: warning: comparison between pointer and integer
+       if (b < 2 ||  && b > 5) {
+                          ^
+  16.c:35:5: error: label ‘b’ used but not defined
+       if (b < 2 ||  && b > 5) {
+       ^~
+  16.c: At top level:
+  16.c:49:6: warning: return type of ‘main’ is not ‘int’ [-Wmain]
+   void main() {
+        ^~~~
+  16.c: In function ‘main’:
+  16.c:60:9: error: expected expression before ‘)’ token
+    while () {
+           ^
+  16.c:61:3: error: too few arguments to function ‘imprime’
+     imprime(i, i + 1, i + 2, ((String) { "i, i+1, i+2" }));
+     ^~~~~~~
+  16.c:7:6: note: declared here
+   void imprime(int q, int w, int e, String nomeFunc) {
+        ^~~~~~~
+  16.c:63:7: error: expected expression before ‘)’ token
+     if () {
+         ^
+
+
+- 21.c -
+  Imprime:
+    Correto semantico0
+    0
+    0
+    [1]    6469 floating point exception (core dumped)  ./main
+
+
+- 23.c -
+  23.c: In function ‘constante’:
+  23.c:12:11: error: expected expression before ‘)’ token
+    if (0 || ) {
+             ^
+  23.c: In function ‘multiplicar’:
+  23.c:20:6: error: expected expression before ‘)’ token
+    if () {
+        ^
+  23.c:22:3: error: ‘i’ undeclared (first use in this function)
+     i = 1;
+     ^
+  23.c:22:3: note: each undeclared identifier is reported only once for each function it appears in
+  23.c:30:6: error: expected expression before ‘)’ token
+    if () {
+        ^
+  23.c: In function ‘calc’:
+  23.c:54:7: error: expected expression before ‘||’ token
+    if ( || x > 80 && x < 0 &&  || valor > 50) {
+         ^~
+  23.c: In function ‘portaAnd’:
+  23.c:72:10: error: expected identifier before ‘)’ token
+    if ( && ) {
+            ^
+
+
+- 25.c -
+  25.c:25:7: error: expected expression before ‘)’ token
+   if () {
+       ^
+
+
+- T3/03.c -
+  03.c: In function ‘calculaFibo’:
+  03.c:8:6: error: expected expression before ‘)’ token
+    if () {
+        ^
+  03.c:11:6: error: expected expression before ‘)’ token
+    if () {
+        ^
+        
+       
+- T3/05.c -
+  Imprime:
+  ola
+  olaola 2
+  ola 23 2
+  3 2arou aaaaarou
+  arou aaaaarou%

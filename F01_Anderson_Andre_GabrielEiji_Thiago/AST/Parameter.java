@@ -7,25 +7,17 @@
 
 package AST;
 
-public class Parameter implements Printable {
-
-    private Identifier identifier;
-    private Type type;
+public class Parameter extends Variable implements Printable {
 
     public Parameter(Identifier identifier, Type type) {
-        this.identifier = identifier;
-        this.type = type;
+        super(identifier, type);
     }
 
     @Override
     public void genC(PW pw) {
-        type.genC(pw);
+        this.getType().genC(pw);
         pw.print(" ");
-        identifier.genC(pw);
-    }
-
-    public Type getType() {
-        return type;
+        this.getIdentifier().genC(pw);
     }
     
 }

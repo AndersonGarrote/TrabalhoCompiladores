@@ -6,8 +6,6 @@
 */
 package AST;
 
-import java.util.List;
-
 public final class WritelnFunction extends WriteFunction {
 
     public WritelnFunction() {

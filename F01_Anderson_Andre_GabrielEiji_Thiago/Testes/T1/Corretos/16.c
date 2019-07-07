@@ -2,7 +2,7 @@
 #include <string.h>
 typedef struct {
 	char data[255];
-} String; 
+} String;
 
 void imprime(int q, int w, int e, String nomeFunc) {
 	printf("%s\r\n", ((String) { "**************" }).data);
@@ -34,14 +34,14 @@ int aninhamento(int k, int l) {
 			} else {
 				if (b < 2 || b != 4 && b > 5) {
 					b = b - 1;
-				} 
+				}
 			}
 			alternaLogico = 0;
 			j = j - 2;
 			final = final - 1;
-		} 
+		}
 		i = i + 1;
-	} 
+	}
 	imprime(i, j, b, ((String) { " aninhamento" }));
 	return final;
 }
@@ -62,7 +62,6 @@ void main() {
 		i = i + 1;
 		if (i == 2) {
 			resDois = aninhamento(i, i + 1);
-		} 
-	} 
+		}
+	}
 }
-

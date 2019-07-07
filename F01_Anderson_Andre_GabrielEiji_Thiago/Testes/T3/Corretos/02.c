@@ -2,13 +2,14 @@
 #include <string.h>
 typedef struct {
 	char data[255];
-} String;
+} String; 
 
 void teste(String a) {
-
+	
 }
 
 void main() {
 	String id;
 	teste(id);
 }
+

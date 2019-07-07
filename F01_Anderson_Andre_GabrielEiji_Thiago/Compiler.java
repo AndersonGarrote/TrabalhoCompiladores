@@ -102,8 +102,6 @@ public class Compiler {
 
 		currentFunction = function;
 
-		List<Parameter> parameterList;
-
 		if (lexer.token == Symbol.LEFT_PARENTHESIS) {
 
 			lexer.nextToken();
@@ -153,7 +151,6 @@ public class Compiler {
 		if (lexer.token == Symbol.COLON) {
 			lexer.nextToken();
 			Type type = type();
-			Variable variable = new Variable(identifier, type);
 			return new Parameter(identifier, type);
 		} else {
 			error.signalWrongToken(Symbol.COLON);

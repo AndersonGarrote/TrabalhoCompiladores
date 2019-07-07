@@ -9,7 +9,7 @@ int constante() {
 	int valorB;
 	valorA = 1 * +2 + +5 * -4;
 	valorB = 10 / 2 - 20 / -5;
-	if (0 || ) {
+	if (0 || valorB != 10) {
 		return valorA;
 	} 
 	return valorB;
@@ -17,7 +17,7 @@ int constante() {
 
 int multiplicar(int multA, int multB, char tipo) {
 	int total;
-	if () {
+	if (tipo == 1) {
 		int i;
 		i = 1;
 		total = 0;
@@ -27,7 +27,7 @@ int multiplicar(int multA, int multB, char tipo) {
 		} 
 		return total;
 	} 
-	if () {
+	if (tipo == 0) {
 		total = multA * multB;
 		return total;
 	} 
@@ -51,7 +51,7 @@ void calc(char oper) {
 	int x;
 	x = -constante() + 100;
 	valor = 1 + constante();
-	if ( || x > 80 && x < 0 &&  || valor > 50) {
+	if (oper == 1 || x > 80 && x < 0 && valor != 2 || valor > 50) {
 		valor = valor + 50;
 	} 
 }
@@ -69,7 +69,7 @@ char portaAnd(char eA, char eB) {
 	eA;
 	eB;
 	char resultado;
-	if ( && ) {
+	if (eA == 1 && eB == 1) {
 		resultado = 1;
 	} else {
 		resultado = 0;

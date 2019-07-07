@@ -1,3 +1,0 @@
-
-Testes\T2\Incorretos\18.in:2: Expressão à esquerda não é um identificador válido.
-  2 + 2 = 3 * 3;

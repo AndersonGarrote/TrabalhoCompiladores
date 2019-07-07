@@ -1,3 +1,0 @@
-
-Testes\T2\Incorretos\06.in:7: Tipos das expressões são incompatíveis: integer e boolean.
-    num = true;

@@ -1,3 +1,4 @@
+
 /*
 	Anderson Pinheiro Garrote RA: 743505
 	Andre Matheus Bariani Trava RA: 743506
@@ -35,18 +36,13 @@ public class Main {
 			char[] input = new char[(int) file.length() + 1];
 			try {
 				numChRead = stream.read(input, 0, (int) file.length());
+				stream.close();
 			} catch (IOException e) {
 				System.out.println("Error reading file " + args[0]);
 				throw new RuntimeException();
 			}
 			if (numChRead != file.length()) {
 				System.out.println("Read error");
-				throw new RuntimeException();
-			}
-			try {
-				stream.close();
-			} catch (IOException e) {
-				System.out.println("Error in handling the file " + args[0]);
 				throw new RuntimeException();
 			}
 			Compiler compiler = new Compiler();
@@ -63,7 +59,7 @@ public class Main {
 			try {
 				program = compiler.compile(input, printErrors, args[0]);
 			} catch (RuntimeException e) {
-				
+
 				e.printStackTrace();
 				System.out.println("\nNão foi possível concluir a compilação!");
 				System.exit(2);

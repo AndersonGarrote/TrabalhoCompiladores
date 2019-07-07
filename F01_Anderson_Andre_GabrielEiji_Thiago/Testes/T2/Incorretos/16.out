@@ -1,3 +1,0 @@
-
-Testes\T2\Incorretos\16.in:20: Tipos dos parâmetros da função soma incorretos.
-  soma("texto", 9);

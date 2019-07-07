@@ -1,3 +1,0 @@
-
-Testes\T1\Incorretos\08.in:1: Esperado o token 'Boolean' | 'Int' | 'String', encontrado 'Identifier'
-function soma(x : Int, y : Int) -> Char{

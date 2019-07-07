@@ -53,10 +53,16 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
             pw.print("\", ");
 
             expressions.get(0).genC(pw);
+            if(expressions.get(0).getType() == Type.stringType) {
+                pw.print(".data");
+            }
 
             expressions.stream().skip(1).forEach(expression -> {
                 pw.print(", ");
                 expression.genC(pw);
+                if(expression.getType() == Type.stringType) {
+                    pw.print(".data");
+                }
             });
 
             pw.print(")");

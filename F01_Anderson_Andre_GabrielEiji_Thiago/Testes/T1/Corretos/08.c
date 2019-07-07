@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+typedef struct {
+	char data[255];
+} String; 
 
 void main() {
-	char s[255];
-	printf("%s", s);
+	String s;
+	printf("%s", s.data);
 }
 

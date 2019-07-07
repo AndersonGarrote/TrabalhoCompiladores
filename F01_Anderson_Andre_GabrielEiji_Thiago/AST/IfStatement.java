@@ -22,11 +22,11 @@ public class IfStatement extends Statement {
 
 	@Override
 	public void genC(PW pw) {
-		pw.print("if ( ");
+		pw.print("if (");
 
 		this.expression.genC(pw);
 
-		pw.print(" ) {");
+		pw.print(") {");
 
 		pw.add();
 

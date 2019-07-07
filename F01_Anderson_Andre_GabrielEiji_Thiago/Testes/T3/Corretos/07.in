@@ -1,0 +1,26 @@
+function recebeInt -> Int {
+    var x : Int;
+    x = readInt();
+    return x;
+}
+
+function recebeString -> String {
+    var x : String;
+    x = readString();
+    return x; 
+}
+
+function main {
+
+    var x : Int;
+    var y : String;
+
+    x = recebeInt();
+    y = recebeString();
+
+    writeln("x = ", x);
+    writeln("y = ", y);
+
+    writeln("How about that! ", recebeString());
+
+}

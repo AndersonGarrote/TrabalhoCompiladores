@@ -23,7 +23,9 @@ public class PW {
 	}
 
 	public void sub() {
-		this.currentIndent = currentIndent.substring(0, currentIndent.length() - 1);
+		if (this.currentIndent.length() > 0) {
+			this.currentIndent = currentIndent.substring(0, currentIndent.length() - 1);
+		}
 	}
 
 	public void print(String s) {

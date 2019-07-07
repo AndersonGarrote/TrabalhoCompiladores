@@ -16,7 +16,7 @@ public class LiteralString extends Literal implements Printable{
     }
 
     public void genC(PW pw) {
-        pw.out.print("\"" + this.value + "\"");
+        pw.out.print("((String) { \"" + this.value + "\" })");
     }
 
 }

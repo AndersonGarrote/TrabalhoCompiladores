@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+typedef struct {
+	char data[255];
+} String; 
 
-char * palavra() {
-	return "arou";
+String palavra() {
+	return ((String) { "arou" });
 }
 
 int constante() {
@@ -10,17 +13,17 @@ int constante() {
 }
 
 void main() {
-	printf("%s\r\n", "ola");
-	printf("%s", "ola");
-	printf("%s%d\r\n", "ola ", 2);
-	printf("%s%d", "ola ", 2);
+	printf("%s\r\n", ((String) { "ola" }).data);
+	printf("%s", ((String) { "ola" }).data);
+	printf("%s%d\r\n", ((String) { "ola " }).data, 2);
+	printf("%s%d", ((String) { "ola " }).data, 2);
 	int x;
 	x = 3;
-	printf("%d%s%d\r\n", x, " ", constante());
-	printf("%d%s%d", x, " ", constante());
-	char y[255];
-	strcpy(y, "aaaaarou");
-	printf("%s%s%s\r\n", palavra(), " ", y);
-	printf("%s%s%s", palavra(), " ", y);
+	printf("%d%s%d\r\n", x, ((String) { " " }).data, constante());
+	printf("%d%s%d", x, ((String) { " " }).data, constante());
+	String y;
+	y = ((String) { "aaaaarou" });
+	printf("%s%s%s\r\n", palavra().data, ((String) { " " }).data, y.data);
+	printf("%s%s%s", palavra().data, ((String) { " " }).data, y.data);
 }
 

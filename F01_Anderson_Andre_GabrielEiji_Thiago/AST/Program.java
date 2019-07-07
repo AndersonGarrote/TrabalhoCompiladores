@@ -22,6 +22,14 @@ public class Program implements Printable {
 		pw.breakLine();
 		pw.print("#include <string.h>");
 		pw.breakLine();
+		pw.print("typedef struct {");
+		pw.add();
+		pw.breakLine();
+		pw.print("char data[255];");
+		pw.breakLine(true);
+		pw.print("} String; ");
+		pw.sub();
+		pw.breakLine();
 		pw.breakLine();
 		
 		for (Function function : functions) {

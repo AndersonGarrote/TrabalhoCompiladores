@@ -22,9 +22,6 @@ public class Parameter implements Printable {
         type.genC(pw);
         pw.print(" ");
         identifier.genC(pw);
-        
-        if( this.identifier.getType() == Type.stringType )
-    		pw.print("[]");
     }
 
     public Type getType() {

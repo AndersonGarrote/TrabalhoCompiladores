@@ -57,16 +57,19 @@ public class Main {
 				System.out.println("File " + args[1] + " could not be opened for writing");
 				throw new RuntimeException();
 			}
-			PrintWriter printWriter = new PrintWriter(outputStream);
+			PrintWriter printErrors = new PrintWriter(System.out);
 			program = null;
 			// the generated code goes to a file and so are the errors
 			try {
-				program = compiler.compile(input, printWriter, args[0]);
+				program = compiler.compile(input, printErrors, args[0]);
 			} catch (RuntimeException e) {
-				e.printStackTrace();
+				
+				//e.printStackTrace();
+				System.out.println("\nNão foi possível concluir a compilação!");
 				System.exit(2);
 			}
 			if (program != null) {
+				PrintWriter printWriter = new PrintWriter(outputStream);
 				PW pw = new PW();
 				pw.set(printWriter);
 				program.genC(pw);

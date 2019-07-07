@@ -29,20 +29,18 @@ public class ExpressionRelational implements Printable {
     @Override
     public void genC(PW pw) {
 
-        if (relationalOperator == RelationalOperator.equalOperator) {
-            if (leftExpressionAddition.getType() == Type.stringType) {
-                leftExpressionAddition.genC(pw);
-                pw.print(".data == ");
-                rightExpressionAddition.genC(pw);
-                pw.print(".data");
-            }
-        } else if (relationalOperator == RelationalOperator.notEqualOperator) {
-            if (leftExpressionAddition.getType() == Type.stringType) {
-                leftExpressionAddition.genC(pw);
-                pw.print(".data != ");
-                rightExpressionAddition.genC(pw);
-                pw.print(".data");
-            }
+        if (relationalOperator == RelationalOperator.equalOperator && leftExpressionAddition.getType() == Type.stringType) {
+            leftExpressionAddition.genC(pw);
+            pw.print(".data == ");
+            rightExpressionAddition.genC(pw);
+            pw.print(".data");
+        
+        } else if (relationalOperator == RelationalOperator.notEqualOperator && leftExpressionAddition.getType() == Type.stringType) {    
+            leftExpressionAddition.genC(pw);
+            pw.print(".data != ");
+            rightExpressionAddition.genC(pw);
+            pw.print(".data");
+        
         } else {
             leftExpressionAddition.genC(pw);
             if (relationalOperator != null) {

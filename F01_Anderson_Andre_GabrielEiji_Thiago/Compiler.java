@@ -454,6 +454,8 @@ public class Compiler {
 				|| lexer.token == Symbol.NOT_EQUAL) {
 
 			RelationalOperator relationalOperator = relOp();
+			
+			
 			ExpressionAddition expressionAddRight = exprAdd();
 
 			return new ExpressionRelational(expressionAddLeft, relationalOperator, expressionAddRight);

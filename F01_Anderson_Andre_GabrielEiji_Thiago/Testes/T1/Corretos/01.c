@@ -2,7 +2,7 @@
 #include <string.h>
 typedef struct {
 	char data[255];
-} String;
+} String; 
 
 int soma(int x, int y) {
 	int a;
@@ -13,5 +13,6 @@ int soma(int x, int y) {
 void main() {
 	int result;
 	result = soma(3, 2);
-	printf("%d\r\n", result);
+	printf("%d \r\n", result);
 }
+

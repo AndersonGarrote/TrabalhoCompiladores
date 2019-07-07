@@ -40,9 +40,9 @@ public class ExpressionFunctionCall extends ExpressionPrimary implements Printab
             
             expressions.stream().forEach(expression -> {
                 if (expression.getType() == Type.integerType) {
-                    pw.print("%d");
+                    pw.print("%d ");
                 } else {
-                    pw.print("%s");
+                    pw.print("%s ");
                 }
             });
 

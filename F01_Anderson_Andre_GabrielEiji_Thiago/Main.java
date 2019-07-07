@@ -64,7 +64,7 @@ public class Main {
 				program = compiler.compile(input, printErrors, args[0]);
 			} catch (RuntimeException e) {
 				
-				//e.printStackTrace();
+				e.printStackTrace();
 				System.out.println("\nNão foi possível concluir a compilação!");
 				System.exit(2);
 			}

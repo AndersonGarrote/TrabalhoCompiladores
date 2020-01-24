@@ -1,12 +1,20 @@
-# TrabalhoCompiladores
+# Trabalho Compiladores
 
-Observações:
+Trabalho da disciplina de Compiladores elaborado em 2019.01
+
+# Integrantes do grupo:
+* [Anderson Pinheiro Garrote](https://github.com/AndersonGarrote)
+* [André Matheus Bariani Trava](https://github.com/andrebariani)
+* [Gabriel Eiji Uema Martin](https://github.com/eijiuema)
+* [Thiago Yussuki Uehara](https://github.com/Yussuki)
+
+## Observações:
     Na expressão regular, o uso de {x} significa uma repetição de x zero ou mais vezes
     O uso de [x] significa que x pode não ocorrer mas caso ocorra, ocorrerá apenas uma vez
     O uso de (x) significa que ocorre antes de fazer o resto da expressão, ex: (x|y)z significa que aceita:
         xz ou yz
 
-Grámática:
+### Grámática:
 ```
 Program ::= Func {Func}
 Func ::= "function" Id [ "(" ParamList ")" ] [ "->" Type ] StatList  
